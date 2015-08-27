@@ -1,4 +1,4 @@
-package edu.ufpr.cluster.ge;
+package edu.ufpr.cluster.helloworld;
 
 import java.io.FileNotFoundException;
 import java.util.List;
