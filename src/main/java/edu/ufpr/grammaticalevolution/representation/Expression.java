@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Expression {
 
@@ -70,11 +71,11 @@ public class Expression {
     public String toString() {
         return values.stream()
                 .map((Node node) -> {
-                    return node.isTerminal()
+                    String result = node.isTerminal()
                             ? "\"" + node.getName() + "\""
                             : "<" + node.getName() + ">";
-                })
-                .toString();
+                    return result;
+                }).collect(Collectors.joining(" "));
     }
 
 }
