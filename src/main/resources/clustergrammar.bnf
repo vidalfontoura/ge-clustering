@@ -1,6 +1,6 @@
-<GP> ::= <distance> <inicializacao> <comando>
+<GP> ::= <inicializacao> <distance> <comando> 
 <inicializacao> ::= "random" <k> | "uniform" <k>
 <comando> ::= <movimento> | (<movimento> <comando>)
 <movimento> ::= "join" | "split" | "move1" | "move2" 
 <k> ::= "4" | "6" | "8" | "10" | "0"
-<distance> ::= "eucledian" | "manhatan"
+<distance> ::= "eucledian" | "manhathan" | chebyshev

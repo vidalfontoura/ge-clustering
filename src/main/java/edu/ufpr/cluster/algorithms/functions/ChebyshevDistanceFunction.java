@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 import edu.ufpr.cluster.algorithm.Point;
 
-public class ManhattanDistanceFunction implements Function<List<Point>,Double> {
+public class ChebyshevDistanceFunction implements Function<List<Point>,Double> {
 
 	@Override
 	public Double apply(List<Point> points) {
@@ -15,14 +15,14 @@ public class ManhattanDistanceFunction implements Function<List<Point>,Double> {
 			throw new IllegalArgumentException("Isn't possible to calculate the distance for more than 2 points: "+points.size());
 		}
 		
-		
 		Point p = points.get(0);
 		Point q = points.get(1);
 		
-		return Math.abs(p.getX() - q.getX()) + Math.abs(p.getY() - q.getY());
+		double x = Math.abs(p.getX() - q.getX());
+		double y = Math.abs(p.getY() - q.getY());
+		
+		return x>y?x:y;
 	}
-	
-	
 	
 
 }
