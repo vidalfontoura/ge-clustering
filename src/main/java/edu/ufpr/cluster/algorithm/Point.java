@@ -5,6 +5,8 @@ public class Point {
 	private double x;
 	private double y;
 	
+	private Cluster cluster;
+	
 	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -20,6 +22,14 @@ public class Point {
 	}
 	public void setY(double y) {
 		this.y = y;
+	}
+	
+	
+	public Cluster getCluster() {
+		return cluster;
+	}
+	public void setCluster(Cluster cluster) {
+		this.cluster = cluster;
 	}
 	@Override
 	public int hashCode() {
