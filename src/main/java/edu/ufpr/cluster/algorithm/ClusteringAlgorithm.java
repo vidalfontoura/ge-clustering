@@ -10,36 +10,39 @@ public class ClusteringAlgorithm {
 	
 	private List<Function<ClusteringContext,Void>> functions;
 	
-	private Function<List<Point>, Double> distanceFunction;
-	
-	private int k;
+	private ClusteringContext clusteringContext;
 	
 	public ClusteringAlgorithm(Function<ClusteringContext, Void> init,
-			List<Function<ClusteringContext, Void>> functions, Function<List<Point>, Double> distance, int k) {
+			List<Function<ClusteringContext, Void>> functions, Function<List<Point>, Double> distanceFunction, int k) {
 		this.init = init;
 		this.functions = functions;
-		this.distanceFunction = distance;
-		this.k = k;
+		
+		//TODO: Obtain this points from somewhere
+		List<Point> points = new ArrayList<>();
+		this.clusteringContext = new ClusteringContext(points, distanceFunction, k);
 	}
 	
 	
 	
-	public void execute() {
+	public List<Cluster> execute() {
 		
-		List<Point> points = new ArrayList<>();
+		//TODO: check from where this parameters should be given
 		int maxEvaluations = 100000;
 		int evaluations = 0;
 		
-		ClusteringContext algorithmIO = new ClusteringContext(points, distanceFunction, k);
+		//Call to the initialization functions of the centroids
+		init.apply(clusteringContext);
 		
-		init.apply(algorithmIO);
-		
+		//Run sequentially the functions until the maxEvaluations value
 		while (evaluations < maxEvaluations) {
 			for(Function<ClusteringContext, Void> function: functions) {
-				function.apply(algorithmIO);
+				function.apply(clusteringContext);
 			}
 			evaluations++;
 		}
+		
+		//Finished the algorithm returning the cluster list
+		return clusteringContext.getClusters();
 	}
 
 
