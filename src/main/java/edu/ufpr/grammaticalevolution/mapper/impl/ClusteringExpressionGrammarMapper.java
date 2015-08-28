@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import edu.ufpr.grammaticalevolution.mapper.AbstractGrammarMapper;
 import edu.ufpr.grammaticalevolution.representation.Expression;
@@ -98,6 +99,26 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Str
             visitedNodes.remove(node);
 
             return result;
+        }
+    }
+    
+    public static void main(String[] args) {
+        SymbolicExpressionGrammarMapper mapper = new SymbolicExpressionGrammarMapper();
+        mapper.loadGrammar("src/main/resources/clustergrammar.bnf");
+
+        List<Integer> integerList = new ArrayList<>();
+        
+        
+        for(int j=0; j<30; j++) {
+        	JMetalRandom random = JMetalRandom.getInstance();
+        	integerList = new ArrayList<>();
+        	int maxBound = random.nextInt(20, 300);
+            for (int i = 0; i < maxBound; i++) {
+                integerList.add(random.nextInt(0, 1000));
+            }
+//            System.out.println(integerList.toString());
+            System.out.println(mapper.interpret(integerList));
+
         }
     }
 

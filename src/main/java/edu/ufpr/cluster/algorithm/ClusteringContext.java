@@ -5,14 +5,6 @@ import java.util.List;
 import java.util.function.Function;
 
 public class ClusteringContext {
-
-	
-	public ClusteringContext(List<Point> points, Function<List<Point>, Double> distanceFunction, int k) {
-		this.clusters = new ArrayList<>();
-		this.points = points;
-		this.distanceFunction = distanceFunction;
-		this.k = k;
-	}
 	
 	private int k;
 	
@@ -21,6 +13,15 @@ public class ClusteringContext {
 	private List<Cluster> clusters;
 	
 	private List<Point> points;
+	
+	
+	public ClusteringContext(List<Point> points, Function<List<Point>, Double> distanceFunction, int k) {
+		this.clusters = new ArrayList<>();
+		this.points = points;
+		this.distanceFunction = distanceFunction;
+		this.k = k;
+	}
+	
 
 	public List<Cluster> getClusters() {
 		if (clusters == null) {
