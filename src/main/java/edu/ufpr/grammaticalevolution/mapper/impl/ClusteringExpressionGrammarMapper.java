@@ -1,15 +1,15 @@
 package edu.ufpr.grammaticalevolution.mapper.impl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import edu.ufpr.grammaticalevolution.mapper.AbstractGrammarMapper;
 import edu.ufpr.grammaticalevolution.representation.Expression;
 import edu.ufpr.grammaticalevolution.representation.Node;
 
-public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<String> {
+public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<String> {
 
     protected int currentIndex;
     protected int numberOfWraps;
@@ -18,16 +18,17 @@ public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<Strin
 
     protected int maxDepth;
 
-    public SymbolicExpressionGrammarMapper() {
+    public ClusteringExpressionGrammarMapper() {
         super();
+        //TODO: check where this should be configured
         maxDepth = 100;
     }
 
-    public SymbolicExpressionGrammarMapper(Node rootNode) {
+    public ClusteringExpressionGrammarMapper(Node rootNode) {
         super(rootNode);
     }
 
-    public SymbolicExpressionGrammarMapper(int maxNumberOfSelfLoops) {
+    public ClusteringExpressionGrammarMapper(int maxNumberOfSelfLoops) {
         this.maxDepth = maxNumberOfSelfLoops;
     }
 
@@ -100,24 +101,5 @@ public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<Strin
         }
     }
 
-    public static void main(String[] args) {
-        SymbolicExpressionGrammarMapper mapper = new SymbolicExpressionGrammarMapper();
-        mapper.loadGrammar("src/main/resources/clustergrammar.bnf");
-
-        List<Integer> integerList = new ArrayList<>();
-        
-        
-        for(int j=0; j<100; j++) {
-        	JMetalRandom random = JMetalRandom.getInstance();
-        	integerList = new ArrayList<>();
-        	int maxBound = random.nextInt(20, 30);
-            for (int i = 0; i < maxBound; i++) {
-                integerList.add(random.nextInt(0, 1000));
-            }
-//            System.out.println(integerList.toString());
-            System.out.println(mapper.interpret(integerList));
-
-        }
-    }
 
 }
