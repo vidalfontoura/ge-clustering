@@ -1,4 +1,4 @@
-package edu.ufpr.grammaticalevolution.representation;
+package edu.ufpr.ge.representation;
 
 import java.util.ArrayList;
 import java.util.List;

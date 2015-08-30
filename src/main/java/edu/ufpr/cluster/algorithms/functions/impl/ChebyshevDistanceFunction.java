@@ -1,17 +1,17 @@
-package edu.ufpr.cluster.algorithms.functions;
+package edu.ufpr.cluster.algorithms.functions.impl;
 
 import java.util.List;
 import java.util.function.Function;
 
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
 
-public class EucledianDistanceFunction implements Function<List<Point>,Double> {
+public class ChebyshevDistanceFunction extends DistanceFunction {
 
 	@Override
 	public Double apply(List<Point> points) {
 		
 		//https://lyfat.wordpress.com/2012/05/22/euclidean-vs-chebyshev-vs-manhattan-distance/
-		
 		if(points.size() > 2) {
 			throw new IllegalArgumentException("Isn't possible to calculate the distance for more than 2 points: "+points.size());
 		}
@@ -19,11 +19,11 @@ public class EucledianDistanceFunction implements Function<List<Point>,Double> {
 		Point p = points.get(0);
 		Point q = points.get(1);
 		
-		return Math.sqrt(Math.pow(p.getX() - q.getX(),2) + Math.pow(p.getY() - q.getY(),2));
+		double x = Math.abs(p.getX() - q.getX());
+		double y = Math.abs(p.getY() - q.getY());
 		
+		return x>y?x:y;
 	}
-	
-	
 	
 
 }

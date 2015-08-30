@@ -1,4 +1,4 @@
-package edu.ufpr.grammaticalevolution.mapper;
+package edu.ufpr.ge.mapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,10 +10,10 @@ import java.util.regex.Pattern;
 
 import org.uma.jmetal.util.JMetalException;
 
-import edu.ufpr.grammaticalevolution.designpatterns.Memento;
-import edu.ufpr.grammaticalevolution.representation.Expression;
-import edu.ufpr.grammaticalevolution.representation.Node;
-import edu.ufpr.grammaticalevolution.solution.impl.VariableIntegerSolution;
+import edu.ufpr.ge.designpatterns.Memento;
+import edu.ufpr.ge.representation.Expression;
+import edu.ufpr.ge.representation.Node;
+import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
 
 
 

@@ -1,4 +1,4 @@
-package edu.ufpr.grammaticalevolution.solution.impl;
+package edu.ufpr.jmetal.solution.impl;
 
 import org.uma.jmetal.problem.IntegerProblem;
 

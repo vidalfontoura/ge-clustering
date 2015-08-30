@@ -1,11 +1,12 @@
-package edu.ufpr.cluster.algorithms.functions;
+package edu.ufpr.cluster.algorithms.functions.impl;
 
 import java.util.List;
 import java.util.function.Function;
 
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
 
-public class ManhattanDistanceFunction implements Function<List<Point>,Double> {
+public class ManhattanDistanceFunction extends DistanceFunction {
 
 	@Override
 	public Double apply(List<Point> points) {

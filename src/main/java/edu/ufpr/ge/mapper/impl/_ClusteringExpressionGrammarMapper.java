@@ -1,4 +1,5 @@
 package edu.ufpr.ge.mapper.impl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +10,7 @@ import edu.ufpr.ge.mapper.AbstractGrammarMapper;
 import edu.ufpr.ge.representation.Expression;
 import edu.ufpr.ge.representation.Node;
 
-public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<String> {
+public class _ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<String> {
 
     protected int currentIndex;
     protected int numberOfWraps;
@@ -17,17 +18,22 @@ public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<Strin
     protected List<Node> visitedNodes;
 
     protected int maxDepth;
-
-    public SymbolicExpressionGrammarMapper() {
-        super();
+    
+    public _ClusteringExpressionGrammarMapper(String grammarFile) {
+        loadGrammar(grammarFile);
         maxDepth = 100;
     }
 
-    public SymbolicExpressionGrammarMapper(Node rootNode) {
+    public _ClusteringExpressionGrammarMapper() {
+        //TODO: check where this should be configured
+        maxDepth = 100;
+    }
+
+    public _ClusteringExpressionGrammarMapper(Node rootNode) {
         super(rootNode);
     }
 
-    public SymbolicExpressionGrammarMapper(int maxNumberOfSelfLoops) {
+    public _ClusteringExpressionGrammarMapper(int maxNumberOfSelfLoops) {
         this.maxDepth = maxNumberOfSelfLoops;
     }
 
@@ -99,7 +105,7 @@ public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<Strin
             return result;
         }
     }
-
+    
     public static void main(String[] args) {
         SymbolicExpressionGrammarMapper mapper = new SymbolicExpressionGrammarMapper();
         mapper.loadGrammar("src/main/resources/clustergrammar.bnf");
@@ -107,10 +113,10 @@ public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<Strin
         List<Integer> integerList = new ArrayList<>();
         
         
-        for(int j=0; j<100; j++) {
+        for(int j=0; j<30; j++) {
         	JMetalRandom random = JMetalRandom.getInstance();
         	integerList = new ArrayList<>();
-        	int maxBound = random.nextInt(20, 30);
+        	int maxBound = random.nextInt(20, 300);
             for (int i = 0; i < maxBound; i++) {
                 integerList.add(random.nextInt(0, 1000));
             }
@@ -119,5 +125,6 @@ public class SymbolicExpressionGrammarMapper extends AbstractGrammarMapper<Strin
 
         }
     }
+
 
 }

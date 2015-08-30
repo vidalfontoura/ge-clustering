@@ -1,4 +1,4 @@
-package edu.ufpr.cluster.algorithms.functions;
+package edu.ufpr.cluster.algorithms.functions.impl;
 
 import java.util.function.Function;
 
@@ -7,8 +7,9 @@ import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.algorithms.functions.InitilizationFunction;
 
-public class RandomCentroidInitilization implements Function<ClusteringContext, Void> {
+public class RandomCentroidInitilization extends InitilizationFunction {
 
 	@Override
 	public Void apply(ClusteringContext context) {

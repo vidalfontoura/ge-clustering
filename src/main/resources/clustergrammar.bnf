@@ -3,4 +3,4 @@
 <comando> ::= <movimento> | (<movimento> <comando>)
 <movimento> ::= "join" | "split" | "move1" | "move2" 
 <k> ::= "4" | "6" | "8" | "10" | "0"
-<distance> ::= "eucledian" | "manhathan" | chebyshev
+<distance> ::= "eucledian" | "manhathan" | "chebyshev"

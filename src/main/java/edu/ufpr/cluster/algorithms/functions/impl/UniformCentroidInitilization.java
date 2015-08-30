@@ -1,12 +1,13 @@
-package edu.ufpr.cluster.algorithms.functions;
+package edu.ufpr.cluster.algorithms.functions.impl;
 
 import java.util.function.Function;
 
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.algorithms.functions.InitilizationFunction;
 
-public class UniformCentroidInitilization implements Function<ClusteringContext, Void> {
+public class UniformCentroidInitilization extends InitilizationFunction {
 
 	@Override
 	public Void apply(ClusteringContext context) {

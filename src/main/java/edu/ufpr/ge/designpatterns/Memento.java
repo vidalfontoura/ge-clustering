@@ -1,4 +1,4 @@
-package edu.ufpr.grammaticalevolution.designpatterns;
+package edu.ufpr.ge.designpatterns;
 
 public interface Memento<T> {
     
