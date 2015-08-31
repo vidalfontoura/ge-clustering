@@ -16,13 +16,30 @@ public class ChebyshevDistanceFunction extends DistanceFunction {
 			throw new IllegalArgumentException("Isn't possible to calculate the distance for more than 2 points: "+points.size());
 		}
 		
+		
 		Point p = points.get(0);
 		Point q = points.get(1);
 		
-		double x = Math.abs(p.getX() - q.getX());
-		double y = Math.abs(p.getY() - q.getY());
+		if (p.getCoordinates().size() != q.getCoordinates().size()) {
+			throw new IllegalArgumentException("Isn't possible to calculate the distance the points have different dimensions: p="+p.getCoordinates().size()+",q="+q.getCoordinates().size());
+		}
 		
-		return x>y?x:y;
+		double max = Double.MIN_VALUE;
+		for(int i=0; i<p.getCoordinates().size(); i++) {
+			double pCoordinate = p.getCoordinates().get(i);
+			double qCoordinate = q.getCoordinates().get(i);
+			
+			double diff =  Math.abs(pCoordinate - qCoordinate);
+			if (diff > max) {
+				max = diff;
+			}
+		}
+		return max;
+// Old code two dimension
+//		double x = Math.abs(p.getX() - q.getX());
+//		double y = Math.abs(p.getY() - q.getY());
+//		
+//		return x>y?x:y;
 	}
 	
 

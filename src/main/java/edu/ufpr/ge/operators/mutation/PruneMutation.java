@@ -7,10 +7,8 @@ import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
 
 /**
- * @author Antonio J. Nebro
- * @version 1.0
  *
- * This class implements a bit flip mutation operator.
+ * 
  */
 public class PruneMutation implements MutationOperator<VariableIntegerSolution> {
 
@@ -21,14 +19,14 @@ public class PruneMutation implements MutationOperator<VariableIntegerSolution> 
     /**
      * Constructor
      */
-    public PruneMutation(double pruneMutation, int pruneIndex) {
-        if (pruneMutation < 0) {
-            throw new JMetalException("Mutation probability is negative: " + pruneMutation);
+    public PruneMutation(double mutationProbability, int pruneIndex) {
+        if (mutationProbability < 0) {
+            throw new JMetalException("Mutation probability is negative: " + mutationProbability);
         }
         if (pruneIndex <= 0) {
             throw new JMetalException("Prune index is zero or negative: " + pruneIndex);
         }
-        this.mutationProbability = pruneMutation;
+        this.mutationProbability = mutationProbability;
         randomGenerator = JMetalRandom.getInstance();
         this.pruneIndex = pruneIndex;
     }

@@ -1,19 +1,20 @@
 package edu.ufpr.jmetal.solution.impl;
 
-import org.uma.jmetal.problem.IntegerProblem;
-
 import java.util.HashMap;
+
 import org.uma.jmetal.solution.IntegerSolution;
+
+import edu.ufpr.jmetal.problem.AbstractGrammaticalEvolutionProblem;
 
 /**
  * Created by Antonio J. Nebro on 03/09/14.
  */
-public class VariableIntegerSolution extends AbstractVariableSolution<Integer, IntegerProblem> implements IntegerSolution {
+public class VariableIntegerSolution extends AbstractVariableSolution<Integer, AbstractGrammaticalEvolutionProblem> implements IntegerSolution {
 
     /**
      * Constructor
      */
-    public VariableIntegerSolution(IntegerProblem problem, int minCondons, int maxCondons) {
+    public VariableIntegerSolution(AbstractGrammaticalEvolutionProblem problem, int minCondons, int maxCondons) {
         super(problem);
 
         overallConstraintViolationDegree = 0.0;

@@ -1,5 +1,6 @@
 package edu.ufpr.cluster.algorithm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cluster {
@@ -23,6 +24,9 @@ public class Cluster {
 	}
 
 	public List<Point> getPoints() {
+		if (points == null) {
+			return new ArrayList<Point>();
+		}
 		return points;
 	}
 

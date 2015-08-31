@@ -1,47 +1,44 @@
 package edu.ufpr.cluster.algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Point {
 
-	private double x;
-	private double y;
-	
 	private Cluster cluster;
 	
-	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
-	public double getX() {
-		return x;
-	}
-	public void setX(double x) {
-		this.x = x;
-	}
-	public double getY() {
-		return y;
-	}
-	public void setY(double y) {
-		this.y = y;
-	}
+	private List<Double> coordinates;
 	
-	
+
 	public Cluster getCluster() {
 		return cluster;
 	}
+
 	public void setCluster(Cluster cluster) {
 		this.cluster = cluster;
 	}
+
+	public List<Double> getCoordinates() {
+		if(coordinates == null) {
+			coordinates = new ArrayList<Double>();
+			return coordinates;
+		}
+		return coordinates;
+	}
+
+	public void setCoordinates(List<Double> coordinates) {
+		this.coordinates = coordinates;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(x);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(y);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((cluster == null) ? 0 : cluster.hashCode());
+		result = prime * result + ((coordinates == null) ? 0 : coordinates.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -51,21 +48,28 @@ public class Point {
 		if (getClass() != obj.getClass())
 			return false;
 		Point other = (Point) obj;
-		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
+		if (cluster == null) {
+			if (other.cluster != null)
+				return false;
+		} else if (!cluster.equals(other.cluster))
 			return false;
-		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
+		if (coordinates == null) {
+			if (other.coordinates != null)
+				return false;
+		} else if (!coordinates.equals(other.coordinates))
 			return false;
 		return true;
 	}
 	
-	
 	@Override
 	public String toString() {
-		return "("+x+","+y+")";
+		
+		StringBuilder sb = new StringBuilder("(");
+		for(int i=0; i<coordinates.size(); i++) {
+			sb.append(coordinates.get(i)).append(",");
+		}
+		return sb.deleteCharAt(sb.lastIndexOf(",")).append(")").toString();
 	}
-	
-	
-	
 	
 	
 	

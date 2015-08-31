@@ -14,12 +14,24 @@ public class ClusteringContext {
 	
 	private List<Point> points;
 	
+	private int dimensions;
+	
 	
 	public ClusteringContext(List<Point> points, Function<List<Point>, Double> distanceFunction, int k) {
 		this.clusters = new ArrayList<>();
 		this.points = points;
 		this.distanceFunction = distanceFunction;
 		this.k = k;
+		
+		int lastSize = points.get(0).getCoordinates().size();
+		for(Point point: points) {
+			int size = point.getCoordinates().size();
+			if (lastSize != size) {
+				throw new IllegalArgumentException("All points should have the same dimensions");
+			}
+			lastSize = size;
+		}
+		this.dimensions = lastSize;
 	}
 	
 
@@ -58,9 +70,15 @@ public class ClusteringContext {
 		this.k = k;
 	}
 
-	
-	
-	
+
+	public int getDimensions() {
+		return dimensions;
+	}
+
+
+	public void setDimensions(int dimensions) {
+		this.dimensions = dimensions;
+	}
 	
 	
 	

@@ -1,7 +1,5 @@
 package edu.ufpr.cluster.algorithms.functions.impl;
 
-import java.util.function.Function;
-
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
@@ -16,41 +14,46 @@ public class UniformCentroidInitilization extends InitilizationFunction {
 			throw new RuntimeException("The clusters must not be set already at this point");
 		}
 		
-		double xMax = Double.MIN_VALUE;
-		double xMin = Double.MAX_VALUE;
-		double yMax = Double.MIN_VALUE;
-		double yMin = Double.MAX_VALUE;
+		int dimensions = context.getDimensions();
 		
+		double[] maxCoordinates = new double[dimensions];
+		double[] minCoordinates = new double[dimensions];
+		for (int i=0; i<maxCoordinates.length; i++) {
+			maxCoordinates[i] = Double.MIN_VALUE;
+		}
+		for(int i=0; i<minCoordinates.length; i++) {
+			minCoordinates[i] = Double.MAX_VALUE;
+		}
 		for(Point point: context.getPoints()) {
-			if (point.getX() > xMax) {
-				xMax = point.getX();
+			for (int i=0; i<point.getCoordinates().size(); i++) {
+				double coordinate = point.getCoordinates().get(i);
+				if (coordinate > maxCoordinates[i]) {
+					maxCoordinates[i] = coordinate;
+				}
+				if (coordinate < minCoordinates[i]) {
+					minCoordinates[i] = coordinate;
+				}
 			}
 			
-			if (point.getY() > yMax) {
-				yMax = point.getY();
-			}
-			
-			if (point.getX() < xMin) {
-				xMin = point.getX();
-			}
-			
-			if (point.getY() < yMin) {
-				yMin = point.getY();
-			}
 		}
 		int k = context.getK();
-		double incrementX = xMax - xMin / k;
-		double incrementY = yMax - yMin / k;
-		
-		for (int i=0; i<k; i++) {
-			Cluster cluster = new Cluster(new Point(incrementX, incrementY));
-
-			context.getClusters().add(cluster);
-			incrementX = incrementX + incrementX;
-			incrementY = incrementY + incrementY;
-			
+		double[] increments = new double[dimensions];
+		for (int i=0; i<increments.length; i++) {
+			increments[i] = maxCoordinates[i] - minCoordinates[i] /k;
 		}
 		
+		for (int i=0; i<k; i++) {
+			Point point = new Point();
+			
+			for(int j=0; j<dimensions; i++) {
+				double coordinate = increments[j] * (k+1); 
+				point.getCoordinates().add(coordinate);
+			}
+			
+			Cluster cluster = new Cluster(point);
+			context.getClusters().add(cluster);
+			
+		}
 		return null;
 	}
 	
