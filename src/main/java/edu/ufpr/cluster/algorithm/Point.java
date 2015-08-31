@@ -8,7 +8,6 @@ public class Point {
 	private Cluster cluster;
 	
 	private List<Double> coordinates;
-	
 
 	public Cluster getCluster() {
 		return cluster;
@@ -71,7 +70,11 @@ public class Point {
 		return sb.deleteCharAt(sb.lastIndexOf(",")).append(")").toString();
 	}
 	
-	
-	
+	public Point copy() {
+		Point point = new Point();
+		point.setCluster(cluster);
+		point.coordinates = new ArrayList<Double>(coordinates);
+		return point;
+	}
 	
 }

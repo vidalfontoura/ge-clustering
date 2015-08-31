@@ -78,8 +78,5 @@ public class ClusteringContext {
 
 	public void setDimensions(int dimensions) {
 		this.dimensions = dimensions;
-	}
-	
-	
-	
+	}	
 }

@@ -14,17 +14,12 @@ public class MoveNearPointFunction implements Function<ClusteringContext, Object
 	@Override
 	public Object apply(ClusteringContext context) {
 		
-
-		int r = new Random().nextInt(context.getPoints().size());
-
-		//Seleciona um ponto aleatório
-		Point p = context.getPoints().get(r);
+		Point p = context.getPoints().get(new Random().nextInt(context.getPoints().size()));
 		Cluster c = p.getCluster();
 		
 		Cluster minCluster = c;
 		double minDistance = Double.MAX_VALUE;
 		
-		//Verifica o cluster com menor distância para o ponto
 		for (Cluster cluster : context.getClusters()) {
 			if(cluster != c) {
 				
@@ -41,19 +36,15 @@ public class MoveNearPointFunction implements Function<ClusteringContext, Object
 			}
 		}
 		
-		//Remove o ponto do seu cluster anterior e adiciona ao novo
 		if(!minCluster.getPoints().contains(p)) {
 			c.getPoints().remove(p);
-			minCluster.getPoints().add(p);
-			p.setCluster(minCluster);
+			minCluster.addPoint(p);
 			
 			minCluster.updateCentroid();
-			c.updateCentroid();
+			if(!c.isEmpty()) c.updateCentroid();
+			else context.getClusters().remove(c);
 		}
 		
-	
-		
 		return null;
-	}
-	
+	}	
 }

@@ -13,21 +13,21 @@ public class Cluster {
 	private List<Point> points;
 	
 
-	public Cluster(Point centroid) {
-		this.centroid = centroid;
+	public Cluster(Point point) {
+		this.centroid = point.copy();
 	}
 
 	public Point getCentroid() {
 		return centroid;
 	}
 
-	public void setCentroid(Point centroid) {
-		this.centroid = centroid;
+	public void setCentroid(Point point) {
+		this.centroid = point.copy();
 	}
 
 	public List<Point> getPoints() {
 		if (points == null) {
-			return new ArrayList<Point>();
+			points = new ArrayList<Point>();
 		}
 		return points;
 	}
@@ -44,10 +44,13 @@ public class Cluster {
 	public void updateCentroid() {
 		
 		int dimension = centroid.getCoordinates().size();
+		
 		double[] sumCoordinates = new double[dimension];
+		
 		for(int i=0; i<points.size(); i++) {
 			
 			List<Double> coordinates = points.get(i).getCoordinates();
+			
 			for(int j=0; j<coordinates.size(); j++) {
 				Double coordinate = coordinates.get(j);
 				sumCoordinates[j] = sumCoordinates[j] + coordinate;
@@ -56,12 +59,19 @@ public class Cluster {
 		}
 		
 		for(int i=0; i<sumCoordinates.length; i++) {
-			double mean = sumCoordinates[i]/dimension;
+			double mean = sumCoordinates[i]/points.size();
 			centroid.getCoordinates().set(i, mean);
 		}
 		
 	}
 	
+	public boolean isEmpty() {
+		return (getPoints().isEmpty() ? true : false);
+	}
 	
-	
+	@Override
+	public String toString() {
+		if(getPoints().size() == 0) return "(?.?, ?.?)";
+		return getCentroid().toString();
+	}
 }
