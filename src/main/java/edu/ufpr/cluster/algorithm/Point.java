@@ -20,7 +20,8 @@ public class Point {
 
 	public List<Double> getCoordinates() {
 		if(coordinates == null) {
-			return new ArrayList<Double>();
+			coordinates = new ArrayList<Double>();
+			return coordinates;
 		}
 		return coordinates;
 	}

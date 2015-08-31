@@ -1,5 +1,7 @@
 package edu.ufpr.jmetal.algorithm.impl;
 
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,14 +10,15 @@ import java.util.List;
 import org.uma.jmetal.operator.CrossoverOperator;
 import org.uma.jmetal.operator.MutationOperator;
 import org.uma.jmetal.operator.SelectionOperator;
-import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.util.comparator.ObjectiveComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 
 import edu.ufpr.ge.operators.mutation.DuplicationMutation;
 import edu.ufpr.ge.operators.mutation.PruneMutation;
 import edu.ufpr.jmetal.algorithm.AbstractGrammaticalEvolutionAlgorithm;
+import edu.ufpr.jmetal.problem.AbstractGrammaticalEvolutionProblem;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
+
 
 /**
  * Created by ajnebro on 26/10/14.
@@ -27,7 +30,7 @@ public class GrammaticalEvolutionAlgorithm extends AbstractGrammaticalEvolutionA
     private int populationSize;
     private int evaluations;
 
-    private Problem<VariableIntegerSolution> problem;
+    private AbstractGrammaticalEvolutionProblem problem;
 
     private SolutionListEvaluator<VariableIntegerSolution> evaluator;
 
@@ -44,7 +47,7 @@ public class GrammaticalEvolutionAlgorithm extends AbstractGrammaticalEvolutionA
      * @param duplicationMutationOperator
      * @param evaluator
      */
-    public GrammaticalEvolutionAlgorithm(Problem<VariableIntegerSolution> problem, int maxEvaluations, int populationSize,
+    public GrammaticalEvolutionAlgorithm(AbstractGrammaticalEvolutionProblem problem, int maxEvaluations, int populationSize,
             CrossoverOperator<VariableIntegerSolution> crossoverOperator, MutationOperator<VariableIntegerSolution> mutationOperator,
             SelectionOperator<List<VariableIntegerSolution>, VariableIntegerSolution> selectionOperator,
             PruneMutation pruneMutationOperator, DuplicationMutation duplicationMutationOperator,
@@ -67,7 +70,7 @@ public class GrammaticalEvolutionAlgorithm extends AbstractGrammaticalEvolutionA
 
     @Override
     protected boolean isStoppingConditionReached() {
-        return (evaluations >= maxEvaluations);
+        return (getResult().getObjective(0) == 0.0 || evaluations >= maxEvaluations);
     }
 
     @Override
@@ -85,6 +88,7 @@ public class GrammaticalEvolutionAlgorithm extends AbstractGrammaticalEvolutionA
         Collections.sort(population, comparator);
         offspringPopulation.add(population.get(0));
         offspringPopulation.add(population.get(1));
+        System.out.println("Best: " + population.get(0).getObjective(0));
         Collections.sort(offspringPopulation, comparator);
         offspringPopulation.remove(offspringPopulation.size() - 1);
         offspringPopulation.remove(offspringPopulation.size() - 1);

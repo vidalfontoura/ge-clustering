@@ -29,6 +29,7 @@ public class ClusteringContext {
 			if (lastSize != size) {
 				throw new IllegalArgumentException("All points should have the same dimensions");
 			}
+			lastSize = size;
 		}
 		this.dimensions = lastSize;
 	}

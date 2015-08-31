@@ -1,5 +1,6 @@
 package edu.ufpr.jmetal.solution.impl;
 
+
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.Solution;
 
