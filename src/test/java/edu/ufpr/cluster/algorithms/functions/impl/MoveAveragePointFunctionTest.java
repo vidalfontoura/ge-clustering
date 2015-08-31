@@ -1,15 +1,12 @@
 package edu.ufpr.cluster.algorithms.functions.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
 import edu.ufpr.cluster.algorithm.Cluster;
@@ -17,14 +14,14 @@ import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
 
-public class MoveNearPointFunctionTest {
+public class MoveAveragePointFunctionTest {
 
-	private MoveNearPointFunction function;
+	private MoveAveragePointFunction function;
 	
 	@Before
 	public void init() {
-		function = new MoveNearPointFunction();
-		JMetalRandom.getInstance().setSeed(0);
+		function = new MoveAveragePointFunction();
+		JMetalRandom.getInstance().setSeed(144);
 	}
 
 	@Test
@@ -35,27 +32,38 @@ public class MoveNearPointFunctionTest {
 		
 		List<Point> points = new ArrayList<Point>();
 		
-		Point point0 = new Point();
-		point0.setCoordinates(Lists.newArrayList(0.0, 0.0));
+		Point point0 = new Point(Lists.newArrayList(3.0, 3.0));
+		Point point1 = new Point(Lists.newArrayList(2.0, 0.0));
+		Point point2 = new Point(Lists.newArrayList(4.0, 7.0));
 		
-		Point point1 = new Point();
-		point1.setCoordinates(Lists.newArrayList(2.0, 0.0));
+		Point point3 = new Point(Lists.newArrayList(5.0, 7.0));
+		Point point4 = new Point(Lists.newArrayList(4.0, 2.0));
+		Point point5 = new Point(Lists.newArrayList(0.0, 0.0));
 		
-		Point point2 = new Point();
-		point2.setCoordinates(Lists.newArrayList(1.0, 1.0));
+		Point point6 = new Point(Lists.newArrayList(9.0, 2.0));
 		
 		points.add(point0);
 		points.add(point1);
 		points.add(point2);
+		points.add(point3);
+		points.add(point4);
+		points.add(point5);
+		points.add(point6);
 		
-		Cluster cluster0 = new Cluster(point0);
-		Cluster cluster1 = new Cluster(point1);
+		Cluster cluster0 = new Cluster();
+		Cluster cluster1 = new Cluster();
 		
 		cluster0.addPoint(point0);
+		cluster0.addPoint(point1);
 		cluster0.addPoint(point2);
 		cluster0.updateCentroid();
+		System.out.println(cluster0);
 		
-		cluster1.addPoint(point1);
+		cluster1.addPoint(point3);
+		cluster1.addPoint(point4);
+		cluster1.addPoint(point5);
+		cluster1.updateCentroid();
+		System.out.println(cluster1);
 		
 		List<Cluster> clusters = new ArrayList<Cluster>();
 		clusters.add(cluster0);
@@ -75,4 +83,5 @@ public class MoveNearPointFunctionTest {
 			System.out.println(cluster.getPoints().size() + " " + cluster);
 		}
 	}
+	
 }

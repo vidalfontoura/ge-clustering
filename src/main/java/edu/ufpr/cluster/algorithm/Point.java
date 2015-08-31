@@ -9,6 +9,12 @@ public class Point {
 	
 	private List<Double> coordinates;
 
+	public Point() {}
+	
+	public Point(List<Double> coordinates) {
+		setCoordinates(coordinates);
+	}
+	
 	public Cluster getCluster() {
 		return cluster;
 	}
@@ -20,7 +26,6 @@ public class Point {
 	public List<Double> getCoordinates() {
 		if(coordinates == null) {
 			coordinates = new ArrayList<Double>();
-			return coordinates;
 		}
 		return coordinates;
 	}

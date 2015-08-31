@@ -11,11 +11,11 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 
-public class MoveNearPointFunction implements Function<ClusteringContext, Void>{
+public class MoveAveragePointFunction implements Function<ClusteringContext, Void>{
 
 	@Override
 	public Void apply(ClusteringContext context) {
-		
+
 		int r = JMetalRandom.getInstance().nextInt(0, context.getPoints().size()-1);
 		Point p = context.getPoints().get(r);
 		Cluster c = p.getCluster();
@@ -26,28 +26,35 @@ public class MoveNearPointFunction implements Function<ClusteringContext, Void>{
 		for (Cluster cluster : context.getClusters()) {
 			if(cluster != c) {
 				
-				List<Point> points = new ArrayList<Point>();
-				points.add(p);
-				points.add(cluster.getCentroid());
+				double sum = 0.0;
+				for (Point q : cluster.getPoints()) {
+					List<Point> points = new ArrayList<Point>();
+					points.add(p);
+					points.add(q);
+					
+					sum += context.getDistanceFunction().apply(points);
+				}
 				
-				double dist = context.getDistanceFunction().apply(points);
-				
-				if(dist < minDistance) {
-					minDistance = dist;
+				sum = sum / cluster.getPoints().size();
+								
+				if(sum < minDistance) {
+					minDistance = sum;
 					minCluster = cluster;
 				}
 			}
 		}
 		
 		if(!minCluster.getPoints().contains(p)) {
-			c.getPoints().remove(p);
+			if(c != null) {
+				c.getPoints().remove(p);
+				if(!c.isEmpty()) c.updateCentroid();
+				else context.getClusters().remove(c);
+			}
 			minCluster.addPoint(p);
-			
 			minCluster.updateCentroid();
-			if(!c.isEmpty()) c.updateCentroid();
-			else context.getClusters().remove(c);
 		}
 		
 		return null;
-	}	
+	}
+
 }
