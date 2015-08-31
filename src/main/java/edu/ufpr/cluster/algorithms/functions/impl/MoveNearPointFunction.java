@@ -46,10 +46,12 @@ public class MoveNearPointFunction implements Function<ClusteringContext, Object
 			c.getPoints().remove(p);
 			minCluster.getPoints().add(p);
 			p.setCluster(minCluster);
+			
+			minCluster.updateCentroid();
+			c.updateCentroid();
 		}
 		
-//		Utils.updateCusterCentroid(c);
-//		Utils.updateCusterCentroid(minCluster);
+	
 		
 		return null;
 	}
