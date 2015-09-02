@@ -2,19 +2,18 @@ package edu.ufpr.cluster.algorithms.functions.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.function.Function;
 
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.algorithms.functions.Function;
 
-public class MoveNearPointFunction implements Function<ClusteringContext, Void>{
+public class MoveNearPointFunction implements Function<ClusteringContext>{
 
 	@Override
-	public Void apply(ClusteringContext context) {
+	public void apply(ClusteringContext context) {
 		
 		int r = JMetalRandom.getInstance().nextInt(0, context.getPoints().size()-1);
 		Point p = context.getPoints().get(r);
@@ -48,6 +47,5 @@ public class MoveNearPointFunction implements Function<ClusteringContext, Void>{
 			else context.getClusters().remove(c);
 		}
 		
-		return null;
 	}	
 }

@@ -101,7 +101,6 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
        	 
         }
         ClusteringAlgorithm clusteringAlgorithm = new ClusteringAlgorithm(initializationFunction, null, distanceFunction, k);
-
         return clusteringAlgorithm;
         
     }
