@@ -35,34 +35,29 @@ public class MoveNearPointFunctionTest {
 		
 		List<Point> points = new ArrayList<Point>();
 		
-		Point point0 = new Point();
-		point0.setCoordinates(Lists.newArrayList(0.0, 0.0));
-		
-		Point point1 = new Point();
-		point1.setCoordinates(Lists.newArrayList(2.0, 0.0));
-		
-		Point point2 = new Point();
-		point2.setCoordinates(Lists.newArrayList(1.0, 1.0));
+		Point point0 = new Point(Lists.newArrayList(0.0, 0.0));
+		Point point1 = new Point(Lists.newArrayList(2.0, 0.0));
+		Point point2 = new Point(Lists.newArrayList(1.0, 1.0));
 		
 		points.add(point0);
 		points.add(point1);
 		points.add(point2);
 		
-		Cluster cluster0 = new Cluster(point0);
-		Cluster cluster1 = new Cluster(point1);
+		Cluster cluster0 = new Cluster();
+		Cluster cluster1 = new Cluster();
 		
 		cluster0.addPoint(point0);
 		cluster0.addPoint(point2);
 		cluster0.updateCentroid();
 		
 		cluster1.addPoint(point1);
+		cluster1.updateCentroid();
 		
 		List<Cluster> clusters = new ArrayList<Cluster>();
 		clusters.add(cluster0);
 		clusters.add(cluster1);
 		
-		ClusteringContext clusteringContext = new ClusteringContext(points, distanceFunction, k);
-		clusteringContext.setClusters(clusters);
+		ClusteringContext clusteringContext = new ClusteringContext(points, clusters, distanceFunction, k);
 		
 		for (Cluster cluster : clusters) {
 			System.out.println(cluster.getPoints().size() + " " + cluster.getCentroid());

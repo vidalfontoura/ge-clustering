@@ -80,6 +80,11 @@ public class Cluster {
 	@Override
 	public String toString() {
 		if(getPoints().size() == 0) return "(?.?, ?.?)";
-		return getCentroid().toString();
+		String str = " {";
+		for (Point p : points) {
+			str += p + "";
+		}
+		str += "}";
+		return getCentroid().toString()+str;
 	}
 }

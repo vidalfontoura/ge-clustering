@@ -7,6 +7,8 @@ import java.util.function.Function;
 
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
+import com.google.common.collect.Lists;
+
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
@@ -20,7 +22,7 @@ public class MoveAveragePointFunction implements Function<ClusteringContext, Voi
 		Point p = context.getPoints().get(r);
 		Cluster c = p.getCluster();
 		
-		Cluster minCluster = null;
+		Cluster minCluster = context.getClusters().get(0);
 		double minDistance = Double.MAX_VALUE;
 		
 		for (Cluster cluster : context.getClusters()) {
@@ -28,11 +30,7 @@ public class MoveAveragePointFunction implements Function<ClusteringContext, Voi
 				
 				double sum = 0.0;
 				for (Point q : cluster.getPoints()) {
-					List<Point> points = new ArrayList<Point>();
-					points.add(p);
-					points.add(q);
-					
-					sum += context.getDistanceFunction().apply(points);
+					sum += context.getDistanceFunction().apply(Lists.newArrayList(p, q));
 				}
 				
 				sum = sum / cluster.getPoints().size();

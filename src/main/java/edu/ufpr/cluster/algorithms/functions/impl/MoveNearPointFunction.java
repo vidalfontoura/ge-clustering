@@ -20,7 +20,7 @@ public class MoveNearPointFunction implements Function<ClusteringContext, Void>{
 		Point p = context.getPoints().get(r);
 		Cluster c = p.getCluster();
 		
-		Cluster minCluster = null;
+		Cluster minCluster = context.getClusters().get(0);
 		double minDistance = Double.MAX_VALUE;
 		
 		for (Cluster cluster : context.getClusters()) {
