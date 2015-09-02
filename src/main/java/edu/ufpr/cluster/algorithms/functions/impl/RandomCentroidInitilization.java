@@ -1,7 +1,5 @@
 package edu.ufpr.cluster.algorithms.functions.impl;
 
-import java.util.function.Function;
-
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import edu.ufpr.cluster.algorithm.Cluster;
@@ -12,7 +10,7 @@ import edu.ufpr.cluster.algorithms.functions.InitilizationFunction;
 public class RandomCentroidInitilization extends InitilizationFunction {
 
 	@Override
-	public Void apply(ClusteringContext context) {
+	public void apply(ClusteringContext context) {
 
 		if (context.getClusters().size()>0) {
 			throw new RuntimeException("The clusters must not be set already at this point");
@@ -38,7 +36,6 @@ public class RandomCentroidInitilization extends InitilizationFunction {
 			
 			context.getClusters().add(cluster);
 		}
-		return null;
 	}
 
 }
