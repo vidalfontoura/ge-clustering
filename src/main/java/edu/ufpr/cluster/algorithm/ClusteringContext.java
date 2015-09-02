@@ -16,10 +16,18 @@ public class ClusteringContext {
 	
 	private int dimensions;
 	
-	
 	public ClusteringContext(List<Point> points, Function<List<Point>, Double> distanceFunction, int k) {
+		setup(points, null, distanceFunction, k);
+	}
+	
+	public ClusteringContext(List<Point> points, List<Cluster> clusters, Function<List<Point>, Double> distanceFunction, int k) {
+		setup(points, clusters, distanceFunction, k);
+	}
+	
+	public void setup(List<Point> points, List<Cluster> clusters, Function<List<Point>, Double> distanceFunction, int k) {
 		this.clusters = new ArrayList<>();
 		this.points = points;
+		this.clusters = clusters;
 		this.distanceFunction = distanceFunction;
 		this.k = k;
 		
@@ -33,7 +41,6 @@ public class ClusteringContext {
 		}
 		this.dimensions = lastSize;
 	}
-	
 
 	public List<Cluster> getClusters() {
 		if (clusters == null) {
@@ -78,8 +85,5 @@ public class ClusteringContext {
 
 	public void setDimensions(int dimensions) {
 		this.dimensions = dimensions;
-	}
-	
-	
-	
+	}	
 }
