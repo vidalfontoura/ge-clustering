@@ -15,6 +15,7 @@ public class Cluster {
 	public Cluster() {}
 
 	public Cluster(Point point) {
+		addPoint(point);
 		this.centroid = point.copy();
 	}
 
@@ -41,8 +42,10 @@ public class Cluster {
 	}
 
 	public void addPoint(Point point) {
-		point.setCluster(this);
-		getPoints().add(point);
+		if(!getPoints().contains(point)) {
+			point.setCluster(this);
+			getPoints().add(point);
+		}
 	}
 
 	public void updateCentroid() {

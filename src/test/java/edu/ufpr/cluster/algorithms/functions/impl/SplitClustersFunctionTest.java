@@ -21,7 +21,7 @@ public class SplitClustersFunctionTest {
 	@Before
 	public void init() {
 		function = new SplitClustersFunction();
-//		JMetalRandom.getInstance().setSeed(0);
+		JMetalRandom.getInstance().setSeed(100);
 	}
 	
 	@Test

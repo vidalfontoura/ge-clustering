@@ -32,12 +32,19 @@ public class SplitClustersFunction implements Function<ClusteringContext, Void> 
 			}
 		}
 		
-		Cluster cluster1 = new Cluster();
-		Cluster cluster2 = new Cluster();
+		int r1, r2;
+		r1= JMetalRandom.getInstance().nextInt(0, cluster.getPoints().size()-1);
+		do {
+			r2 = JMetalRandom.getInstance().nextInt(0, cluster.getPoints().size()-1);
+		} while(r1 == r2);
 		
+		Cluster cluster1 = new Cluster(cluster.getPoints().get(r1));
+		Cluster cluster2 = new Cluster(cluster.getPoints().get(r2));
+			
 		for (Point point : cluster.getPoints()) {
-			double dist = context.getDistanceFunction().apply(Lists.newArrayList(point, cluster.getCentroid()));
-			if (dist <= maxAvg) cluster1.addPoint(point);
+			double d1 = context.getDistanceFunction().apply(Lists.newArrayList(point, cluster1.getCentroid()));
+			double d2 = context.getDistanceFunction().apply(Lists.newArrayList(point, cluster2.getCentroid()));; 
+			if(d1 <= d2) cluster1.addPoint(point);
 			else cluster2.addPoint(point);
 		}
 		cluster1.updateCentroid();
