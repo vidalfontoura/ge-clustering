@@ -1,4 +1,4 @@
-package edu.ufpr.jmetal.problem;
+package edu.ufpr.jmetal.problem.old.impl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

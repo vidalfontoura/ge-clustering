@@ -8,7 +8,7 @@ import edu.ufpr.cluster.algorithms.functions.InitilizationFunction;
 public class UniformCentroidInitilization extends InitilizationFunction {
 
 	@Override
-	public Void apply(ClusteringContext context) {
+	public void apply(ClusteringContext context) {
 		
 		if (context.getClusters().size()>0) {
 			throw new RuntimeException("The clusters must not be set already at this point");
@@ -54,7 +54,6 @@ public class UniformCentroidInitilization extends InitilizationFunction {
 			context.getClusters().add(cluster);
 			
 		}
-		return null;
 	}
 	
 

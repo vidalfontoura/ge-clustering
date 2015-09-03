@@ -1,6 +1,5 @@
 package edu.ufpr.cluster.algorithms.functions.impl;
 
-import java.util.function.Function;
 
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
@@ -8,11 +7,12 @@ import com.google.common.collect.Lists;
 
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
+import edu.ufpr.cluster.algorithms.functions.Function;
 
-public class JoinClustersFunction implements Function<ClusteringContext, Void>{
+public class JoinClustersFunction implements Function<ClusteringContext>{
 
 	@Override
-	public Void apply(ClusteringContext context) {
+	public void apply(ClusteringContext context) {
 
 		int r = JMetalRandom.getInstance().nextInt(0, context.getClusters().size()-1);
 		
@@ -34,7 +34,6 @@ public class JoinClustersFunction implements Function<ClusteringContext, Void>{
 		cluster1.updateCentroid();
 		context.getClusters().remove(cluster2);
 		
-		return null;
 	}
 
 }
