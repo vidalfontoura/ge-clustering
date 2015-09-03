@@ -1,6 +1,5 @@
 package edu.ufpr.cluster.algorithms.functions.impl;
 
-import java.util.function.Function;
 
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
@@ -9,11 +8,12 @@ import com.google.common.collect.Lists;
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.algorithms.functions.Function;
 
-public class SplitClustersFunction implements Function<ClusteringContext, Void> {
+public class SplitClustersFunction implements Function<ClusteringContext> {
 
 	@Override
-	public Void apply(ClusteringContext context) {
+	public void apply(ClusteringContext context) {
 		
 		Cluster cluster = context.getClusters().get(0);
 		
@@ -54,7 +54,6 @@ public class SplitClustersFunction implements Function<ClusteringContext, Void> 
 		cluster.getPoints().clear();
 		context.getClusters().remove(cluster);
 		
-		return null;
 	}
 	
 }
