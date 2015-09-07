@@ -31,7 +31,7 @@ public class ClusteringAlgorithm {
 
 		this.clusteringContext = new ClusteringContext(points, distanceFunction);
 		// TODO: check from where this parameters should be given
-		int maxEvaluations = 100;
+		int maxEvaluations = 100000;
 		int evaluations = 0;
 
 		// Call to the initialization functions of the centroids
