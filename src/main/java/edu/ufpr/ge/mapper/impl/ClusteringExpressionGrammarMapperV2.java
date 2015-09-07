@@ -1,6 +1,7 @@
 package edu.ufpr.ge.mapper.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,6 @@ import edu.ufpr.cluster.algorithms.functions.impl.JoinClustersFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.ManhattanDistanceFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.MoveAveragePointFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.MoveBetweenClustersFunction;
-import edu.ufpr.cluster.algorithms.functions.impl.MoveNearPointFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.RandomCentroidInitilization;
 import edu.ufpr.cluster.algorithms.functions.impl.SplitClustersFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.UniformCentroidInitilization;
@@ -25,70 +25,80 @@ import edu.ufpr.ge.mapper.AbstractGrammarMapper;
 import edu.ufpr.ge.representation.Expression;
 import edu.ufpr.ge.representation.Node;
 
-public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<ClusteringAlgorithm> {
+public class ClusteringExpressionGrammarMapperV2 extends AbstractGrammarMapper<ClusteringAlgorithm> {
 
 	protected int currentIndex;
-	protected int numberOfWraps;
 	protected int currentDepth;
 	protected List<Node> visitedNodes;
-
+	protected int numberOfWraps;
 	protected int maxDepth;
 
-	public ClusteringExpressionGrammarMapper(String grammarFile) {
-		loadGrammar(grammarFile);
-		maxDepth = 100;
-	}
-
-	public ClusteringExpressionGrammarMapper() {
-		// TODO: check where this should be configured
-		maxDepth = 100;
-	}
-
-	public ClusteringExpressionGrammarMapper(Node rootNode) {
+	public ClusteringExpressionGrammarMapperV2(Node rootNode) {
 		super(rootNode);
-	}
-
-	public ClusteringExpressionGrammarMapper(int maxNumberOfSelfLoops) {
-		this.maxDepth = maxNumberOfSelfLoops;
-	}
-
-	public int getMaxDepth() {
-		return maxDepth;
-	}
-
-	public void setMaxDepth(int maxDepth) {
-		this.maxDepth = maxDepth;
-	}
-
-	public int getNumberOfWraps() {
-		return numberOfWraps;
+		this.currentIndex = 0;
+		this.currentDepth = 1;
+		visitedNodes = new ArrayList<>();
+		this.maxDepth = 100;
 	}
 
 	@Override
 	public ClusteringAlgorithm interpret(List<Integer> grammarInstance) {
-		currentIndex = 0;
-		numberOfWraps = 0;
-		currentDepth = 1;
-		visitedNodes = new ArrayList<>();
-		String[] result = getNodeValue(rootNode, grammarInstance).split(" ");
 
-		int k = Integer.valueOf(result[1]);
-		String initializationValue = result[0];
+		Node gpNode = nonTerminalNodes.get("GP"); // ou rootNode
+		InitializiationFunction initilizationFunction = interpretInitilization(
+				gpNode.getExpressions().get(0).getNodes().get(0), grammarInstance);
+
+		System.out.println(initilizationFunction);
+
+		DistanceFunction distanceFunction = interpretDistanceFunction(gpNode.getExpressions().get(0).getNodes().get(1),
+				grammarInstance);
+
+		System.out.println(distanceFunction);
+
+		String[] commands = getNodeValue(gpNode.getExpressions().get(0).getNodes().get(2), grammarInstance).split(" ");
+
+		System.out.println(Arrays.toString(commands));
+		List<Function<ClusteringContext>> functions = interpretFunctions(commands, grammarInstance);
+
+		ClusteringAlgorithm clusteringAlgorithm = new ClusteringAlgorithm(initilizationFunction, functions,
+				distanceFunction);
+
+		return clusteringAlgorithm;
+	}
+
+	private InitializiationFunction interpretInitilization(Node initializationNode, List<Integer> grammarInstance) {
+		Expression selectedExpression = selectExpression(initializationNode, grammarInstance);
+
+		String initializationValue = selectedExpression.getNodes().get(0).getName();
 		InitializiationFunction initializationFunction = null;
+		int initialK = 0;
+		if (selectedExpression.getNodes().size() == 2) {
+			Node kNode = selectedExpression.getNodes().get(1);
+			Node size = selectExpression(kNode, grammarInstance).getNodes().get(0);
+			initialK = Integer.valueOf(size.getName());
+		}
+
+		System.out.println(initialK);
+
 		switch (initializationValue) {
 		case "uniform":
-			initializationFunction = new UniformCentroidInitilization(k);
+			initializationFunction = new UniformCentroidInitilization(initialK);
 			break;
 		case "random":
-			initializationFunction = new RandomCentroidInitilization(k);
+			initializationFunction = new RandomCentroidInitilization(initialK);
 			break;
 		default:
 			throw new RuntimeException("Initialization " + initializationValue + " not supported");
 		}
+		return initializationFunction;
 
-		String distance = result[2];
+	}
 
+	private DistanceFunction interpretDistanceFunction(Node distanceNode, List<Integer> grammarInstance) {
 		DistanceFunction distanceFunction = null;
+		Expression selectedExpression = selectExpression(distanceNode, grammarInstance);
+
+		String distance = selectedExpression.getNodes().get(0).getName();
 		switch (distance) {
 		case "manhathan":
 			distanceFunction = new ManhattanDistanceFunction();
@@ -103,9 +113,13 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 			throw new RuntimeException("Distance function " + distanceFunction + " not supported");
 		}
 
+		return distanceFunction;
+	}
+
+	private List<Function<ClusteringContext>> interpretFunctions(String[] commands, List<Integer> grammarInstance) {
 		List<Function<ClusteringContext>> functions = new ArrayList<>();
-		for (int i = 3; i < result.length; i++) {
-			String opFunction = result[i];
+		for (int i = 0; i < commands.length; i++) {
+			String opFunction = commands[i];
 			Function<ClusteringContext> function = null;
 			switch (opFunction) {
 			case "join":
@@ -121,19 +135,14 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 				function = new MoveBetweenClustersFunction();
 				break;
 			case "moveNear":
-				function = new MoveNearPointFunction();
+				function = new MoveBetweenClustersFunction();
 				break;
 			default:
 				throw new RuntimeException("Operation function " + opFunction + " not supported");
 			}
 			functions.add(function);
-
 		}
-
-		ClusteringAlgorithm clusteringAlgorithm = new ClusteringAlgorithm(initializationFunction, functions,
-				distanceFunction);
-		return clusteringAlgorithm;
-
+		return functions;
 	}
 
 	private String getNodeValue(Node node, List<Integer> grammarInstance) {
@@ -142,8 +151,8 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 		}
 		visitedNodes.add(node);
 
-		int expressionsSize = node.getExpressions().size();
-		if (expressionsSize > 1) {
+		int numberOfExpressions = node.getExpressions().size();
+		if (numberOfExpressions > 1) {
 			currentIndex++;
 			if (currentIndex >= grammarInstance.size()) {
 				currentIndex = 0;
@@ -151,7 +160,7 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 			}
 		}
 
-		int indexToGet = grammarInstance.get(currentIndex) % expressionsSize;
+		int indexToGet = grammarInstance.get(currentIndex) % numberOfExpressions;
 		Expression expression = node.getExpressions().get(indexToGet);
 		for (Node childNode : expression.getNodes()) {
 			if (visitedNodes.contains(childNode)) {
@@ -162,7 +171,7 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 		while (currentDepth > maxDepth) {
 			currentDepth--;
 			grammarInstance.set(currentIndex, grammarInstance.get(currentIndex) + 1);
-			indexToGet = grammarInstance.get(currentIndex) % expressionsSize;
+			indexToGet = grammarInstance.get(currentIndex) % numberOfExpressions;
 			expression = node.getExpressions().get(indexToGet);
 			for (Node childNode : expression.getNodes()) {
 				if (visitedNodes.contains(childNode)) {
@@ -178,11 +187,19 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 		visitedNodes.remove(node);
 
 		return result;
+	}
 
+	private Expression selectExpression(Node node, List<Integer> grammarInstance) {
+		Expression expression = node.getExpressions()
+				.get(grammarInstance.get(currentIndex % grammarInstance.size()) % node.getExpressions().size());
+		if (node.getExpressions().size() > 1) {
+			currentIndex++;
+		}
+		return expression;
 	}
 
 	public static void main(String[] args) {
-		ClusteringExpressionGrammarMapper mapper = new ClusteringExpressionGrammarMapper();
+		ClusteringExpressionGrammarMapperV2 mapper = new ClusteringExpressionGrammarMapperV2(null);
 		mapper.loadGrammar("src/main/resources/clustergrammar.bnf");
 
 		List<Integer> integerList = new ArrayList<>();
@@ -195,7 +212,7 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 				integerList.add(random.nextInt(0, 1000));
 			}
 			// System.out.println(integerList.toString());
-			System.out.println(mapper.interpret(integerList));
+			mapper.interpret(integerList);
 
 		}
 	}
