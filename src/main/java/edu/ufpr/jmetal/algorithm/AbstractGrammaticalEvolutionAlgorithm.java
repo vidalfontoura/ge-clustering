@@ -9,9 +9,10 @@ import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
 /**
  * Created by ajnebro on 26/10/14.
  */
-public abstract class AbstractGrammaticalEvolutionAlgorithm<S extends VariableIntegerSolution, R> extends AbstractGeneticAlgorithm<VariableIntegerSolution, R> {
+public abstract class AbstractGrammaticalEvolutionAlgorithm<S extends VariableIntegerSolution, R>
+		extends AbstractGeneticAlgorithm<VariableIntegerSolution, R> {
 
-    protected PruneMutation pruneMutationOperator;
-    protected DuplicationMutation duplicationMutationOperator;
+	protected PruneMutation pruneMutationOperator;
+	protected DuplicationMutation duplicationMutationOperator;
 
 }

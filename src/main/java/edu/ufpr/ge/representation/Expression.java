@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 public class Expression {
 
     protected int index;
-    protected List<Node> values;
+    protected List<Node> nodes;
 
     public Expression() {
-        this.values = new ArrayList<>();
+        this.nodes = new ArrayList<>();
     }
 
     public Expression(int index) {
@@ -22,7 +22,7 @@ public class Expression {
 
     public Expression(int index, List<Node> values) {
         this.index = index;
-        this.values = values;
+        this.nodes = values;
     }
 
     public int getIndex() {
@@ -34,17 +34,17 @@ public class Expression {
     }
 
     public List<Node> getNodes() {
-        return values;
+        return nodes;
     }
 
     public void setValues(List<Node> values) {
-        this.values = values;
+        this.nodes = values;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.values);
+        hash = 97 * hash + Objects.hashCode(this.nodes);
         return hash;
     }
 
@@ -57,8 +57,8 @@ public class Expression {
             return false;
         }
         final Expression other = (Expression) obj;
-        for (int i = 0; i < values.size(); i++) {
-            Node node1 = values.get(i);
+        for (int i = 0; i < nodes.size(); i++) {
+            Node node1 = nodes.get(i);
             Node node2 = other.getNodes().get(i);
             if (!node1.equals(node2)) {
                 return false;
@@ -69,7 +69,7 @@ public class Expression {
 
     @Override
     public String toString() {
-        return values.stream()
+        return nodes.stream()
                 .map((Node node) -> {
                     String result = node.isTerminal()
                             ? "\"" + node.getName() + "\""

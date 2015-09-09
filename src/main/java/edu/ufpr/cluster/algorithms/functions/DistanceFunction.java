@@ -5,6 +5,6 @@ import java.util.function.Function;
 
 import edu.ufpr.cluster.algorithm.Point;
 
-public abstract class DistanceFunction implements Function<List<Point>,Double> {
+public abstract class DistanceFunction implements Function<List<Point>, Double> {
 
 }
