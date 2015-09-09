@@ -8,7 +8,6 @@ import com.google.common.collect.Lists;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -64,8 +63,7 @@ public class ClusteringExpressionGrammarMapperTest {
 		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
 		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data").stream()
-				.map(c -> c.getPoint()).collect(Collectors.toList());
+		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext execute = algorithm.execute();
@@ -114,8 +112,7 @@ public class ClusteringExpressionGrammarMapperTest {
 		Assert.assertEquals("MoveNearPointFunction", function1.toString());
 		Assert.assertEquals("MoveBetweenClustersFunction", function2.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data").stream()
-				.map(c -> c.getPoint()).collect(Collectors.toList());
+		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		algorithm.execute();
@@ -177,8 +174,7 @@ public class ClusteringExpressionGrammarMapperTest {
 
 		Assert.assertEquals("SplitClustersFunction", function0.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data").stream()
-				.map(c -> c.getPoint()).collect(Collectors.toList());
+		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext execute = algorithm.execute();
@@ -218,8 +214,7 @@ public class ClusteringExpressionGrammarMapperTest {
 		Assert.assertEquals("JoinClustersFunction", function1.toString());
 		Assert.assertEquals("MoveBetweenClustersFunction", function2.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data").stream()
-				.map(c -> c.getPoint()).collect(Collectors.toList());
+		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext execute = algorithm.execute();

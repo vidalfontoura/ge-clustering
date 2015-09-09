@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import edu.ufpr.cluster.algorithm.ClusteringAlgorithm;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
@@ -30,8 +29,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 		super(new ClusteringExpressionGrammarMapper(), grammarFile);
 		this.maxCondons = maxCondons;
 		this.minCondons = minCondons;
-		this.points = DataInstanceReader.readPoints(dataSetFile).stream().map(c -> c.getPoint())
-				.collect(Collectors.toList());
+		this.points = DataInstanceReader.readPoints(dataSetFile);
 		this.fitnessFunction = new FitnessFunction();
 
 	}

@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -69,8 +68,7 @@ public class FitnessFunctionTest {
 
 		Assert.assertEquals("SplitClustersFunction", function0.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data").stream()
-				.map(c -> c.getPoint()).collect(Collectors.toList());
+		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -119,8 +117,7 @@ public class FitnessFunctionTest {
 		Assert.assertEquals("MoveNearPointFunction", function0.toString());
 		Assert.assertEquals("SplitClustersFunction", function1.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data").stream()
-				.map(c -> c.getPoint()).collect(Collectors.toList());
+		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
