@@ -37,7 +37,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 			outDir.mkdir();
 		}
 		String grammarFile = "/clustergrammar.bnf";
-		String dataClassificationFile = "/prima-indians-diabetes.data";
+		String dataClassificationFile = "/points.data";
 		double crossoverProbability = 1.0;
 		double mutationProbability = 0.1;
 		double pruneMutationProbability = 0.05;
@@ -46,8 +46,8 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 		int maxEvaluations = 10000;
 		int populationSize = 10;
 
-		// I was using seed 100 in my tests
-		// JMetalRandom.getInstance().setSeed(100);
+//		 I was using seed 100 in my tests
+		 JMetalRandom.getInstance().setSeed(100);
 
 		for (int i = 0; i < 1; i++) {
 

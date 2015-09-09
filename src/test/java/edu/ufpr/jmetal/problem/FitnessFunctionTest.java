@@ -36,7 +36,7 @@ public class FitnessFunctionTest {
 	@Before
 	public void setup() {
 		mapper = new ClusteringExpressionGrammarMapper();
-		mapper.loadGrammar("src/main/resources/clustergrammar.bnf");
+		mapper.loadGrammar("/clustergrammar.bnf");
 		JMetalRandom.getInstance().setSeed(100);
 		fitnessFunction = new FitnessFunction();
 	}
@@ -117,7 +117,7 @@ public class FitnessFunctionTest {
 		Assert.assertEquals("MoveNearPointFunction", function0.toString());
 		Assert.assertEquals("SplitClustersFunction", function1.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -196,5 +196,151 @@ public class FitnessFunctionTest {
 		System.out.println(clusteringContext.getClusters().size());
 
 	}
+	
+	
+	@Test
+	public void test6() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(129,133,233,39,53,157,209,17,69,40,192,216,33,205,233,195,171,124);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+		
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(10, algorithm.getInitialK());
+		Assert.assertTrue(algorithm.getFunctions().size() == 4);
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+		Function<ClusteringContext> function3 = algorithm.getFunctions().get(3);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("MoveAveragePointFunction", function1.toString());
+		Assert.assertEquals("JoinClustersFunction", function2.toString());
+		Assert.assertEquals("SplitClustersFunction", function3.toString());
+
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+		algorithm.setPoints(points);
+
+		ClusteringContext clusteringContext = algorithm.execute();
+		
+		List<Point> points2 = clusteringContext.getPoints();
+		
+		System.out.println(clusteringContext.getClusters().size());
+		for (Cluster cluster: clusteringContext.getClusters()) {
+			cluster.printCluster();
+		}
+
+		// List<Cluster> clusters = clusteringContext.getClusters();
+		// for (Cluster cluster : clusters) {
+		// System.out.println(cluster.getCentroid());
+		// System.out.println(cluster.getPoints().size());
+		// System.out.println();
+		// }
+		Double fitness = fitnessFunction.apply(clusteringContext);
+
+		System.out.println(fitness);
+
+	}
+	
+	
+	@Test
+	public void test7() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(41);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+		
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("ChebyshevDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(6, algorithm.getInitialK());
+		Assert.assertEquals(400, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+		Function<ClusteringContext> function3 = algorithm.getFunctions().get(3);
+		
+		Function<ClusteringContext> functionLast = algorithm.getFunctions().get(algorithm.getFunctions().size() - 1);
+
+		Assert.assertEquals("SplitClustersFunction", function0.toString());
+		Assert.assertEquals("SplitClustersFunction", function1.toString());
+		
+		Assert.assertEquals("MoveAveragePointFunction", functionLast.toString());
+
+		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		algorithm.setPoints(points);
+
+		ClusteringContext clusteringContext = algorithm.execute();
+		
+		List<Point> points2 = clusteringContext.getPoints();
+		
+		System.out.println(clusteringContext.getClusters().size());
+		for (Cluster cluster: clusteringContext.getClusters()) {
+			cluster.printCluster();
+		}
+
+		// List<Cluster> clusters = clusteringContext.getClusters();
+		// for (Cluster cluster : clusters) {
+		// System.out.println(cluster.getCentroid());
+		// System.out.println(cluster.getPoints().size());
+		// System.out.println();
+		// }
+		Double fitness = fitnessFunction.apply(clusteringContext);
+
+		System.out.println(fitness);
+
+	}
+	
+	
+	@Test
+	public void test8() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(7,180,6,43,101,229,225,146,217,236,245,195,238);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+//		
+//		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+//		Assert.assertEquals("ChebyshevDistanceFunction", algorithm.getDistanceFunction().toString());
+//
+//		Assert.assertEquals(6, algorithm.getInitialK());
+//		Assert.assertEquals(400, algorithm.getFunctions().size());
+//
+//		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+//		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+//		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+//		Function<ClusteringContext> function3 = algorithm.getFunctions().get(3);
+//		
+//		Function<ClusteringContext> functionLast = algorithm.getFunctions().get(algorithm.getFunctions().size() - 1);
+//
+//		Assert.assertEquals("SplitClustersFunction", function0.toString());
+//		Assert.assertEquals("SplitClustersFunction", function1.toString());
+		
+//		Assert.assertEquals("MoveAveragePointFunction", functionLast.toString());
+
+		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		algorithm.setPoints(points);
+
+		ClusteringContext clusteringContext = algorithm.execute();
+		
+		List<Point> points2 = clusteringContext.getPoints();
+		
+		System.out.println(clusteringContext.getClusters().size());
+		for (Cluster cluster: clusteringContext.getClusters()) {
+			cluster.printCluster();
+		}
+
+		// List<Cluster> clusters = clusteringContext.getClusters();
+		// for (Cluster cluster : clusters) {
+		// System.out.println(cluster.getCentroid());
+		// System.out.println(cluster.getPoints().size());
+		// System.out.println();
+		// }
+		Double fitness = fitnessFunction.apply(clusteringContext);
+
+		System.out.println(fitness);
+
+	}
+
 
 }

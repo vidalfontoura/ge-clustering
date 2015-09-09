@@ -29,12 +29,13 @@ public class DataInstanceReader {
 						point.getCoordinates().add(Double.valueOf(values[i]));
 					} else {
 						// TODO: Do nothing this is the class for the
-						// prima-indians database
+						// pima-indians database
 					}
 				}
 				points.add(point);
 			}
 		}
+//		return points
 
 		Double max = Double.MIN_VALUE;
 		Double min = Double.MAX_VALUE;
