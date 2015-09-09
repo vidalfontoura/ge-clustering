@@ -43,10 +43,13 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 		double pruneMutationProbability = 0.05;
 		double duplicationProbability = 0.05;
 		int pruneIndex = 4;
-		int maxEvaluations = 10;
+		int maxEvaluations = 10000;
 		int populationSize = 10;
 
-		for (int i = 0; i < 2; i++) {
+		// I was using seed 100 in my tests
+		// JMetalRandom.getInstance().setSeed(100);
+
+		for (int i = 0; i < 1; i++) {
 
 			String outputFolder = outDir + File.separator + i;
 
