@@ -2,8 +2,8 @@ package edu.ufpr.jmetal.problem.old.impl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,8 @@ public class DataInstanceReader {
 
 	public static List<ClassifiedPoint> readPoints(String fileName) throws FileNotFoundException, IOException {
 		List<ClassifiedPoint> points = new ArrayList<ClassifiedPoint>();
-		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+		try (BufferedReader br = new BufferedReader(
+				new InputStreamReader(DataInstanceReader.class.getResourceAsStream(fileName)))) {
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				String[] values = line.split(",");

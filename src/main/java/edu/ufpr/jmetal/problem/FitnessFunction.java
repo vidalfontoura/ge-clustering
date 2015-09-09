@@ -20,7 +20,12 @@ public class FitnessFunction implements Function<ClusteringContext, Double> {
 		// cluster
 		List<Cluster> clusters = clusteringContext.getClusters();
 		// clusters.stream().forEach(p -> p.printCluster());
-		List<Point> pointsClustered = clusteringContext.getPoints();
+		List<Point> allPoints = clusteringContext.getPoints();
+
+		// If exists more than 10 cluster it will be penalized hard
+		if (clusters.size() > 10) {
+			return Double.MAX_VALUE;
+		}
 
 		// If exists any cluster if no points it will penalize hard the solution
 		for (Cluster c : clusters) {
@@ -32,14 +37,14 @@ public class FitnessFunction implements Function<ClusteringContext, Double> {
 
 		// If exists one point that is not clustered it will penalize hard the
 		// solution
-		for (Point p : pointsClustered) {
+		for (Point p : allPoints) {
 			if (p.getCluster() == null) {
 				return Double.MAX_VALUE;
 			}
 		}
 
 		// Calculate fitness
-		double fitness = calculateFitness(clusters, pointsClustered);
+		double fitness = calculateFitness(clusters, allPoints);
 		return fitness;
 
 	}

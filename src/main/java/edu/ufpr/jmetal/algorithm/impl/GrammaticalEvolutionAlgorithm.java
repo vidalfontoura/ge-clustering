@@ -21,7 +21,7 @@ import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
  * Created by ajnebro on 26/10/14.
  */
 public class GrammaticalEvolutionAlgorithm
-		extends AbstractGrammaticalEvolutionAlgorithm<VariableIntegerSolution, VariableIntegerSolution> {
+		extends AbstractGrammaticalEvolutionAlgorithm<VariableIntegerSolution, List<VariableIntegerSolution>> {
 
 	private Comparator<VariableIntegerSolution> comparator;
 	private int maxEvaluations;
@@ -135,9 +135,9 @@ public class GrammaticalEvolutionAlgorithm
 	}
 
 	@Override
-	public VariableIntegerSolution getResult() {
+	public List<VariableIntegerSolution> getResult() {
 		Collections.sort(getPopulation(), comparator);
-		return getPopulation().get(0);
+		return getPopulation();
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package edu.ufpr.ge.mapper;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -50,13 +48,13 @@ public abstract class AbstractGrammarMapper<T> {
 		return interpret(grammarInstance.getVariables());
 	}
 
-	public boolean loadGrammar(String grammarFilePath) {
-		return loadGrammar(new File(grammarFilePath));
-	}
+	// public boolean loadGrammar(String grammarFilePath) {
+	// return loadGrammar(new File());
+	// }
 
-	public boolean loadGrammar(File grammarFile) {
+	public boolean loadGrammar(String grammarFile) {
 		Memento<AbstractGrammarMapper<T>> memento = this.createMemento();
-		try (Scanner scanner = new Scanner(grammarFile)) {
+		try (Scanner scanner = new Scanner(AbstractGrammarMapper.class.getResourceAsStream(grammarFile))) {
 			this.nonTerminalNodes = new HashMap<>();
 			this.rootNode = null;
 
@@ -88,9 +86,10 @@ public abstract class AbstractGrammarMapper<T> {
 					}
 				}
 			}
-		} catch (FileNotFoundException ex) {
-			this.setMemento(memento);
-			throw new JMetalException("File is not a file or does not exist.");
+			// } catch (FileNotFoundException ex) {
+			// this.setMemento(memento);
+			// throw new JMetalException("File is not a file or does not
+			// exist.");
 		} catch (Exception ex) {
 			this.setMemento(memento);
 			throw ex;

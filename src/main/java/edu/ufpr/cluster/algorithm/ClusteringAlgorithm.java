@@ -1,5 +1,6 @@
 package edu.ufpr.cluster.algorithm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.ufpr.cluster.algorithms.functions.Function;
@@ -31,7 +32,7 @@ public class ClusteringAlgorithm {
 
 		this.clusteringContext = new ClusteringContext(points, distanceFunction);
 		// TODO: check from where this parameters should be given
-		int maxEvaluations = 100000;
+		int maxEvaluations = 10000;
 		int evaluations = 0;
 
 		// Call to the initialization functions of the centroids
@@ -44,6 +45,20 @@ public class ClusteringAlgorithm {
 			}
 			evaluations++;
 
+		}
+
+		// Iterate to clusters list and remove the ones without points
+		List<Cluster> clusters = clusteringContext.getClusters();
+		List<Cluster> emptyCluster = new ArrayList<Cluster>();
+		for (int i = 0; i < clusters.size(); i++) {
+			Cluster cluster = clusters.get(i);
+			if (cluster.getPoints().isEmpty()) {
+				emptyCluster.add(cluster);
+			}
+		}
+
+		for (Cluster cluster : emptyCluster) {
+			clusters.remove(cluster);
 		}
 
 		// Finished the algorithm returning the cluster list

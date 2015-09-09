@@ -36,12 +36,12 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 
 	public ClusteringExpressionGrammarMapper(String grammarFile) {
 		loadGrammar(grammarFile);
-		maxDepth = 100;
+		maxDepth = 400;
 	}
 
 	public ClusteringExpressionGrammarMapper() {
 		// TODO: check where this should be configured
-		maxDepth = 100;
+		maxDepth = 400;
 	}
 
 	public ClusteringExpressionGrammarMapper(Node rootNode) {

@@ -171,7 +171,7 @@ public class FitnessFunctionTest {
 		ArrayList<Double> point4 = Lists.newArrayList(0.2, 0.2);
 		ArrayList<Double> point5 = Lists.newArrayList(0.3, 0.2);
 		ArrayList<Double> point6 = Lists.newArrayList(0.5, 0.4);
-		ArrayList<Double> point7 = Lists.newArrayList(0.5, 0.4);
+		ArrayList<Double> point7 = Lists.newArrayList(0.4, 0.4);
 		ArrayList<Double> point8 = Lists.newArrayList(0.4, 0.5);
 		ArrayList<Double> point9 = Lists.newArrayList(0.4, 0.6);
 		ArrayList<Double> point10 = Lists.newArrayList(0.5, 0.5);
@@ -187,7 +187,6 @@ public class FitnessFunctionTest {
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
-		List<Point> points2 = clusteringContext.getPoints();
 
 		Double fitness = fitnessFunction.apply(clusteringContext);
 

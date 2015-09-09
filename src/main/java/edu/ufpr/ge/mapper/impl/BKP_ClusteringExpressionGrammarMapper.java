@@ -25,7 +25,7 @@ import edu.ufpr.ge.mapper.AbstractGrammarMapper;
 import edu.ufpr.ge.representation.Expression;
 import edu.ufpr.ge.representation.Node;
 
-public class ClusteringExpressionGrammarMapperV2 extends AbstractGrammarMapper<ClusteringAlgorithm> {
+public class BKP_ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<ClusteringAlgorithm> {
 
 	protected int currentIndex;
 	protected int currentDepth;
@@ -33,7 +33,7 @@ public class ClusteringExpressionGrammarMapperV2 extends AbstractGrammarMapper<C
 	protected int numberOfWraps;
 	protected int maxDepth;
 
-	public ClusteringExpressionGrammarMapperV2(Node rootNode) {
+	public BKP_ClusteringExpressionGrammarMapper(Node rootNode) {
 		super(rootNode);
 		this.currentIndex = 0;
 		this.currentDepth = 1;
@@ -199,7 +199,7 @@ public class ClusteringExpressionGrammarMapperV2 extends AbstractGrammarMapper<C
 	}
 
 	public static void main(String[] args) {
-		ClusteringExpressionGrammarMapperV2 mapper = new ClusteringExpressionGrammarMapperV2(null);
+		BKP_ClusteringExpressionGrammarMapper mapper = new BKP_ClusteringExpressionGrammarMapper(null);
 		mapper.loadGrammar("src/main/resources/clustergrammar.bnf");
 
 		List<Integer> integerList = new ArrayList<>();
