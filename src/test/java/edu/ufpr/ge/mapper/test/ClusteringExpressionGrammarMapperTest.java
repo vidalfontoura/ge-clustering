@@ -34,7 +34,7 @@ public class ClusteringExpressionGrammarMapperTest {
 	@Before
 	public void setup() {
 		mapper = new ClusteringExpressionGrammarMapper();
-		mapper.loadGrammar("src/main/resources/clustergrammar.bnf");
+		mapper.loadGrammar("/clustergrammar.bnf");
 		JMetalRandom.getInstance().setSeed(100);
 	}
 
@@ -63,7 +63,7 @@ public class ClusteringExpressionGrammarMapperTest {
 		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
 		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext execute = algorithm.execute();
@@ -112,7 +112,7 @@ public class ClusteringExpressionGrammarMapperTest {
 		Assert.assertEquals("MoveNearPointFunction", function1.toString());
 		Assert.assertEquals("MoveBetweenClustersFunction", function2.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		algorithm.execute();
@@ -174,7 +174,7 @@ public class ClusteringExpressionGrammarMapperTest {
 
 		Assert.assertEquals("SplitClustersFunction", function0.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext execute = algorithm.execute();
@@ -214,7 +214,7 @@ public class ClusteringExpressionGrammarMapperTest {
 		Assert.assertEquals("JoinClustersFunction", function1.toString());
 		Assert.assertEquals("MoveBetweenClustersFunction", function2.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("src/main/resources/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext execute = algorithm.execute();
