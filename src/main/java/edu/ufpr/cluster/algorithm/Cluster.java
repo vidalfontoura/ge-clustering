@@ -93,9 +93,11 @@ public class Cluster {
 	public void printCluster() {
 		System.out.println();
 		System.out.println("Centroid: " + centroid.toString());
-		System.out.println("Points size: " + points.size());
-		for (Point p : points) {
-			System.out.println(p.toString());
+		if (points != null) {
+			System.out.println("Points size: " + points.size());
+			for (Point p : points) {
+				System.out.println(p.toString());
+			}
 		}
 		System.out.println();
 	}
