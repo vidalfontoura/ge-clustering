@@ -45,15 +45,17 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 		int pruneIndex = 4;
 		int maxEvaluations = 10000;
 		int populationSize = 10;
+		int clusteringExecutionSeed = 100;
 
-//		 I was using seed 100 in my tests
-		 JMetalRandom.getInstance().setSeed(100);
+		// I was using seed 100 in my tests
+		JMetalRandom.getInstance().setSeed(100);
 
 		for (int i = 0; i < 1; i++) {
 
 			String outputFolder = outDir + File.separator + i;
 
-			ClusteringProblem problem = new ClusteringProblem(grammarFile, dataClassificationFile, 1, 20);
+			ClusteringProblem problem = new ClusteringProblem(grammarFile, dataClassificationFile, 1, 20,
+					clusteringExecutionSeed);
 
 			CrossoverOperator<VariableIntegerSolution> crossoverOperator = new SinglePointCrossoverVariableLength(
 					crossoverProbability);

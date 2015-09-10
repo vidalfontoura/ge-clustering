@@ -2,12 +2,11 @@ package edu.ufpr.cluster.algorithms.functions.impl;
 
 import com.google.common.collect.Lists;
 
-import org.uma.jmetal.util.pseudorandom.JMetalRandom;
-
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.Function;
+import edu.ufpr.cluster.random.ClusteringRandom;
 
 public class SplitClustersFunction implements Function<ClusteringContext> {
 
@@ -34,9 +33,9 @@ public class SplitClustersFunction implements Function<ClusteringContext> {
 		if (cluster.getPoints().size() > 1) {
 
 			int r1, r2;
-			r1 = JMetalRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
+			r1 = ClusteringRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
 			do {
-				r2 = JMetalRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
+				r2 = ClusteringRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
 			} while (r1 == r2);
 
 			Cluster cluster1 = new Cluster(cluster.getPoints().get(r1));

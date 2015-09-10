@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import edu.ufpr.cluster.algorithm.Point;
 
@@ -35,31 +33,34 @@ public class DataInstanceReader {
 				points.add(point);
 			}
 		}
-//		return points
+		return points;
 
-		Double max = Double.MIN_VALUE;
-		Double min = Double.MAX_VALUE;
-		for (Point point : points) {
-			Optional<Double> maxPoint = point.getCoordinates().stream().max((o1, o2) -> o1.compareTo(o2));
-			Optional<Double> minPoint = point.getCoordinates().stream().max((o1, o2) -> o2.compareTo(o1));
-			if (maxPoint.get() > max) {
-				max = maxPoint.get();
-			}
-			if (minPoint.get() < min) {
-				min = minPoint.get();
-			}
-		}
-
-		final double maxf = max;
-		final double minf = min;
-
-		return points.stream().map(p -> {
-
-			List<Double> coordinates = p.getCoordinates().stream().map(c -> c = (c - minf) / (maxf - minf))
-					.collect(Collectors.toList());
-			p.setCoordinates(coordinates);
-			return p;
-		}).collect(Collectors.toList());
+		// Double max = Double.MIN_VALUE;
+		// Double min = Double.MAX_VALUE;
+		// for (Point point : points) {
+		// Optional<Double> maxPoint = point.getCoordinates().stream().max((o1,
+		// o2) -> o1.compareTo(o2));
+		// Optional<Double> minPoint = point.getCoordinates().stream().max((o1,
+		// o2) -> o2.compareTo(o1));
+		// if (maxPoint.get() > max) {
+		// max = maxPoint.get();
+		// }
+		// if (minPoint.get() < min) {
+		// min = minPoint.get();
+		// }
+		// }
+		//
+		// final double maxf = max;
+		// final double minf = min;
+		//
+		// return points.stream().map(p -> {
+		//
+		// List<Double> coordinates = p.getCoordinates().stream().map(c -> c =
+		// (c - minf) / (maxf - minf))
+		// .collect(Collectors.toList());
+		// p.setCoordinates(coordinates);
+		// return p;
+		// }).collect(Collectors.toList());
 
 		// return points;
 	}
