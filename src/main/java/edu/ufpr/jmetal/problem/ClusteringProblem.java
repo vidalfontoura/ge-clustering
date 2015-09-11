@@ -4,11 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import edu.ufpr.cluster.algorithm.ClusteringAlgorithm;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
@@ -23,16 +23,17 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 	private FitnessFunction fitnessFunction;
 
 	private List<Point> points;
+	private int clusteringExecutionSeed;
 
-	public ClusteringProblem(String grammarFile, String dataSetFile, int minCondons, int maxCondons)
-			throws FileNotFoundException, IOException {
+	public ClusteringProblem(String grammarFile, String dataSetFile, int minCondons, int maxCondons,
+			int clusteringExecutionSeed) throws FileNotFoundException, IOException {
 
 		super(new ClusteringExpressionGrammarMapper(), grammarFile);
 		this.maxCondons = maxCondons;
 		this.minCondons = minCondons;
-		this.points = DataInstanceReader.readPoints(dataSetFile).stream().map(c -> c.getPoint())
-				.collect(Collectors.toList());
+		this.points = DataInstanceReader.readPoints(dataSetFile);
 		this.fitnessFunction = new FitnessFunction();
+		this.clusteringExecutionSeed = clusteringExecutionSeed;
 
 	}
 
@@ -69,6 +70,8 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 			System.out.print(solution.getVariableValue(i) + ",");
 			clusteringSolution.add(solution.getVariableValue(i));
 		}
+
+		ClusteringRandom.getNewInstance().setSeed(clusteringExecutionSeed);
 
 		ClusteringAlgorithm clusteringAlgorithm = (ClusteringAlgorithm) mapper.interpret(clusteringSolution);
 		// Clean up points before the execution

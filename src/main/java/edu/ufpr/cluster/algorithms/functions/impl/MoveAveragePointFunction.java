@@ -5,12 +5,11 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import org.uma.jmetal.util.pseudorandom.JMetalRandom;
-
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.Function;
+import edu.ufpr.cluster.random.ClusteringRandom;
 
 public class MoveAveragePointFunction implements Function<ClusteringContext> {
 
@@ -21,7 +20,7 @@ public class MoveAveragePointFunction implements Function<ClusteringContext> {
 		
 		Point p;
 		do{
-			int r = JMetalRandom.getInstance().nextInt(0, context.getPoints().size() - 1);
+			int r = ClusteringRandom.getInstance().nextInt(0, context.getPoints().size() - 1);
 			p = context.getPoints().get(r);
 			if(p.getCluster() != null && !nonNullPoints.contains(p)) {
 				nonNullPoints.add(p);

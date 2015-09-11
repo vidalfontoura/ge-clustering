@@ -6,16 +6,15 @@ import java.util.List;
 public class Point {
 
 	private Cluster cluster;
-
+	
 	private List<Double> coordinates;
 
-	public Point() {
-	}
-
+	public Point() {}
+	
 	public Point(List<Double> coordinates) {
 		setCoordinates(coordinates);
 	}
-
+	
 	public Cluster getCluster() {
 		return cluster;
 	}
@@ -25,7 +24,7 @@ public class Point {
 	}
 
 	public List<Double> getCoordinates() {
-		if (coordinates == null) {
+		if(coordinates == null) {
 			coordinates = new ArrayList<Double>();
 		}
 		return coordinates;
@@ -65,26 +64,22 @@ public class Point {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
-
+		
 		StringBuilder sb = new StringBuilder("(");
-		for (int i = 0; i < coordinates.size(); i++) {
+		for(int i=0; i<coordinates.size(); i++) {
 			sb.append(coordinates.get(i)).append(",");
 		}
 		return sb.deleteCharAt(sb.lastIndexOf(",")).append(")").toString();
 	}
-
+	
 	public Point copy() {
 		Point point = new Point();
 		point.setCluster(cluster);
 		point.coordinates = new ArrayList<Double>(coordinates);
 		return point;
 	}
-
-	public void clearCluster() {
-		this.cluster = null;
-	}
-
+	
 }
