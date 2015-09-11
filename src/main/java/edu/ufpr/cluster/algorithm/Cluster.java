@@ -3,22 +3,24 @@ package edu.ufpr.cluster.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
+
 public class Cluster {
+
 
 	private Point centroid;
 
 	private List<Point> points;
 
-	public Cluster() {
-
-	}
+	public Cluster() {}
 
 	public Cluster(Point point) {
+		addPoint(point);
 		this.centroid = point.copy();
 	}
 
 	public Point getCentroid() {
-		if (centroid == null) {
+		if(centroid == null) {
 			centroid = new Point();
 		}
 		return centroid;
@@ -40,7 +42,7 @@ public class Cluster {
 	}
 
 	public void addPoint(Point point) {
-		if (!getPoints().contains(point)) {
+		if(!getPoints().contains(point)) {
 			point.setCluster(this);
 			getPoints().add(point);
 		}
@@ -48,26 +50,26 @@ public class Cluster {
 
 	public void updateCentroid() {
 
-		if (!getPoints().isEmpty()) {
+		if(!getPoints().isEmpty()) {
 
 			setCentroid(getPoints().get(0).copy());
 
-			if (getPoints().size() != 1) {
+			if(getPoints().size() != 1) {
 				int dimension = getCentroid().getCoordinates().size();
 
 				double[] sumCoordinates = new double[dimension];
 
-				for (int i = 0; i < points.size(); i++) {
+				for(int i=0; i<points.size(); i++) {
 					List<Double> coordinates = points.get(i).getCoordinates();
 
-					for (int j = 0; j < coordinates.size(); j++) {
+					for(int j=0; j<coordinates.size(); j++) {
 						Double coordinate = coordinates.get(j);
 						sumCoordinates[j] = sumCoordinates[j] + coordinate;
-					}
+					}	
 				}
 
-				for (int i = 0; i < sumCoordinates.length; i++) {
-					double mean = sumCoordinates[i] / points.size();
+				for(int i=0; i<sumCoordinates.length; i++) {
+					double mean = sumCoordinates[i]/points.size();
 					getCentroid().getCoordinates().set(i, mean);
 				}
 			}
@@ -80,25 +82,12 @@ public class Cluster {
 
 	@Override
 	public String toString() {
-		if (getPoints().size() == 0)
-			return "(?.?, ?.?)";
+		if(getPoints().size() == 0) return "(?.?, ?.?)";
 		String str = " {";
 		for (Point p : points) {
 			str += p + "";
 		}
 		str += "}";
-		return getCentroid().toString() + str;
-	}
-
-	public void printCluster() {
-		System.out.println();
-		System.out.println("Centroid: " + centroid.toString());
-		if (points != null) {
-			System.out.println("Points size: " + points.size());
-			for (Point p : points) {
-				System.out.println(p.toString());
-			}
-		}
-		System.out.println();
+		return getCentroid().toString()+str;
 	}
 }
