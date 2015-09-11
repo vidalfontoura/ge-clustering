@@ -3,6 +3,7 @@ package edu.ufpr.cluster.algorithms.functions.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
@@ -14,44 +15,33 @@ public class MoveNearPointFunction implements Function<ClusteringContext> {
 	@Override
 	public void apply(ClusteringContext context) {
 
-		int r = ClusteringRandom.getInstance().nextInt(0, context.getPoints().size() - 1);
-		Point p = context.getPoints().get(r);
-		Cluster c = p.getCluster();
-
+		List<Point> nonNullPoints = new ArrayList<Point>();
+		
+		Point p;
+		do{
+			int r = ClusteringRandom.getInstance().nextInt(0, context.getPoints().size() - 1);
+			p = context.getPoints().get(r);
+			if(p.getCluster() != null && !nonNullPoints.contains(p)) {
+				nonNullPoints.add(p);
+				if(nonNullPoints.size() == context.getPoints().size()) {
+					return;
+				}
+			}
+		}while(p.getCluster() != null);
+		
 		Cluster minCluster = context.getClusters().get(0);
 		double minDistance = Double.MAX_VALUE;
 
 		for (Cluster cluster : context.getClusters()) {
-			if (cluster != c) {
-
-				List<Point> points = new ArrayList<Point>();
-				points.add(p);
-				points.add(cluster.getCentroid());
-
-				double dist = context.getDistanceFunction().apply(points);
-
-				if (dist < minDistance) {
-					minDistance = dist;
-					minCluster = cluster;
-				}
+			double dist = context.getDistanceFunction().apply(Lists.newArrayList(p, cluster.getCentroid()));
+			if (dist < minDistance) {
+				minDistance = dist;
+				minCluster = cluster;
 			}
 		}
 
-		if (!minCluster.getPoints().contains(p)) {
-			minCluster.addPoint(p);
-			minCluster.updateCentroid();
-
-			// Only Removes the point from the original code. If the point
-			// really had a original cluster
-			if (c != null) {
-				c.getPoints().remove(p);
-				if (!c.isEmpty())
-					c.updateCentroid();
-				else
-					context.getClusters().remove(c);
-			}
-		}
-
+		minCluster.addPoint(p);
+		minCluster.updateCentroid();
 	}
 
 	@Override
