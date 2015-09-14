@@ -13,6 +13,7 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
+import edu.ufpr.cluster.random.ClusteringRandom;
 
 public class MoveNearPointFunctionTest {
 
@@ -21,7 +22,7 @@ public class MoveNearPointFunctionTest {
 	@Before
 	public void init() {
 		function = new MoveNearPointFunction();
-		JMetalRandom.getInstance().setSeed(0);
+		ClusteringRandom.getNewInstance();
 	}
 
 	@Test
@@ -32,9 +33,9 @@ public class MoveNearPointFunctionTest {
 
 		List<Point> points = new ArrayList<Point>();
 
-		Point point0 = new Point(Lists.newArrayList(0.0, 0.0));
-		Point point1 = new Point(Lists.newArrayList(2.0, 0.0));
-		Point point2 = new Point(Lists.newArrayList(1.0, 1.0));
+		Point point0 = new Point(Lists.newArrayList(1.0, 1.0));
+		Point point1 = new Point(Lists.newArrayList(2.0, 2.0));
+		Point point2 = new Point(Lists.newArrayList(3.0, 3.0));
 
 		points.add(point0);
 		points.add(point1);
@@ -44,7 +45,6 @@ public class MoveNearPointFunctionTest {
 		Cluster cluster1 = new Cluster();
 
 		cluster0.addPoint(point0);
-		cluster0.addPoint(point2);
 		cluster0.updateCentroid();
 
 		cluster1.addPoint(point1);
@@ -57,7 +57,7 @@ public class MoveNearPointFunctionTest {
 		ClusteringContext clusteringContext = new ClusteringContext(points, clusters, distanceFunction);
 
 		for (Cluster cluster : clusters) {
-			System.out.println(cluster.getPoints().size() + " " + cluster.getCentroid());
+			System.out.println(cluster.getPoints().size() + " " + cluster);
 		}
 
 		function.apply(clusteringContext);
