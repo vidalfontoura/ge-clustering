@@ -48,6 +48,13 @@
 		  <artifactId>jmetal-algorithm</artifactId>
 		  <version>5.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.5</version>
+		</dependency>
+		
         
     
         

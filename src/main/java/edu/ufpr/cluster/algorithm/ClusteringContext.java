@@ -47,6 +47,12 @@ public class ClusteringContext {
 		return clusters;
 	}
 
+	public void clearClustersState() {
+		for (Cluster cluster : clusters) {
+			cluster.getPoints().clear();
+		}
+	}
+
 	public void setClusters(List<Cluster> clusters) {
 		this.clusters = clusters;
 	}
