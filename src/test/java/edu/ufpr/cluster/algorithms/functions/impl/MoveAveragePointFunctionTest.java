@@ -13,6 +13,7 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
+import edu.ufpr.cluster.random.ClusteringRandom;
 
 public class MoveAveragePointFunctionTest {
 
@@ -21,7 +22,7 @@ public class MoveAveragePointFunctionTest {
 	@Before
 	public void init() {
 		function = new MoveAveragePointFunction();
-		JMetalRandom.getInstance().setSeed(144);
+		ClusteringRandom.getNewInstance();
 	}
 
 	@Test
@@ -32,15 +33,15 @@ public class MoveAveragePointFunctionTest {
 
 		List<Point> points = new ArrayList<Point>();
 
-		Point point0 = new Point(Lists.newArrayList(3.0, 3.0));
-		Point point1 = new Point(Lists.newArrayList(2.0, 0.0));
-		Point point2 = new Point(Lists.newArrayList(4.0, 7.0));
+		Point point0 = new Point(Lists.newArrayList(1.0, 1.0));
+		Point point1 = new Point(Lists.newArrayList(2.0, 2.0));
+		Point point2 = new Point(Lists.newArrayList(3.0, 3.0));
 
-		Point point3 = new Point(Lists.newArrayList(5.0, 7.0));
-		Point point4 = new Point(Lists.newArrayList(4.0, 2.0));
-		Point point5 = new Point(Lists.newArrayList(0.0, 0.0));
+		Point point3 = new Point(Lists.newArrayList(4.0, 4.0));
+		Point point4 = new Point(Lists.newArrayList(5.0, 5.0));
+		Point point5 = new Point(Lists.newArrayList(6.0, 6.0));
 
-		Point point6 = new Point(Lists.newArrayList(9.0, 2.0));
+		Point point6 = new Point(Lists.newArrayList(7.0, 7.0));
 
 		points.add(point0);
 		points.add(point1);
@@ -57,13 +58,11 @@ public class MoveAveragePointFunctionTest {
 		cluster0.addPoint(point1);
 		cluster0.addPoint(point2);
 		cluster0.updateCentroid();
-		System.out.println(cluster0);
 
 		cluster1.addPoint(point3);
 		cluster1.addPoint(point4);
 		cluster1.addPoint(point5);
 		cluster1.updateCentroid();
-		System.out.println(cluster1);
 
 		List<Cluster> clusters = new ArrayList<Cluster>();
 		clusters.add(cluster0);
@@ -72,7 +71,7 @@ public class MoveAveragePointFunctionTest {
 		ClusteringContext clusteringContext = new ClusteringContext(points, clusters, distanceFunction);
 
 		for (Cluster cluster : clusters) {
-			System.out.println(cluster.getPoints().size() + " " + cluster.getCentroid());
+			System.out.println(cluster.getPoints().size() + " " + cluster);
 		}
 
 		function.apply(clusteringContext);
