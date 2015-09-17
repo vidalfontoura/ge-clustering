@@ -37,14 +37,14 @@ public class FitnessFunctionTest {
 
 	private ClusteringExpressionGrammarMapper mapper;
 
-	private FitnessFunction fitnessFunction;
+	private WesleyFitness fitnessFunction;
 
 	@Before
 	public void setup() {
 		mapper = new ClusteringExpressionGrammarMapper();
 		mapper.loadGrammar("/clustergrammar.bnf");
 		ClusteringRandom.getNewInstance().setSeed(100);
-		fitnessFunction = new FitnessFunction();
+		fitnessFunction = new WesleyFitness();
 	}
 
 	/**
