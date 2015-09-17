@@ -7,7 +7,12 @@ import com.google.common.collect.Lists;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,6 +26,7 @@ import edu.ufpr.cluster.algorithms.functions.Function;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
+import edu.ufpr.math.utils.MathUtils;
 
 /**
  *
@@ -439,6 +445,571 @@ public class FitnessFunctionTest {
 		// functionLast.toString());
 
 		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		algorithm.setPoints(points);
+
+		ClusteringContext clusteringContext = algorithm.execute();
+
+		System.out.println(clusteringContext.getClusters().size());
+		for (Cluster cluster : clusteringContext.getClusters()) {
+			cluster.printCluster();
+		}
+
+		// List<Cluster> clusters = clusteringContext.getClusters();
+		// for (Cluster cluster : clusters) {
+		// System.out.println(cluster.getCentroid());
+		// System.out.println(cluster.getPoints().size());
+		// System.out.println();
+		// }
+		Double fitness = fitnessFunction.apply(clusteringContext);
+
+		System.out.println(fitness);
+
+	}
+
+	@Test
+	public void test11() throws FileNotFoundException, IOException {
+
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		ClusteringRandom.getInstance().setSeed(6);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		algorithm.setPoints(points);
+
+		ClusteringContext clusteringContext = algorithm.execute();
+
+		System.out.println(clusteringContext.getClusters().size());
+		for (Cluster cluster : clusteringContext.getClusters()) {
+			cluster.printCluster();
+		}
+
+		// List<Cluster> clusters = clusteringContext.getClusters();
+		// for (Cluster cluster : clusters) {
+		// System.out.println(cluster.getCentroid());
+		// System.out.println(cluster.getPoints().size());
+		// System.out.println();
+		// }
+		Double fitness = fitnessFunction.apply(clusteringContext);
+
+		System.out.println(fitness);
+
+	}
+
+	@Test
+	public void test11MultipleSeeds() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		algorithm.setPoints(points);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		List<Double> fitnesses = new ArrayList<Double>();
+		Map<Integer, Integer> mapQtdClusters = new HashMap<>();
+
+		for (int i = 0; i < 30; i++) {
+			System.out.println("############################################################");
+			System.out.println("Seed :" + i);
+			ClusteringRandom.getNewInstance().setSeed(i);
+
+			ClusteringContext clusteringContext = algorithm.execute();
+
+			int clustersSize = clusteringContext.getClusters().size();
+			System.out.println("Clusters size: " + clustersSize);
+			for (Cluster cluster : clusteringContext.getClusters()) {
+				cluster.printCluster();
+			}
+			Double fitness = fitnessFunction.apply(clusteringContext);
+
+			System.out.println("Fitness: " + fitness);
+			fitnesses.add(fitness);
+
+			algorithm.clearClusteringContext();
+
+			if (!mapQtdClusters.containsKey(clustersSize)) {
+				mapQtdClusters.put(clustersSize, 1);
+			} else {
+				Integer amount = mapQtdClusters.get(clustersSize);
+				mapQtdClusters.put(clustersSize, amount + 1);
+			}
+			System.out.println("############################################################");
+		}
+
+		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+			if (f != Double.MAX_VALUE)
+				return true;
+			return false;
+		}).collect(Collectors.toList());
+
+		DoubleSummaryStatistics summaryStatistics = filteredFitnesses.stream()
+				.collect(Collectors.summarizingDouble(x -> x));
+
+		System.out.println("Clusters size:");
+		Set<Integer> qtdClusters = mapQtdClusters.keySet();
+		for (Integer qtd : qtdClusters) {
+			System.out.println(qtd + ":" + mapQtdClusters.get(qtd));
+		}
+
+		System.out.println("Average: " + summaryStatistics.getAverage());
+		System.out.println("Min: " + summaryStatistics.getMin());
+		System.out.println("Max: " + summaryStatistics.getMax());
+		System.out.println("Count: " + summaryStatistics.getCount());
+		System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+	}
+
+	@Test
+	public void test12MultipleSeeds() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
+		algorithm.setPoints(points);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Double> fitnesses = new ArrayList<Double>();
+
+		for (int i = 0; i < 30; i++) {
+
+			System.out.println("Seed :" + i);
+			ClusteringRandom.getNewInstance().setSeed(i);
+
+			ClusteringContext clusteringContext = algorithm.execute();
+
+			// System.out.println(clusteringContext.getClusters().size());
+			// for (Cluster cluster : clusteringContext.getClusters()) {
+			// cluster.printCluster();
+			// }
+			Double fitness = fitnessFunction.apply(clusteringContext);
+			System.out.println(fitness);
+			fitnesses.add(fitness);
+
+			algorithm.clearClusteringContext();
+		}
+
+		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+			if (f != Double.MAX_VALUE)
+				return true;
+			return false;
+		}).collect(Collectors.toList());
+
+		DoubleSummaryStatistics summaryStatistics = filteredFitnesses.stream()
+				.collect(Collectors.summarizingDouble(x -> x));
+
+		System.out.println("Average: " + summaryStatistics.getAverage());
+
+	}
+
+	@Test
+	public void test50RandomPoints30Seeds() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		List<Point> points = DataInstanceReader.readPoints("/50-random-points.data");
+		algorithm.setPoints(points);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Double> fitnesses = new ArrayList<Double>();
+		Map<Integer, Integer> mapQtdClusters = new HashMap<>();
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 30; i++) {
+
+			System.out.println("Seed :" + i);
+			ClusteringRandom.getNewInstance().setSeed(i);
+
+			ClusteringContext clusteringContext = algorithm.execute();
+
+			// System.out.println(clusteringContext.getClusters().size());
+			// for (Cluster cluster : clusteringContext.getClusters()) {
+			// cluster.printCluster();
+			// }
+			Double fitness = fitnessFunction.apply(clusteringContext);
+			System.out.println(fitness);
+			fitnesses.add(fitness);
+
+			int clustersSize = clusteringContext.getClusters().size();
+			if (!mapQtdClusters.containsKey(clustersSize)) {
+				mapQtdClusters.put(clustersSize, 1);
+			} else {
+				Integer amount = mapQtdClusters.get(clustersSize);
+				mapQtdClusters.put(clustersSize, amount + 1);
+			}
+
+			algorithm.clearClusteringContext();
+		}
+
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+			if (f != Double.MAX_VALUE)
+				return true;
+			return false;
+		}).collect(Collectors.toList());
+
+		DoubleSummaryStatistics summaryStatistics = filteredFitnesses.stream()
+				.collect(Collectors.summarizingDouble(x -> x));
+
+		System.out.println("Clusters size:");
+		Set<Integer> qtdClusters = mapQtdClusters.keySet();
+		for (Integer qtd : qtdClusters) {
+			System.out.println(qtd + ":" + mapQtdClusters.get(qtd));
+		}
+
+		System.out.println("Average: " + summaryStatistics.getAverage());
+		System.out.println("Min: " + summaryStatistics.getMin());
+		System.out.println("Max: " + summaryStatistics.getMax());
+		System.out.println("Count: " + summaryStatistics.getCount());
+		System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+	}
+
+	@Test
+	public void test500RandomPoints30Seeds() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		List<Point> points = DataInstanceReader.readPoints("/500-random-points.data");
+		algorithm.setPoints(points);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Double> fitnesses = new ArrayList<Double>();
+		Map<Integer, Integer> mapQtdClusters = new HashMap<>();
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 30; i++) {
+
+			System.out.println("Seed :" + i);
+			ClusteringRandom.getNewInstance().setSeed(i);
+
+			ClusteringContext clusteringContext = algorithm.execute();
+
+			// System.out.println(clusteringContext.getClusters().size());
+			// for (Cluster cluster : clusteringContext.getClusters()) {
+			// cluster.printCluster();
+			// }
+			Double fitness = fitnessFunction.apply(clusteringContext);
+			System.out.println(fitness);
+			fitnesses.add(fitness);
+
+			int clustersSize = clusteringContext.getClusters().size();
+			if (!mapQtdClusters.containsKey(clustersSize)) {
+				mapQtdClusters.put(clustersSize, 1);
+			} else {
+				Integer amount = mapQtdClusters.get(clustersSize);
+				mapQtdClusters.put(clustersSize, amount + 1);
+			}
+
+			algorithm.clearClusteringContext();
+		}
+
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+			if (f != Double.MAX_VALUE)
+				return true;
+			return false;
+		}).collect(Collectors.toList());
+
+		DoubleSummaryStatistics summaryStatistics = filteredFitnesses.stream()
+				.collect(Collectors.summarizingDouble(x -> x));
+
+		System.out.println("Clusters size:");
+		Set<Integer> qtdClusters = mapQtdClusters.keySet();
+		for (Integer qtd : qtdClusters) {
+			System.out.println(qtd + ":" + mapQtdClusters.get(qtd));
+		}
+
+		System.out.println("Average: " + summaryStatistics.getAverage());
+		System.out.println("Min: " + summaryStatistics.getMin());
+		System.out.println("Max: " + summaryStatistics.getMax());
+		System.out.println("Count: " + summaryStatistics.getCount());
+		System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+	}
+
+	@Test
+	public void test1000RandomPoints30Seeds() throws FileNotFoundException, IOException {
+
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		List<Point> points = DataInstanceReader.readPoints("/1000-random-points.data");
+		algorithm.setPoints(points);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Double> fitnesses = new ArrayList<Double>();
+		Map<Integer, Integer> mapQtdClusters = new HashMap<>();
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 30; i++) {
+
+			System.out.println("Seed :" + i);
+			ClusteringRandom.getNewInstance().setSeed(i);
+
+			ClusteringContext clusteringContext = algorithm.execute();
+
+			// System.out.println(clusteringContext.getClusters().size());
+			// for (Cluster cluster : clusteringContext.getClusters()) {
+			// cluster.printCluster();
+			// }
+			Double fitness = fitnessFunction.apply(clusteringContext);
+			System.out.println(fitness);
+			fitnesses.add(fitness);
+
+			int clustersSize = clusteringContext.getClusters().size();
+			if (!mapQtdClusters.containsKey(clustersSize)) {
+				mapQtdClusters.put(clustersSize, 1);
+			} else {
+				Integer amount = mapQtdClusters.get(clustersSize);
+				mapQtdClusters.put(clustersSize, amount + 1);
+			}
+
+			algorithm.clearClusteringContext();
+		}
+
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+			if (f != Double.MAX_VALUE)
+				return true;
+			return false;
+		}).collect(Collectors.toList());
+
+		DoubleSummaryStatistics summaryStatistics = filteredFitnesses.stream()
+				.collect(Collectors.summarizingDouble(x -> x));
+
+		System.out.println("Clusters size:");
+		Set<Integer> qtdClusters = mapQtdClusters.keySet();
+		for (Integer qtd : qtdClusters) {
+			System.out.println(qtd + ":" + mapQtdClusters.get(qtd));
+		}
+
+		System.out.println("Average: " + summaryStatistics.getAverage());
+		System.out.println("Min: " + summaryStatistics.getMin());
+		System.out.println("Max: " + summaryStatistics.getMax());
+		System.out.println("Count: " + summaryStatistics.getCount());
+		System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+	}
+
+	@Test
+	public void testDiabetesRandomPoints30Seeds() throws FileNotFoundException, IOException {
+
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data"));
+		algorithm.setPoints(points);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Double> fitnesses = new ArrayList<Double>();
+		Map<Integer, Integer> mapQtdClusters = new HashMap<>();
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 30; i++) {
+
+			System.out.println("Seed :" + i);
+			ClusteringRandom.getNewInstance().setSeed(i);
+
+			ClusteringContext clusteringContext = algorithm.execute();
+
+			// System.out.println(clusteringContext.getClusters().size());
+			// for (Cluster cluster : clusteringContext.getClusters()) {
+			// cluster.printCluster();
+			// }
+			Double fitness = fitnessFunction.apply(clusteringContext);
+			System.out.println(fitness);
+			fitnesses.add(fitness);
+
+			int clustersSize = clusteringContext.getClusters().size();
+			if (!mapQtdClusters.containsKey(clustersSize)) {
+				mapQtdClusters.put(clustersSize, 1);
+			} else {
+				Integer amount = mapQtdClusters.get(clustersSize);
+				mapQtdClusters.put(clustersSize, amount + 1);
+			}
+
+			algorithm.clearClusteringContext();
+		}
+
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+			if (f != Double.MAX_VALUE)
+				return true;
+			return false;
+		}).collect(Collectors.toList());
+
+		DoubleSummaryStatistics summaryStatistics = filteredFitnesses.stream()
+				.collect(Collectors.summarizingDouble(x -> x));
+
+		System.out.println("Clusters size:");
+		Set<Integer> qtdClusters = mapQtdClusters.keySet();
+		for (Integer qtd : qtdClusters) {
+			System.out.println(qtd + ":" + mapQtdClusters.get(qtd));
+		}
+
+		System.out.println("Average: " + summaryStatistics.getAverage());
+		System.out.println("Min: " + summaryStatistics.getMin());
+		System.out.println("Max: " + summaryStatistics.getMax());
+		System.out.println("Count: " + summaryStatistics.getCount());
+		System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+	}
+
+	@Test
+	public void test12() throws FileNotFoundException, IOException {
+		List<Integer> grammarInstance = Lists.newArrayList(1, 125, 239, 42, 167, 37, 7, 180, 6, 1, 40, 172, 178, 103,
+				36);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(10, algorithm.getInitialK());
+		Assert.assertEquals(3, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
+		Assert.assertEquals("JoinClustersFunction", function1.toString());
+		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();

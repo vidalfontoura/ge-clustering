@@ -1,5 +1,6 @@
 package edu.ufpr.jmetal.algorithm.main;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,9 +13,10 @@ import org.uma.jmetal.operator.impl.selection.BinaryTournamentSelection;
 import org.uma.jmetal.runner.AbstractAlgorithmRunner;
 import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.AlgorithmRunner;
+import org.uma.jmetal.util.JMetalException;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
-import org.uma.jmetal.util.fileoutput.SolutionSetOutput;
+import org.uma.jmetal.util.fileoutput.FileOutputContext;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
@@ -88,12 +90,43 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 
 	}
 
+	static public void printVariablesToFile(FileOutputContext context, List<? extends Solution<?>> solutionSet) {
+		BufferedWriter bufferedWriter = context.getFileWriter();
+
+		try {
+			for (int i = 0; i < solutionSet.size(); i++) {
+				for (int j = 0; j < solutionSet.get(i).getNumberOfVariables(); j++) {
+					bufferedWriter.write(solutionSet.get(i).getVariableValueString(j) + context.getSeparator());
+				}
+				bufferedWriter.newLine();
+			}
+			bufferedWriter.close();
+		} catch (IOException e) {
+			throw new JMetalException("Exception when printing variables to file", e);
+		}
+	}
+
+	static public void printObjectivesToFile(FileOutputContext context, List<? extends Solution<?>> solutionSet) {
+		BufferedWriter bufferedWriter = context.getFileWriter();
+
+		int numberOfObjectives = solutionSet.get(0).getNumberOfObjectives();
+		try {
+			for (int i = 0; i < solutionSet.size(); i++) {
+				for (int j = 0; j < numberOfObjectives; j++) {
+					bufferedWriter.write(solutionSet.get(i).getObjective(j) + context.getSeparator());
+				}
+				bufferedWriter.newLine();
+			}
+			bufferedWriter.close();
+		} catch (IOException e) {
+			throw new JMetalException("Exception when printing objectives to file", e);
+		}
+	}
+
 	public static void printFinalSolutionSet(List<? extends Solution<?>> population, String outputFolder) {
 
-		new SolutionSetOutput.Printer(population).setSeparator("\t")
-				.setVarFileOutputContext(new DefaultFileOutputContext(outputFolder + File.separator + "VAR.csv"))
-				.setFunFileOutputContext(new DefaultFileOutputContext(outputFolder + File.separator + "FUN.csv"))
-				.print();
+		printVariablesToFile(new DefaultFileOutputContext(outputFolder + File.separator + "VAR.csv"), population);
+		printObjectivesToFile(new DefaultFileOutputContext(outputFolder + File.separator + "FUN.csv"), population);
 
 		JMetalLogger.logger.info("Random seed: " + JMetalRandom.getInstance().getSeed());
 		JMetalLogger.logger.info("Objectives values have been written to file FUN.tsv");
