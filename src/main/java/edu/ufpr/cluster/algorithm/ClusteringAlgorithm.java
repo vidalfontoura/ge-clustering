@@ -1,7 +1,10 @@
 package edu.ufpr.cluster.algorithm;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.ufpr.cluster.algorithms.functions.Function;
 import edu.ufpr.cluster.algorithms.functions.InitializiationFunction;
@@ -38,12 +41,35 @@ public class ClusteringAlgorithm {
 		// Call to the initialization functions of the centroids
 		initilization.apply(clusteringContext);
 
+		boolean finish = false;
 		// Run sequentially the functions until the maxEvaluations value
-		while (evaluations < maxEvaluations) {
+		while (!finish) {
+			// while (evaluations < maxEvaluations) {
+			List<Point> lastCentroids = clusteringContext.getClusters().stream().map(c -> c.getCentroid())
+					.collect(Collectors.toList());
+
 			for (Function<ClusteringContext> function : functions) {
 				function.apply(clusteringContext);
 			}
 			evaluations++;
+
+			List<Point> currentCentroids = clusteringContext.getClusters().stream().map(c -> c.getCentroid())
+					.collect(Collectors.toList());
+
+			double distance = 0;
+			if (lastCentroids.size() == currentCentroids.size()) {
+				for (int i = 0; i < lastCentroids.size(); i++) {
+					Point last = lastCentroids.get(i);
+					Point current = currentCentroids.get(i);
+					distance += distanceFunction.apply(Lists.newArrayList(last, current));
+				}
+			} else {
+				distance = Double.MAX_VALUE;
+			}
+
+			if (distance == 0) {
+				finish = true;
+			}
 
 		}
 
@@ -60,7 +86,7 @@ public class ClusteringAlgorithm {
 		for (Cluster cluster : emptyCluster) {
 			clusters.remove(cluster);
 		}
-
+		System.out.println("Finished with a total of " + evaluations + " evaluations");
 		// Finished the algorithm returning the cluster list
 		return clusteringContext;
 	}
@@ -107,6 +133,11 @@ public class ClusteringAlgorithm {
 
 	public int getInitialK() {
 		return this.getInitilization().getInitialK();
+	}
+
+	public void clearClusteringContext() {
+		clusteringContext.setClusters(null);
+		clusteringContext.getPoints().stream().forEach(p -> p.setCluster(null));
 	}
 
 }
