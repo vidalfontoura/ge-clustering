@@ -755,7 +755,7 @@ public class FitnessFunctionTest {
 		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
 		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
 		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
-
+		
 		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
 		Assert.assertEquals("JoinClustersFunction", function1.toString());
 		Assert.assertEquals("SplitClustersFunction", function2.toString());

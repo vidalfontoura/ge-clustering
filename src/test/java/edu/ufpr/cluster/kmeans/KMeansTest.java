@@ -25,6 +25,7 @@ import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.jmetal.problem.FitnessFunction;
+import edu.ufpr.jmetal.problem.WesleyFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.math.utils.MathUtils;
 
@@ -42,7 +43,7 @@ public class KMeansTest {
 	@Before
 	public void setup() {
 		distanceFunction = new EucledianDistanceFunction();
-		fitnessFunction = new FitnessFunction();
+		fitnessFunction = new WesleyFitness();
 	}
 
 	@Test

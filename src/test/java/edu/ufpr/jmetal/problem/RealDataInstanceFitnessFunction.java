@@ -25,7 +25,7 @@ public class RealDataInstanceFitnessFunction {
 	@Before
 	public void setup() {
 		JMetalRandom.getInstance().setSeed(100);
-		fitnessFunction = new FitnessFunction();
+		fitnessFunction = new WesleyFitness();
 	}
 	
 	@Test
