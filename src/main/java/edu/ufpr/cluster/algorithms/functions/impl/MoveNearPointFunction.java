@@ -15,19 +15,14 @@ public class MoveNearPointFunction implements Function<ClusteringContext> {
 	@Override
 	public void apply(ClusteringContext context) {
 
-		List<Point> nonNullPoints = new ArrayList<Point>();
+List<Point> nonClusterizedPoints = new ArrayList<Point>();
 		
-		Point p;
-		do{
-			int r = ClusteringRandom.getInstance().nextInt(0, context.getPoints().size() - 1);
-			p = context.getPoints().get(r);
-			if(p.getCluster() != null && !nonNullPoints.contains(p)) {
-				nonNullPoints.add(p);
-				if(nonNullPoints.size() == context.getPoints().size()) {
-					return;
-				}
-			}
-		}while(p.getCluster() != null);
+		for(Point p : context.getPoints()) {
+			if(p.getCluster() == null) nonClusterizedPoints.add(p);
+		}
+		
+		int r = ClusteringRandom.getInstance().nextInt(0, nonClusterizedPoints.size() - 1);
+		Point p = context.getPoints().get(r);
 		
 		Cluster minCluster = context.getClusters().get(0);
 		double minDistance = Double.MAX_VALUE;
