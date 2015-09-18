@@ -37,14 +37,14 @@ public class FitnessFunctionTest {
 
 	private ClusteringExpressionGrammarMapper mapper;
 
-	private FitnessFunction fitnessFunction;
+	private WesleyFitness fitnessFunction;
 
 	@Before
 	public void setup() {
 		mapper = new ClusteringExpressionGrammarMapper();
 		mapper.loadGrammar("/clustergrammar.bnf");
 		ClusteringRandom.getNewInstance().setSeed(100);
-		fitnessFunction = new FitnessFunction();
+		fitnessFunction = new WesleyFitness();
 	}
 
 	/**
@@ -755,7 +755,7 @@ public class FitnessFunctionTest {
 		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
 		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
 		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
-
+		
 		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
 		Assert.assertEquals("JoinClustersFunction", function1.toString());
 		Assert.assertEquals("SplitClustersFunction", function2.toString());
