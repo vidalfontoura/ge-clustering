@@ -32,7 +32,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 		this.maxCondons = maxCondons;
 		this.minCondons = minCondons;
 		this.points = DataInstanceReader.readPoints(dataSetFile);
-		this.fitnessFunction = new FitnessFunction();
+        this.fitnessFunction = new SimpleClusteringFitness();
 		this.clusteringExecutionSeed = clusteringExecutionSeed;
 
 	}
