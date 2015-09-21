@@ -24,8 +24,11 @@ public class SilhouetteFitness implements FitnessFunction {
 
         distanceFunction = (DistanceFunction) clusteringContext.getDistanceFunction();
 
+
         // If exists more than 10 cluster it will be penalized hard
         if (clusters.size() > 10) {
+            // Mudar intervalo no initial k
+            System.out.println("Nao deveria acontecer");
             return -1.0;
         }
 
@@ -44,6 +47,12 @@ public class SilhouetteFitness implements FitnessFunction {
                 return -1.0;
             }
         }
+
+        // If all points were assigned for just one cluster
+        // if (clusters.size() == 1) {
+        // return -1.0;
+        // }
+
 
         // Calculate fitness
         double fitness = calculateFitness(clusters, allPoints);

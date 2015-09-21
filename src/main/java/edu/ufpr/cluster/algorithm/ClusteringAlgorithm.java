@@ -19,9 +19,11 @@ public class ClusteringAlgorithm {
 
 	private java.util.function.Function<List<Point>, Double> distanceFunction;
 
-    private boolean logExecution = true;
+    private boolean logExecution = false;
 
 	private List<Point> points;
+
+    private int MAX_EVALUATIONS = 1000;
 
 	public ClusteringAlgorithm(InitializiationFunction initialization, List<Function<ClusteringContext>> functions,
 			java.util.function.Function<List<Point>, Double> distanceFunction) {
@@ -69,7 +71,7 @@ public class ClusteringAlgorithm {
 				distance = Double.MAX_VALUE;
 			}
 
-			if (distance == 0) {
+            if (distance == 0 || evaluations > MAX_EVALUATIONS) {
 				finish = true;
 			}
             if (logExecution) {

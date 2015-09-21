@@ -27,6 +27,8 @@ import edu.ufpr.ge.operators.mutation.IntegerMutation;
 import edu.ufpr.ge.operators.mutation.PruneMutation;
 import edu.ufpr.jmetal.algorithm.impl.GrammaticalEvolutionAlgorithm;
 import edu.ufpr.jmetal.problem.ClusteringProblem;
+import edu.ufpr.jmetal.problem.FitnessFunction;
+import edu.ufpr.jmetal.problem.SilhouetteFitness;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
 
 public class ClusteringExperiment extends AbstractAlgorithmRunner {
@@ -48,6 +50,8 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 		int maxEvaluations = 10000;
 		int populationSize = 10;
 		int clusteringExecutionSeed = 100;
+		
+        FitnessFunction clusteringFitnessFunction = new SilhouetteFitness();
 
 		// I was using seed 100 in my tests
 		JMetalRandom.getInstance().setSeed(100);
@@ -57,7 +61,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 			String outputFolder = outDir + File.separator + i;
 
 			ClusteringProblem problem = new ClusteringProblem(grammarFile, dataClassificationFile, 1, 20,
-					clusteringExecutionSeed);
+                clusteringExecutionSeed, clusteringFitnessFunction);
 
 			CrossoverOperator<VariableIntegerSolution> crossoverOperator = new SinglePointCrossoverVariableLength(
 					crossoverProbability);

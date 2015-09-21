@@ -26,13 +26,13 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 	private int clusteringExecutionSeed;
 
 	public ClusteringProblem(String grammarFile, String dataSetFile, int minCondons, int maxCondons,
-			int clusteringExecutionSeed) throws FileNotFoundException, IOException {
+        int clusteringExecutionSeed, FitnessFunction fitnessFunction) throws FileNotFoundException, IOException {
 
 		super(new ClusteringExpressionGrammarMapper(), grammarFile);
 		this.maxCondons = maxCondons;
 		this.minCondons = minCondons;
 		this.points = DataInstanceReader.readPoints(dataSetFile);
-        this.fitnessFunction = new SimpleClusteringFitness();
+        this.fitnessFunction = fitnessFunction;
 		this.clusteringExecutionSeed = clusteringExecutionSeed;
 
 	}
@@ -82,8 +82,8 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 		ClusteringContext clusteringContext = clusteringAlgorithm.execute();
 
 		Double fitness = this.fitnessFunction.apply(clusteringContext);
-		System.out.println("- Fitness: " + fitness);
-		solution.setObjective(0, fitness);
+        System.out.println("- Fitness: " + fitness + ", k: " + clusteringContext.getClusters().size());
+        solution.setObjective(0, -fitness);
 
 	}
 

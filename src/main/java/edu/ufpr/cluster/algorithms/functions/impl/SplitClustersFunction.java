@@ -13,50 +13,55 @@ public class SplitClustersFunction implements Function<ClusteringContext> {
 	@Override
 	public void apply(ClusteringContext context) {
 
-		Cluster cluster = context.getClusters().get(0);
+        // TODO: need to check where we gonna get this parameter 9
+        if (context.getClusters().size() < 9) {
 
-		double maxAvg = 0.0;
-		for (Cluster c : context.getClusters()) {
-			double avg = 0.0;
-			for (Point point : c.getPoints()) {
-				avg += context.getDistanceFunction().apply(Lists.newArrayList(point, c.getCentroid()));
-			}
+            Cluster cluster = context.getClusters().get(0);
 
-			avg = avg / cluster.getPoints().size();
+            double maxAvg = 0.0;
+            for (Cluster c : context.getClusters()) {
+                double avg = 0.0;
+                for (Point point : c.getPoints()) {
+                    avg += context.getDistanceFunction().apply(Lists.newArrayList(point, c.getCentroid()));
+                }
 
-			if (avg > maxAvg) {
-				maxAvg = avg;
-				cluster = c;
-			}
-		}
+                avg = avg / cluster.getPoints().size();
 
-		if (cluster.getPoints().size() > 1) {
+                if (avg > maxAvg) {
+                    maxAvg = avg;
+                    cluster = c;
+                }
+            }
 
-			int r1, r2;
-			r1 = ClusteringRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
-			do {
-				r2 = ClusteringRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
-			} while (r1 == r2);
+            if (cluster.getPoints().size() > 1) {
 
-			Cluster cluster1 = new Cluster(cluster.getPoints().get(r1));
-			Cluster cluster2 = new Cluster(cluster.getPoints().get(r2));
+                int r1, r2;
+                r1 = ClusteringRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
+                do {
+                    r2 = ClusteringRandom.getInstance().nextInt(0, cluster.getPoints().size() - 1);
+                } while (r1 == r2);
 
-			for (Point point : cluster.getPoints()) {
-				double d1 = context.getDistanceFunction().apply(Lists.newArrayList(point, cluster1.getCentroid()));
-				double d2 = context.getDistanceFunction().apply(Lists.newArrayList(point, cluster2.getCentroid()));
+                Cluster cluster1 = new Cluster(cluster.getPoints().get(r1));
+                Cluster cluster2 = new Cluster(cluster.getPoints().get(r2));
 
-				if (d1 <= d2)
-					cluster1.addPoint(point);
-				else
-					cluster2.addPoint(point);
-			}
-			cluster1.updateCentroid();
-			cluster2.updateCentroid();
-			context.getClusters().add(cluster1);
-			context.getClusters().add(cluster2);
-			cluster.getPoints().clear();
-			context.getClusters().remove(cluster);
-		}
+                for (Point point : cluster.getPoints()) {
+                    double d1 = context.getDistanceFunction().apply(Lists.newArrayList(point, cluster1.getCentroid()));
+                    double d2 = context.getDistanceFunction().apply(Lists.newArrayList(point, cluster2.getCentroid()));
+
+                    if (d1 <= d2)
+                        cluster1.addPoint(point);
+                    else
+                        cluster2.addPoint(point);
+                }
+                cluster1.updateCentroid();
+                cluster2.updateCentroid();
+                context.getClusters().add(cluster1);
+                context.getClusters().add(cluster2);
+                cluster.getPoints().clear();
+                context.getClusters().remove(cluster);
+            }
+
+        }
 
 	}
 

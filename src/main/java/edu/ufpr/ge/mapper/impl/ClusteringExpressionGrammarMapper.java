@@ -21,6 +21,7 @@ import edu.ufpr.cluster.algorithms.functions.impl.MoveNearPointFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.RandomCentroidInitilization;
 import edu.ufpr.cluster.algorithms.functions.impl.SplitClustersFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.UniformCentroidInitilization;
+import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.AbstractGrammarMapper;
 import edu.ufpr.ge.representation.Expression;
 import edu.ufpr.ge.representation.Node;
@@ -73,6 +74,10 @@ public class ClusteringExpressionGrammarMapper extends AbstractGrammarMapper<Clu
 		String[] result = getNodeValue(rootNode, grammarInstance).split(" ");
 
 		int k = Integer.valueOf(result[1]);
+        if (k == 0) {
+            // 5 is hardcoded need to change this in the future
+            k = ClusteringRandom.getInstance().nextInt(2, 5);
+        }
 		String initializationValue = result[0];
 		InitializiationFunction initializationFunction = null;
 		switch (initializationValue) {
