@@ -46,17 +46,20 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 		double mutationProbability = 0.1;
 		double pruneMutationProbability = 0.05;
 		double duplicationProbability = 0.05;
-		int pruneIndex = 4;
-		int maxEvaluations = 10000;
-		int populationSize = 10;
+        int pruneIndex = 10;
+        int maxEvaluations = 250000;
+        int populationSize = 100;
 		int clusteringExecutionSeed = 100;
 		
         FitnessFunction clusteringFitnessFunction = new SilhouetteFitness();
 
-		// I was using seed 100 in my tests
-		JMetalRandom.getInstance().setSeed(100);
 
-		for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
+
+            int seed = 100 * i;
+            System.out.println("Ge Seed: " + seed);
+
+            JMetalRandom.getInstance().setSeed(seed);
 
 			String outputFolder = outDir + File.separator + i;
 
@@ -82,8 +85,8 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 			SymbolicExpressionGrammarMapper mapper = new SymbolicExpressionGrammarMapper();
 			mapper.loadGrammar(grammarFile);
 
-			System.out.println("Total time of execution: " + computingTime);
-			System.out.println("Solution: " + population.get(0).getObjective(0));
+            System.out.println("Total time of execution of seed " + seed + " : " + computingTime);
+            System.out.println("Solution Fitness: " + population.get(0).getObjective(0));
 			System.out.println("Variables: " + mapper.interpret(population.get(0)));
 
 			File outputFolderFile = new File(outputFolder);

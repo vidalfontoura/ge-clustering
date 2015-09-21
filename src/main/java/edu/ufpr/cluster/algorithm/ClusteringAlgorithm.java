@@ -95,8 +95,7 @@ public class ClusteringAlgorithm {
 		for (Cluster cluster : emptyCluster) {
 			clusters.remove(cluster);
 		}
-		System.out.println("Finished with a total of " + evaluations + " evaluations");
-		// Finished the algorithm returning the cluster list
+        clusteringContext.setEvaluationsCount(evaluations);
 		return clusteringContext;
 	}
 
