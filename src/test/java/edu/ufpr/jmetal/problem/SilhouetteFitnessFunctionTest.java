@@ -22,7 +22,9 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringAlgorithm;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
+import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
 import edu.ufpr.cluster.algorithms.functions.Function;
+import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
@@ -33,18 +35,23 @@ import edu.ufpr.math.utils.MathUtils;
  *
  * @author Vidal
  */
-public class FitnessFunctionTest {
+public class SilhouetteFitnessFunctionTest {
 
 	private ClusteringExpressionGrammarMapper mapper;
 
-	private FitnessFunction fitnessFunction;
+    private FitnessFunction fitnessFunction;
+
+    private DistanceFunction distanceFunction;
+
 
 	@Before
 	public void setup() {
 		mapper = new ClusteringExpressionGrammarMapper();
 		mapper.loadGrammar("/clustergrammar.bnf");
 		ClusteringRandom.getNewInstance().setSeed(100);
-        fitnessFunction = new SimpleClusteringFitness();
+        fitnessFunction = new SilhouetteFitness();
+
+        distanceFunction = new EucledianDistanceFunction();
 	}
 
 	/**
@@ -714,7 +721,7 @@ public class FitnessFunctionTest {
 		System.out.println("Time (seconds): " + elapsedTime / 1000);
 
 		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
-			if (f != Double.MAX_VALUE)
+            if (f != -1.0)
 				return true;
 			return false;
 		}).collect(Collectors.toList());
@@ -755,7 +762,7 @@ public class FitnessFunctionTest {
 		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
 		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
 		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
-
+		
 		Assert.assertEquals("MoveAveragePointFunction", function0.toString());
 		Assert.assertEquals("JoinClustersFunction", function1.toString());
 		Assert.assertEquals("SplitClustersFunction", function2.toString());
@@ -797,7 +804,7 @@ public class FitnessFunctionTest {
 		System.out.println("Time (seconds): " + elapsedTime / 1000);
 
 		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
-			if (f != Double.MAX_VALUE)
+            if (f != -1.0)
 				return true;
 			return false;
 		}).collect(Collectors.toList());
@@ -964,7 +971,7 @@ public class FitnessFunctionTest {
 		System.out.println("Time (seconds): " + elapsedTime / 1000);
 
 		List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
-			if (f != Double.MAX_VALUE)
+            if (f != -1.0)
 				return true;
 			return false;
 		}).collect(Collectors.toList());
@@ -1030,5 +1037,71 @@ public class FitnessFunctionTest {
 		System.out.println(fitness);
 
 	}
+	
+    @Test
+    public void testAllPointsWithDistinctClusterSilhouetteFitness() {
+
+        Point p1 = new Point(Lists.newArrayList(0.1, 0.1));
+        Point p2 = new Point(Lists.newArrayList(0.1, 0.2));
+        Point p3 = new Point(Lists.newArrayList(0.2, 0.1));
+        Point p4 = new Point(Lists.newArrayList(0.2, 0.2));
+        Point p5 = new Point(Lists.newArrayList(0.3, 0.2));
+        Point p6 = new Point(Lists.newArrayList(0.3, 0.3));
+
+        Point p7 = new Point(Lists.newArrayList(0.8, 0.8));
+        Point p8 = new Point(Lists.newArrayList(0.7, 0.8));
+        Point p9 = new Point(Lists.newArrayList(0.7, 0.9));
+        Point p10 = new Point(Lists.newArrayList(0.8, 0.9));
+
+        Cluster c1 = new Cluster(p1);
+        c1.getPoints().add(p1);
+        p1.setCluster(c1);
+
+        Cluster c2 = new Cluster(p2);
+        c2.getPoints().add(p2);
+        p2.setCluster(c2);
+
+        Cluster c3 = new Cluster(p3);
+        c3.getPoints().add(p3);
+        p3.setCluster(c3);
+
+        Cluster c4 = new Cluster(p4);
+        c4.getPoints().add(p4);
+        p4.setCluster(c4);
+
+        Cluster c5 = new Cluster(p5);
+        c5.getPoints().add(p5);
+        p5.setCluster(c5);
+
+        Cluster c6 = new Cluster(p6);
+        c6.getPoints().add(p6);
+        p6.setCluster(c6);
+
+        Cluster c7 = new Cluster(p7);
+        c7.getPoints().add(p7);
+        p7.setCluster(c7);
+
+        Cluster c8 = new Cluster(p8);
+        c8.getPoints().add(p8);
+        p8.setCluster(c8);
+
+        Cluster c9 = new Cluster(p9);
+        c9.getPoints().add(p9);
+        p9.setCluster(c9);
+
+        Cluster c10 = new Cluster(p10);
+        c10.getPoints().add(p10);
+        p10.setCluster(c10);
+
+        List<Point> points = Lists.newArrayList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+
+        List<Cluster> clusters = Lists.newArrayList(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10);
+
+        ClusteringContext clusteringContext = new ClusteringContext(points, clusters, distanceFunction);
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+    }
 
 }

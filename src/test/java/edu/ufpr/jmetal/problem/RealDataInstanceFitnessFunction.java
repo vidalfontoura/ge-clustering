@@ -1,5 +1,7 @@
 package edu.ufpr.jmetal.problem;
 
+import com.google.common.collect.Lists;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +11,6 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
-
-import com.google.common.collect.Lists;
 
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
@@ -25,7 +25,7 @@ public class RealDataInstanceFitnessFunction {
 	@Before
 	public void setup() {
 		JMetalRandom.getInstance().setSeed(100);
-		fitnessFunction = new FitnessFunction();
+        fitnessFunction = new SimpleClusteringFitness();
 	}
 	
 	@Test
