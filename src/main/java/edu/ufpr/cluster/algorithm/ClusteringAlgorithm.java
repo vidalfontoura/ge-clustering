@@ -19,8 +19,8 @@ public class ClusteringAlgorithm {
 
 	private java.util.function.Function<List<Point>, Double> distanceFunction;
 
-	// TODO: Obtain this points from somewhere. Currently the point are being
-	// set by a setMethod
+    private boolean logExecution = true;
+
 	private List<Point> points;
 
 	public ClusteringAlgorithm(InitializiationFunction initialization, List<Function<ClusteringContext>> functions,
@@ -34,21 +34,23 @@ public class ClusteringAlgorithm {
 	public ClusteringContext execute() {
 
 		this.clusteringContext = new ClusteringContext(points, distanceFunction);
-		// TODO: check from where this parameters should be given
-		int maxEvaluations = 2000;
 		int evaluations = 0;
 
 		// Call to the initialization functions of the centroids
 		initilization.apply(clusteringContext);
+		
+		if (logExecution) {
+		    System.out.println("---------------Starting executiion-------------------");
+            System.out.println("Total clusters: " + clusteringContext.getClusters().size());
+            clusteringContext.getClusters().stream().forEach(c -> c.printCluster());
+		}
 
 		boolean finish = false;
-		// Run sequentially the functions until the maxEvaluations value
 		while (!finish) {
-			// while (evaluations < maxEvaluations) {
 			List<Point> lastCentroids = clusteringContext.getClusters().stream().map(c -> c.getCentroid())
 					.collect(Collectors.toList());
 
-			for (Function<ClusteringContext> function : functions) {
+            for (Function<ClusteringContext> function : functions) {
 				function.apply(clusteringContext);
 			}
 			evaluations++;
@@ -70,6 +72,11 @@ public class ClusteringAlgorithm {
 			if (distance == 0) {
 				finish = true;
 			}
+            if (logExecution) {
+                System.out.println("Interaction: " + evaluations);
+                System.out.println("Total clusters: " + clusteringContext.getClusters().size());
+                clusteringContext.getClusters().stream().forEach(c -> c.printCluster());
+            }
 
 		}
 

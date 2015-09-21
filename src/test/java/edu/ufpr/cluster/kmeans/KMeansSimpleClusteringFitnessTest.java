@@ -25,6 +25,7 @@ import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.jmetal.problem.FitnessFunction;
+import edu.ufpr.jmetal.problem.SimpleClusteringFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.math.utils.MathUtils;
 
@@ -33,7 +34,7 @@ import edu.ufpr.math.utils.MathUtils;
  *
  * @author Vidal
  */
-public class KMeansTest {
+public class KMeansSimpleClusteringFitnessTest {
 
 	private DistanceFunction distanceFunction;
 
@@ -42,7 +43,7 @@ public class KMeansTest {
 	@Before
 	public void setup() {
 		distanceFunction = new EucledianDistanceFunction();
-		fitnessFunction = new FitnessFunction();
+		fitnessFunction = new SimpleClusteringFitness();
 	}
 
 	@Test
@@ -72,7 +73,8 @@ public class KMeansTest {
 
 	@Test
 	public void test11MultipleSeeds2() throws FileNotFoundException, IOException {
-		int k = 3;
+
+        int k = 2;
 		List<Point> points = DataInstanceReader.readPoints("/points.data");
 		int coordinates = points.get(0).getCoordinates().size();
 		List<Double> fitnesses = new ArrayList<Double>();
