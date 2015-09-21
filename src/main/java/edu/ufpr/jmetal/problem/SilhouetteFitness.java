@@ -76,19 +76,25 @@ public class SilhouetteFitness implements FitnessFunction {
             }
         }
 
-        return min;
+        return (min == Double.MAX_VALUE) ? 0 : min;
     }
 
     public double calculateFitness(List<Cluster> clusters, List<Point> allPoints) {
 
         double f = 0.0;
 
-        for (Point p : allPoints) {
-            double a = avgD(p, p.getCluster().getPoints());
-            double b = minD(p, clusters);
-            // System.out.println("a:" + a + "\tb:" + b + "\tf:" + ((a > b) ?
-            // (b-a) / a : (b-a) / b));
-            f += (a > b) ? (b - a) / a : (b - a) / b;
+        for(Cluster c : clusters) {
+        	
+        	if(c.getPoints().size() == 1) f += 0;
+        	else {
+        		for (Point p : c.getPoints()) {
+                    double a = avgD(p, c.getPoints());
+                    double b = minD(p, clusters);
+                    // System.out.println("a:" + a + "\tb:" + b + "\tf:" + ((a > b) ?
+                    // (b-a) / a : (b-a) / b));
+                    f += (a > b) ? (b - a) / a : (b - a) / b;
+                }
+        	}
         }
 
         f = f / allPoints.size();
