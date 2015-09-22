@@ -18,9 +18,13 @@ import edu.ufpr.cluster.algorithm.ClusteringAlgorithm;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.Function;
+import edu.ufpr.cluster.algorithms.functions.impl.ChebyshevDistanceFunction;
+import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
+import edu.ufpr.cluster.algorithms.functions.impl.ManhattanDistanceFunction;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
 import edu.ufpr.jmetal.problem.FitnessFunction;
+import edu.ufpr.jmetal.problem.SilhouetteFitness;
 import edu.ufpr.jmetal.problem.SimpleClusteringFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 
@@ -41,6 +45,7 @@ public class ExecutionTestClusteringAlgorithms {
         mapper = new ClusteringExpressionGrammarMapper();
         mapper.loadGrammar("/clustergrammar.bnf");
         ClusteringRandom.getNewInstance().setSeed(100);
+//        fitnessFunction = new SilhouetteFitness();
         fitnessFunction = new SimpleClusteringFitness();
 
     }
@@ -254,31 +259,22 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals(4, algorithm.getInitialK());
         Assert.assertEquals(13, algorithm.getFunctions().size());
 
-        Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
-        Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
-        Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
-        Function<ClusteringContext> function3 = algorithm.getFunctions().get(3);
-
         for (Function f : algorithm.getFunctions()) {
             System.out.println(f.toString());
         }
         System.out.println();
-
-
+        
         List<Point> points = DataInstanceReader.readPoints("/points.data");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
-
-        List<Cluster> clusters = clusteringContext.getClusters();
-        for (Cluster cluster : clusters) {
-            System.out.println("Centroid: " + cluster.getCentroid());
-            System.out.println("Size: " + cluster.getPoints().size());
-            System.out.println("Points: " + cluster.getPoints().toString());
-            System.out.println();
+        
+        for(Point p : clusteringContext.getPoints()) {
+        	System.out.println(p+" "+p.getCluster());
         }
+        
         Double fitness = fitnessFunction.apply(clusteringContext);
-
+        
         System.out.println(fitness);
 
     }
@@ -377,11 +373,6 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals(6, algorithm.getInitialK());
         Assert.assertEquals(4, algorithm.getFunctions().size());
 
-        Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
-        Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
-        Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
-        Function<ClusteringContext> function3 = algorithm.getFunctions().get(3);
-
         for (Function f : algorithm.getFunctions()) {
             System.out.println(f.toString());
         }
@@ -392,17 +383,21 @@ public class ExecutionTestClusteringAlgorithms {
 
         ClusteringContext clusteringContext = algorithm.execute();
 
-        List<Cluster> clusters = clusteringContext.getClusters();
-        for (Cluster cluster : clusters) {
-            System.out.println("Centroid: " + cluster.getCentroid());
-            System.out.println("Size: " + cluster.getPoints().size());
-            System.out.println("Points: " + cluster.getPoints().toString());
-            System.out.println();
+//        List<Cluster> clusters = clusteringContext.getClusters();
+//        for (Cluster cluster : clusters) {
+//            System.out.println("Centroid: " + cluster.getCentroid());
+//            System.out.println("Size: " + cluster.getPoints().size());
+//            System.out.println("Points: " + cluster.getPoints().toString());
+//            System.out.println();
+//        }
+        
+        for(Point p : clusteringContext.getPoints()) {
+        	System.out.println(p+" "+p.getCluster());
         }
+        
         Double fitness = fitnessFunction.apply(clusteringContext);
 
         System.out.println(fitness);
 
     }
-
 }

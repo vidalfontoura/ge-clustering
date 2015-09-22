@@ -9,6 +9,7 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
+import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
 
 public class SilhouetteFitness implements FitnessFunction {
 
@@ -22,8 +23,7 @@ public class SilhouetteFitness implements FitnessFunction {
         // clusters.stream().forEach(p -> p.printCluster());
         List<Point> allPoints = clusteringContext.getPoints();
 
-        distanceFunction = (DistanceFunction) clusteringContext.getDistanceFunction();
-
+        distanceFunction = new EucledianDistanceFunction();
 
         // If exists more than 10 cluster it will be penalized hard
         if (clusters.size() > 10) {
@@ -55,7 +55,7 @@ public class SilhouetteFitness implements FitnessFunction {
 
 
         // Calculate fitness
-        double fitness = calculateFitness(clusters, allPoints);
+        double fitness = calculateFitness(clusters);
         return fitness;
 
     }
@@ -76,10 +76,11 @@ public class SilhouetteFitness implements FitnessFunction {
         double min = Double.MAX_VALUE;
 
         for (Cluster c : clusters) {
-            if (c != point.getCluster()) {
-                double sum = 0.0;
-                for (Point p : c.getPoints())
-                    sum += (point != p) ? distanceFunction.apply(Lists.newArrayList(point, p)) : 0;
+            if (!point.getCluster().equals(c)) {
+            	double sum = 0.0;
+                for (Point p : c.getPoints()) {
+                    sum += distanceFunction.apply(Lists.newArrayList(point, p));
+                }
                 sum = sum / c.getPoints().size();
                 min = (sum < min) ? sum : min;
             }
@@ -88,25 +89,25 @@ public class SilhouetteFitness implements FitnessFunction {
         return (min == Double.MAX_VALUE) ? 0 : min;
     }
 
-    public double calculateFitness(List<Cluster> clusters, List<Point> allPoints) {
+    public double calculateFitness(List<Cluster> clusters) {
 
         double f = 0.0;
 
         for(Cluster c : clusters) {
-        	
-        	if(c.getPoints().size() == 1) f += 0;
+        	if(c.getPoints().size() == 1) {
+        		f += 0.0;
+        	}
         	else {
         		for (Point p : c.getPoints()) {
                     double a = avgD(p, c.getPoints());
                     double b = minD(p, clusters);
-                    // System.out.println("a:" + a + "\tb:" + b + "\tf:" + ((a > b) ?
-                    // (b-a) / a : (b-a) / b));
                     f += (a > b) ? (b - a) / a : (b - a) / b;
+//                    System.out.println(p+" "+p.getCluster()+"\n"+a+"\n"+b);
                 }
         	}
         }
 
-        f = f / allPoints.size();
+        f = f / 13.0;
 
         return f;
     }

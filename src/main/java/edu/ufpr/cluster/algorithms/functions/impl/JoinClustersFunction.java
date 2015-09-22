@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
+import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.Function;
 import edu.ufpr.cluster.random.ClusteringRandom;
 
@@ -31,8 +32,11 @@ public class JoinClustersFunction implements Function<ClusteringContext> {
 				}
 			}
 
-			cluster1.getPoints().addAll(cluster2.getPoints());
+			for(Point p : cluster2.getPoints()) {
+				cluster1.addPoint(p);
+			}
 			cluster1.updateCentroid();
+			cluster2.getPoints().clear();
 			context.getClusters().remove(cluster2);
 		}
 

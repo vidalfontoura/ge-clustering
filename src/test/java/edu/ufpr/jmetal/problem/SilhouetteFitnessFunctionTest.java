@@ -1104,4 +1104,54 @@ public class SilhouetteFitnessFunctionTest {
         System.out.println(fitness);
     }
 
+    @Test
+	public void test13() throws FileNotFoundException, IOException {
+    	List<Integer> grammarInstance = 
+    			Lists.newArrayList(108, 13, 119, 67, 85, 225, 205, 179, 61, 97, 9, 52, 85, 198, 87, 246, 189);
+
+		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+		Assert.assertEquals("ManhattanDistanceFunction", algorithm.getDistanceFunction().toString());
+
+		Assert.assertEquals(9, algorithm.getInitialK());
+		Assert.assertEquals(13, algorithm.getFunctions().size());
+
+		Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+		Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+		Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+
+		for(Function f : algorithm.getFunctions()) {
+//			System.out.println(f.toString());
+		}
+		
+//		Assert.assertEquals("JoinClustersFunction", function0.toString());
+//		Assert.assertEquals("JoinClustersFunction", function1.toString());
+//		Assert.assertEquals("SplitClustersFunction", function2.toString());
+
+		// Assert.assertEquals("MoveAveragePointFunction",
+		// functionLast.toString());
+
+		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		algorithm.setPoints(points);
+
+		ClusteringContext clusteringContext = algorithm.execute();
+
+		System.out.println(clusteringContext.getClusters().size());
+		for (Cluster cluster : clusteringContext.getClusters()) {
+			cluster.printCluster();
+		}
+
+		// List<Cluster> clusters = clusteringContext.getClusters();
+		// for (Cluster cluster : clusters) {
+		// System.out.println(cluster.getCentroid());
+		// System.out.println(cluster.getPoints().size());
+		// System.out.println();
+		// }
+		Double fitness = fitnessFunction.apply(clusteringContext);
+
+		System.out.println(fitness);
+
+	}
+    
 }

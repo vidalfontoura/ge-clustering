@@ -13,6 +13,7 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
+import edu.ufpr.cluster.random.ClusteringRandom;
 
 public class JoinClustersFunctionTest {
 
@@ -21,7 +22,7 @@ public class JoinClustersFunctionTest {
 	@Before
 	public void init() {
 		function = new JoinClustersFunction();
-		JMetalRandom.getInstance().setSeed(0);
+		ClusteringRandom.getNewInstance().setSeed(0);
 	}
 
 	@Test
@@ -32,12 +33,12 @@ public class JoinClustersFunctionTest {
 
 		List<Point> points = new ArrayList<Point>();
 
-		Point point0 = new Point(Lists.newArrayList(1.0, 0.0));
-		Point point1 = new Point(Lists.newArrayList(2.0, 3.0));
-		Point point2 = new Point(Lists.newArrayList(3.0, 0.0));
-		Point point3 = new Point(Lists.newArrayList(3.0, 2.0));
-		Point point4 = new Point(Lists.newArrayList(5.0, 0.0));
-		Point point5 = new Point(Lists.newArrayList(2.0, 2.0));
+		Point point0 = new Point(Lists.newArrayList(1.0, 1.0));
+		Point point1 = new Point(Lists.newArrayList(2.0, 2.0));
+		Point point2 = new Point(Lists.newArrayList(3.0, 3.0));
+		Point point3 = new Point(Lists.newArrayList(4.0, 4.0));
+		Point point4 = new Point(Lists.newArrayList(5.0, 5.0));
+		Point point5 = new Point(Lists.newArrayList(6.0, 6.0));
 
 		points.add(point0);
 		points.add(point1);
@@ -69,16 +70,25 @@ public class JoinClustersFunctionTest {
 
 		ClusteringContext clusteringContext = new ClusteringContext(points, clusters, distanceFunction);
 
-		for (Cluster cluster : clusters) {
-			System.out.println(cluster.getPoints().size() + " " + cluster);
-		}
+//		for (Cluster cluster : clusters) {
+//			System.out.println(cluster.getPoints().size() + " " + cluster);
+//		}
 
+		for(Point p : points) {
+			System.out.println(p+" "+p.getCluster());
+		}
+		
 		function.apply(clusteringContext);
 
 		System.out.println("---");
-		for (Cluster cluster : clusters) {
-			System.out.println(cluster.getPoints().size() + " " + cluster);
+		
+		for(Point p : points) {
+			System.out.println(p+" "+p.getCluster());
 		}
+		
+//		for (Cluster cluster : clusters) {
+//			System.out.println(cluster.getPoints().size() + " " + cluster);
+//		}
 	}
 
 }
