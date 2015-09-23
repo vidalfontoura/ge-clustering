@@ -55,7 +55,7 @@ public class SilhouetteFitness implements FitnessFunction {
 
 
         // Calculate fitness
-        double fitness = calculateFitness(clusters);
+        double fitness = calculateFitness(clusters, allPoints);
         return fitness;
 
     }
@@ -89,9 +89,10 @@ public class SilhouetteFitness implements FitnessFunction {
         return (min == Double.MAX_VALUE) ? 0 : min;
     }
 
-    public double calculateFitness(List<Cluster> clusters) {
+    public double calculateFitness(List<Cluster> clusters, List<Point> allPoints) {
 
         double f = 0.0;
+
 
         for(Cluster c : clusters) {
         	if(c.getPoints().size() == 1) {
@@ -107,7 +108,7 @@ public class SilhouetteFitness implements FitnessFunction {
         	}
         }
 
-        f = f / 13.0;
+        f = f / allPoints.size();
 
         return f;
     }

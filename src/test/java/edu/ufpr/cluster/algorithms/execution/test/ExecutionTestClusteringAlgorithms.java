@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,14 +19,10 @@ import edu.ufpr.cluster.algorithm.ClusteringAlgorithm;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.Function;
-import edu.ufpr.cluster.algorithms.functions.impl.ChebyshevDistanceFunction;
-import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
-import edu.ufpr.cluster.algorithms.functions.impl.ManhattanDistanceFunction;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
 import edu.ufpr.jmetal.problem.FitnessFunction;
 import edu.ufpr.jmetal.problem.SilhouetteFitness;
-import edu.ufpr.jmetal.problem.SimpleClusteringFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 
 /**
@@ -45,8 +42,8 @@ public class ExecutionTestClusteringAlgorithms {
         mapper = new ClusteringExpressionGrammarMapper();
         mapper.loadGrammar("/clustergrammar.bnf");
         ClusteringRandom.getNewInstance().setSeed(100);
-//        fitnessFunction = new SilhouetteFitness();
-        fitnessFunction = new SimpleClusteringFitness();
+        fitnessFunction = new SilhouetteFitness();
+        // fitnessFunction = new SimpleClusteringFitness();
 
     }
 
@@ -321,6 +318,88 @@ public class ExecutionTestClusteringAlgorithms {
     }
 
     @Test
+    public void testAlgorithmGenerated6_20Points() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance =
+            Lists.newArrayList(108, 13, 119, 67, 85, 225, 205, 179, 61, 97, 9, 52, 85, 198, 87, 246, 189);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+        Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+        Assert.assertEquals("ManhattanDistanceFunction", algorithm.getDistanceFunction().toString());
+
+        Assert.assertEquals(4, algorithm.getInitialK());
+        Assert.assertEquals(13, algorithm.getFunctions().size());
+
+        Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+        Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+        Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+        Function<ClusteringContext> function3 = algorithm.getFunctions().get(3);
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = DataInstanceReader.readPoints("/20Points.data");
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        List<Cluster> clusters = clusteringContext.getClusters();
+        for (Cluster cluster : clusters) {
+            System.out.println("Centroid: " + cluster.getCentroid());
+            System.out.println("Size: " + cluster.getPoints().size());
+            System.out.println("Points: " + cluster.getPoints().toString());
+            System.out.println();
+        }
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
+
+    @Test
+    public void testAlgorithmGenerated6_50Points() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance =
+            Lists.newArrayList(108, 13, 119, 67, 85, 225, 205, 179, 61, 97, 9, 52, 85, 198, 87, 246, 189);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+        Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
+        Assert.assertEquals("ManhattanDistanceFunction", algorithm.getDistanceFunction().toString());
+
+        Assert.assertEquals(4, algorithm.getInitialK());
+        Assert.assertEquals(13, algorithm.getFunctions().size());
+
+        Function<ClusteringContext> function0 = algorithm.getFunctions().get(0);
+        Function<ClusteringContext> function1 = algorithm.getFunctions().get(1);
+        Function<ClusteringContext> function2 = algorithm.getFunctions().get(2);
+        Function<ClusteringContext> function3 = algorithm.getFunctions().get(3);
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data");
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        List<Cluster> clusters = clusteringContext.getClusters();
+        for (Cluster cluster : clusters) {
+            System.out.println("Centroid: " + cluster.getCentroid());
+            System.out.println("Size: " + cluster.getPoints().size());
+            System.out.println("Points: " + cluster.getPoints().toString());
+            System.out.println();
+        }
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
+
+    @Test
     public void testAlgorithmGenerated6Diabetes() throws FileNotFoundException, IOException {
 
         List<Integer> grammarInstance =
@@ -355,6 +434,13 @@ public class ExecutionTestClusteringAlgorithms {
             System.out.println("Points: " + cluster.getPoints().toString());
             System.out.println();
         }
+        
+        List<Point> pointsClustered = clusteringContext.getPoints();
+        List<Point> pointsWithoutCluster = pointsClustered.stream().filter(p -> {
+            return p.getCluster() == null;
+        }).collect(Collectors.toList());
+
+
         Double fitness = fitnessFunction.apply(clusteringContext);
 
         System.out.println(fitness);
@@ -395,6 +481,161 @@ public class ExecutionTestClusteringAlgorithms {
         	System.out.println(p+" "+p.getCluster());
         }
         
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
+
+    @Test
+    public void testAlgorithmGenerated7_20Points() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(205, 112, 86, 3, 157, 4, 71, 133);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+        Assert.assertEquals("RandomCentroidInitilization", algorithm.getInitilization().toString());
+        Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+        Assert.assertEquals(6, algorithm.getInitialK());
+        Assert.assertEquals(4, algorithm.getFunctions().size());
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = DataInstanceReader.readPoints("/20points.data");
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        // List<Cluster> clusters = clusteringContext.getClusters();
+        // for (Cluster cluster : clusters) {
+        // System.out.println("Centroid: " + cluster.getCentroid());
+        // System.out.println("Size: " + cluster.getPoints().size());
+        // System.out.println("Points: " + cluster.getPoints().toString());
+        // System.out.println();
+        // }
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
+
+    @Test
+    public void testAlgorithmGenerated7MorePoints() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(205, 112, 86, 3, 157, 4, 71, 133);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+        Assert.assertEquals("RandomCentroidInitilization", algorithm.getInitilization().toString());
+        Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+        Assert.assertEquals(6, algorithm.getInitialK());
+        Assert.assertEquals(4, algorithm.getFunctions().size());
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        // List<Cluster> clusters = clusteringContext.getClusters();
+        // for (Cluster cluster : clusters) {
+        // System.out.println("Centroid: " + cluster.getCentroid());
+        // System.out.println("Size: " + cluster.getPoints().size());
+        // System.out.println("Points: " + cluster.getPoints().toString());
+        // System.out.println();
+        // }
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
+
+    @Test
+    public void testAlgorithmGenerated7_50Points() throws FileNotFoundException, IOException
+
+    {
+
+        List<Integer> grammarInstance = Lists.newArrayList(205, 112, 86, 3, 157, 4, 71, 133);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+        Assert.assertEquals("RandomCentroidInitilization", algorithm.getInitilization().toString());
+        Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+        Assert.assertEquals(6, algorithm.getInitialK());
+        Assert.assertEquals(4, algorithm.getFunctions().size());
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data");
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        // List<Cluster> clusters = clusteringContext.getClusters();
+        // for (Cluster cluster : clusters) {
+        // System.out.println("Centroid: " + cluster.getCentroid());
+        // System.out.println("Size: " + cluster.getPoints().size());
+        // System.out.println("Points: " + cluster.getPoints().toString());
+        // System.out.println();
+        // }
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
+
+    @Test
+    public void testAlgorithmGenerated7Diabetes() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(205, 112, 86, 3, 157, 4, 71, 133);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+        Assert.assertEquals("RandomCentroidInitilization", algorithm.getInitilization().toString());
+        Assert.assertEquals("EucledianDistanceFunction", algorithm.getDistanceFunction().toString());
+
+        Assert.assertEquals(6, algorithm.getInitialK());
+        Assert.assertEquals(4, algorithm.getFunctions().size());
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+
         Double fitness = fitnessFunction.apply(clusteringContext);
 
         System.out.println(fitness);
