@@ -14,6 +14,8 @@ public class ClusteringContext {
 
 	private int dimensions;
 
+    private int evaluationsCount = 0;
+
 	public ClusteringContext(List<Point> points, Function<List<Point>, Double> distanceFunction) {
 		setup(points, null, distanceFunction);
 	}
@@ -51,6 +53,7 @@ public class ClusteringContext {
 		for (Cluster cluster : clusters) {
 			cluster.getPoints().clear();
 		}
+        setEvaluationsCount(0);
 	}
 
 	public void setClusters(List<Cluster> clusters) {
@@ -80,4 +83,15 @@ public class ClusteringContext {
 	public void setDimensions(int dimensions) {
 		this.dimensions = dimensions;
 	}
+
+    public int getEvaluationsCount() {
+
+        return evaluationsCount;
+    }
+
+    public void setEvaluationsCount(int evaluationsCount) {
+
+        this.evaluationsCount = evaluationsCount;
+    }
+
 }

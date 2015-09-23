@@ -25,14 +25,22 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 	private List<Point> points;
 	private int clusteringExecutionSeed;
 
+    private int evaluationCount = -100;
+
+    private double bestIndividualFitnessPerGen = -1.1;
+
+    private String bestIndividual = "";
+
+    private int bestIndividualK = -1;
+
 	public ClusteringProblem(String grammarFile, String dataSetFile, int minCondons, int maxCondons,
-			int clusteringExecutionSeed) throws FileNotFoundException, IOException {
+        int clusteringExecutionSeed, FitnessFunction fitnessFunction) throws FileNotFoundException, IOException {
 
 		super(new ClusteringExpressionGrammarMapper(), grammarFile);
 		this.maxCondons = maxCondons;
 		this.minCondons = minCondons;
 		this.points = DataInstanceReader.readPoints(dataSetFile);
-        this.fitnessFunction = new SimpleClusteringFitness();
+        this.fitnessFunction = fitnessFunction;
 		this.clusteringExecutionSeed = clusteringExecutionSeed;
 
 	}
@@ -66,8 +74,10 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 		int numberOfVariables = solution.getNumberOfVariables();
 
 		List<Integer> clusteringSolution = new ArrayList<>();
+		StringBuilder solutionStr = new StringBuilder();
 		for (int i = 0; i < numberOfVariables; i++) {
-			System.out.print(solution.getVariableValue(i) + ",");
+           
+            solutionStr.append(solution.getVariableValue(i)).append(",");
 			clusteringSolution.add(solution.getVariableValue(i));
 		}
 
@@ -82,8 +92,23 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 		ClusteringContext clusteringContext = clusteringAlgorithm.execute();
 
 		Double fitness = this.fitnessFunction.apply(clusteringContext);
-		System.out.println("- Fitness: " + fitness);
-		solution.setObjective(0, fitness);
+
+        if (fitness > bestIndividualFitnessPerGen) {
+            System.out.println("Swap from " + bestIndividualFitnessPerGen + " to " + fitness);
+            bestIndividualFitnessPerGen = fitness;
+            bestIndividual = solutionStr.toString();
+            bestIndividualK = clusteringContext.getClusters().size();
+        }
+
+        if (evaluationCount % 2500 == 0) {
+            System.out.print(bestIndividual);
+            System.out.println(" - Fitness: " + bestIndividualFitnessPerGen + ", k: " + bestIndividualK);
+            bestIndividual = "";
+            bestIndividualFitnessPerGen = -1.1;
+            bestIndividualK = -1;
+        }
+        solution.setObjective(0, -fitness);
+        evaluationCount++;
 
 	}
 
