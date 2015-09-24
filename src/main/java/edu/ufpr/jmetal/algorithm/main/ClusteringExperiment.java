@@ -43,7 +43,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
             outDir.mkdir();
         }
         String grammarFile = "/clustergrammar.bnf";
-        String dataClassificationFile = "/20points.data";
+        String dataClassificationFile = "/prima-indians-diabetes.data";
         double crossoverProbability = 0.95;
         double mutationProbability = 0.1;
         double pruneMutationProbability = 0.05;
