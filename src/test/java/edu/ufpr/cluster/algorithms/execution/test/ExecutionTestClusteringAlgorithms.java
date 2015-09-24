@@ -1,5 +1,5 @@
 /*
- * Copyright 2015, Charter Communications,  All rights reserved.
+ * Copyright 2015, Charter Communications, All rights reserved.
  */
 package edu.ufpr.cluster.algorithms.execution.test;
 
@@ -19,11 +19,14 @@ import edu.ufpr.cluster.algorithm.ClusteringAlgorithm;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.Function;
+import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
+import edu.ufpr.cluster.kmeans.KMeansClusteringAlgorithm;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
 import edu.ufpr.jmetal.problem.FitnessFunction;
 import edu.ufpr.jmetal.problem.SilhouetteFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
+import edu.ufpr.math.utils.MathUtils;
 
 /**
  *
@@ -116,8 +119,7 @@ public class ExecutionTestClusteringAlgorithms {
 
         ClusteringContext clusteringContext = algorithm.execute();
 
-
-         List<Cluster> clusters = clusteringContext.getClusters();
+        List<Cluster> clusters = clusteringContext.getClusters();
         for (Cluster cluster : clusters) {
             System.out.println(cluster.getCentroid());
             System.out.println(cluster.getPoints().size());
@@ -190,7 +192,6 @@ public class ExecutionTestClusteringAlgorithms {
 
         ClusteringContext clusteringContext = algorithm.execute();
 
-
         List<Cluster> clusters = clusteringContext.getClusters();
         for (Cluster cluster : clusters) {
             System.out.println(cluster.getCentroid());
@@ -260,18 +261,18 @@ public class ExecutionTestClusteringAlgorithms {
             System.out.println(f.toString());
         }
         System.out.println();
-        
+
         List<Point> points = DataInstanceReader.readPoints("/points.data");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
-        
-        for(Point p : clusteringContext.getPoints()) {
-        	System.out.println(p+" "+p.getCluster());
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
         }
-        
+
         Double fitness = fitnessFunction.apply(clusteringContext);
-        
+
         System.out.println(fitness);
 
     }
@@ -434,12 +435,11 @@ public class ExecutionTestClusteringAlgorithms {
             System.out.println("Points: " + cluster.getPoints().toString());
             System.out.println();
         }
-        
+
         List<Point> pointsClustered = clusteringContext.getPoints();
         List<Point> pointsWithoutCluster = pointsClustered.stream().filter(p -> {
             return p.getCluster() == null;
         }).collect(Collectors.toList());
-
 
         Double fitness = fitnessFunction.apply(clusteringContext);
 
@@ -469,18 +469,18 @@ public class ExecutionTestClusteringAlgorithms {
 
         ClusteringContext clusteringContext = algorithm.execute();
 
-//        List<Cluster> clusters = clusteringContext.getClusters();
-//        for (Cluster cluster : clusters) {
-//            System.out.println("Centroid: " + cluster.getCentroid());
-//            System.out.println("Size: " + cluster.getPoints().size());
-//            System.out.println("Points: " + cluster.getPoints().toString());
-//            System.out.println();
-//        }
-        
-        for(Point p : clusteringContext.getPoints()) {
-        	System.out.println(p+" "+p.getCluster());
+        // List<Cluster> clusters = clusteringContext.getClusters();
+        // for (Cluster cluster : clusters) {
+        // System.out.println("Centroid: " + cluster.getCentroid());
+        // System.out.println("Size: " + cluster.getPoints().size());
+        // System.out.println("Points: " + cluster.getPoints().toString());
+        // System.out.println();
+        // }
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
         }
-        
+
         Double fitness = fitnessFunction.apply(clusteringContext);
 
         System.out.println(fitness);
@@ -635,6 +635,83 @@ public class ExecutionTestClusteringAlgorithms {
             System.out.println(p + " " + p.getCluster());
         }
 
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+    }
+
+    @Test
+    public void testAlgorithmGenerated8Points() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(199);
+        // List<Integer> grammarInstance = Lists.newArrayList(67, 55, 66, 50,
+        // 175, 111, 215, 137);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
+        // List<Point> points =
+        // MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
+
+    @Test
+    public void testAlgorithmGenerated9Diabetes() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(97, 222, 155, 9, 37, 155, 9, 167, 41, 21, 45, 125);
+        // List<Integer> grammarInstance = Lists.newArrayList(67, 55, 66, 50,
+        // 175, 111, 215, 137);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data"));
+        // List<Point> points =
+        // MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+    }
+
+    @Test
+    public void testKmeansNormalizeDenormalizeData() throws FileNotFoundException, IOException {
+
+        List<Point> points = DataInstanceReader.readPoints("/points.data");
+
+        KMeansClusteringAlgorithm algorithm =
+            new KMeansClusteringAlgorithm(points, new EucledianDistanceFunction(), 2, 2);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        clusteringContext.getClusters().stream().forEach(c -> c.printCluster());
 
         Double fitness = fitnessFunction.apply(clusteringContext);
 
