@@ -21,132 +21,142 @@ import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
  * Created by ajnebro on 26/10/14.
  */
 public class GrammaticalEvolutionAlgorithm
-		extends AbstractGrammaticalEvolutionAlgorithm<VariableIntegerSolution, List<VariableIntegerSolution>> {
+    extends AbstractGrammaticalEvolutionAlgorithm<VariableIntegerSolution, List<VariableIntegerSolution>> {
 
-	private Comparator<VariableIntegerSolution> comparator;
-	private int maxEvaluations;
-	private int populationSize;
-	private int evaluations;
+    private Comparator<VariableIntegerSolution> comparator;
+    private int maxEvaluations;
+    private int populationSize;
+    private int evaluations;
 
-	private AbstractGrammaticalEvolutionProblem problem;
+    private AbstractGrammaticalEvolutionProblem problem;
 
-	private SolutionListEvaluator<VariableIntegerSolution> evaluator;
+    private SolutionListEvaluator<VariableIntegerSolution> evaluator;
 
-	/**
-	 * Constructor
-	 *
-	 * @param problem
-	 * @param maxEvaluations
-	 * @param populationSize
-	 * @param crossoverOperator
-	 * @param mutationOperator
-	 * @param selectionOperator
-	 * @param pruneMutationOperator
-	 * @param duplicationMutationOperator
-	 * @param evaluator
-	 */
-	public GrammaticalEvolutionAlgorithm(AbstractGrammaticalEvolutionProblem problem, int maxEvaluations,
-			int populationSize, CrossoverOperator<VariableIntegerSolution> crossoverOperator,
-			MutationOperator<VariableIntegerSolution> mutationOperator,
-			SelectionOperator<List<VariableIntegerSolution>, VariableIntegerSolution> selectionOperator,
-			PruneMutation pruneMutationOperator, DuplicationMutation duplicationMutationOperator,
-			SolutionListEvaluator<VariableIntegerSolution> evaluator) {
-		this.problem = problem;
-		this.maxEvaluations = maxEvaluations;
-		this.populationSize = populationSize;
+    /**
+     * Constructor
+     *
+     * @param problem
+     * @param maxEvaluations
+     * @param populationSize
+     * @param crossoverOperator
+     * @param mutationOperator
+     * @param selectionOperator
+     * @param pruneMutationOperator
+     * @param duplicationMutationOperator
+     * @param evaluator
+     */
+    public GrammaticalEvolutionAlgorithm(AbstractGrammaticalEvolutionProblem problem, int maxEvaluations,
+        int populationSize, CrossoverOperator<VariableIntegerSolution> crossoverOperator,
+        MutationOperator<VariableIntegerSolution> mutationOperator,
+        SelectionOperator<List<VariableIntegerSolution>, VariableIntegerSolution> selectionOperator,
+        PruneMutation pruneMutationOperator, DuplicationMutation duplicationMutationOperator,
+        SolutionListEvaluator<VariableIntegerSolution> evaluator) {
+        this.problem = problem;
+        this.maxEvaluations = maxEvaluations;
+        this.populationSize = populationSize;
 
-		this.crossoverOperator = crossoverOperator;
-		this.mutationOperator = mutationOperator;
-		this.selectionOperator = selectionOperator;
+        this.crossoverOperator = crossoverOperator;
+        this.mutationOperator = mutationOperator;
+        this.selectionOperator = selectionOperator;
 
-		this.pruneMutationOperator = pruneMutationOperator;
-		this.duplicationMutationOperator = duplicationMutationOperator;
+        this.pruneMutationOperator = pruneMutationOperator;
+        this.duplicationMutationOperator = duplicationMutationOperator;
 
-		this.evaluator = evaluator;
+        this.evaluator = evaluator;
 
-		comparator = new ObjectiveComparator<>(0);
-	}
+        comparator = new ObjectiveComparator<>(0);
+    }
 
-	@Override
-	protected boolean isStoppingConditionReached() {
-		return (evaluations >= maxEvaluations);
-	}
+    @Override
+    protected boolean isStoppingConditionReached() {
 
-	@Override
-	protected List<VariableIntegerSolution> createInitialPopulation() {
-		List<VariableIntegerSolution> population = new ArrayList<>(populationSize);
-		for (int i = 0; i < populationSize; i++) {
-			VariableIntegerSolution newIndividual = problem.createSolution();
-			population.add(newIndividual);
-		}
-		return population;
-	}
+        return (evaluations >= maxEvaluations);
+    }
 
-	@Override
-	protected List<VariableIntegerSolution> replacement(List<VariableIntegerSolution> population,
-			List<VariableIntegerSolution> offspringPopulation) {
-		List<VariableIntegerSolution> jointPopulation = new ArrayList<>();
-		jointPopulation.addAll(population);
-		jointPopulation.addAll(offspringPopulation);
-		Collections.sort(population, comparator);
+    @Override
+    protected List<VariableIntegerSolution> createInitialPopulation() {
 
-		return jointPopulation.subList(0, populationSize);
-	}
+        List<VariableIntegerSolution> population = new ArrayList<>(populationSize);
+        for (int i = 0; i < populationSize; i++) {
+            VariableIntegerSolution newIndividual = problem.createSolution();
+            population.add(newIndividual);
+        }
+        return population;
+    }
 
-	@Override
-	protected List<VariableIntegerSolution> reproduction(List<VariableIntegerSolution> matingPopulation) {
-		List<VariableIntegerSolution> offspringPopulation = new ArrayList<>(matingPopulation.size() + 2);
-		for (int i = 0; i < populationSize; i += 2) {
-			List<VariableIntegerSolution> parents = new ArrayList<>(2);
-			parents.add(matingPopulation.get(i));
-			parents.add(matingPopulation.get(i + 1));
+    @Override
+    protected List<VariableIntegerSolution> replacement(List<VariableIntegerSolution> population,
+                                                        List<VariableIntegerSolution> offspringPopulation) {
 
-			List<VariableIntegerSolution> offspring = crossoverOperator.execute(parents);
-			mutationOperator.execute(offspring.get(0));
-			mutationOperator.execute(offspring.get(1));
+        List<VariableIntegerSolution> jointPopulation = new ArrayList<>();
+        jointPopulation.addAll(population);
+        jointPopulation.addAll(offspringPopulation);
+        Collections.sort(jointPopulation, comparator);
 
-			pruneMutationOperator.execute(offspring.get(0));
-			pruneMutationOperator.execute(offspring.get(1));
-			duplicationMutationOperator.execute(offspring.get(0));
-			duplicationMutationOperator.execute(offspring.get(1));
+        System.out.println("Best in the population: " + jointPopulation.get(0));
+        return jointPopulation.subList(0, populationSize);
+    }
 
-			offspringPopulation.add(offspring.get(0));
-			offspringPopulation.add(offspring.get(1));
-		}
-		return offspringPopulation;
-	}
+    @Override
+    protected List<VariableIntegerSolution> reproduction(List<VariableIntegerSolution> matingPopulation) {
 
-	@Override
-	protected List<VariableIntegerSolution> selection(List<VariableIntegerSolution> population) {
-		List<VariableIntegerSolution> matingPopulation = new ArrayList<>(population.size());
-		for (int i = 0; i < populationSize; i++) {
-			VariableIntegerSolution solution = selectionOperator.execute(population);
-			matingPopulation.add(solution);
-		}
+        List<VariableIntegerSolution> offspringPopulation = new ArrayList<>(matingPopulation.size() + 2);
+        for (int i = 0; i < populationSize; i += 2) {
+            List<VariableIntegerSolution> parents = new ArrayList<>(2);
+            parents.add(matingPopulation.get(i));
+            parents.add(matingPopulation.get(i + 1));
 
-		return matingPopulation;
-	}
+            List<VariableIntegerSolution> offspring = crossoverOperator.execute(parents);
+            mutationOperator.execute(offspring.get(0));
+            mutationOperator.execute(offspring.get(1));
 
-	@Override
-	protected List<VariableIntegerSolution> evaluatePopulation(List<VariableIntegerSolution> population) {
-		population = evaluator.evaluate(population, problem);
+            pruneMutationOperator.execute(offspring.get(0));
+            pruneMutationOperator.execute(offspring.get(1));
+            duplicationMutationOperator.execute(offspring.get(0));
+            duplicationMutationOperator.execute(offspring.get(1));
 
-		return population;
-	}
+            offspringPopulation.add(offspring.get(0));
+            offspringPopulation.add(offspring.get(1));
+        }
+        return offspringPopulation;
+    }
 
-	@Override
-	public List<VariableIntegerSolution> getResult() {
-		Collections.sort(getPopulation(), comparator);
-		return getPopulation();
-	}
+    @Override
+    protected List<VariableIntegerSolution> selection(List<VariableIntegerSolution> population) {
 
-	@Override
-	public void initProgress() {
-		evaluations = populationSize;
-	}
+        List<VariableIntegerSolution> matingPopulation = new ArrayList<>(population.size());
+        for (int i = 0; i < populationSize; i++) {
+            VariableIntegerSolution solution = selectionOperator.execute(population);
+            matingPopulation.add(solution);
+        }
 
-	@Override
-	public void updateProgress() {
-		evaluations += populationSize;
-	}
+        return matingPopulation;
+    }
+
+    @Override
+    protected List<VariableIntegerSolution> evaluatePopulation(List<VariableIntegerSolution> population) {
+
+        population = evaluator.evaluate(population, problem);
+
+        return population;
+    }
+
+    @Override
+    public List<VariableIntegerSolution> getResult() {
+
+        Collections.sort(getPopulation(), comparator);
+        return getPopulation();
+    }
+
+    @Override
+    public void initProgress() {
+
+        evaluations = populationSize;
+    }
+
+    @Override
+    public void updateProgress() {
+
+        evaluations += populationSize;
+    }
 }
