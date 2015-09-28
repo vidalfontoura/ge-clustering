@@ -15,7 +15,7 @@ pruneProbability=0.05
 duplicationProbability=0.05
 clusteringSeed=100
 
-java -jar ge-clustering-jar-with-dependencies.jar \
+java -jar target/ge-clustering-jar-with-dependencies.jar \
 	-g $grammarFile 								  \
 	-d $database									  \
 	-m $evaluations 								  \
