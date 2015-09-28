@@ -22,6 +22,7 @@ import org.uma.jmetal.util.fileoutput.FileOutputContext;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
+import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.ge.mapper.impl.SymbolicExpressionGrammarMapper;
 import edu.ufpr.ge.operators.crossover.SinglePointCrossoverVariableLength;
 import edu.ufpr.ge.operators.mutation.DuplicationMutation;
@@ -31,7 +32,9 @@ import edu.ufpr.jmetal.algorithm.impl.GrammaticalEvolutionAlgorithm;
 import edu.ufpr.jmetal.problem.ClusteringProblem;
 import edu.ufpr.jmetal.problem.FitnessFunction;
 import edu.ufpr.jmetal.problem.SilhouetteFitness;
+import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
+import edu.ufpr.math.utils.MathUtils;
 
 public class ClusteringExperiment extends AbstractAlgorithmRunner {
 
@@ -43,7 +46,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
             outDir.mkdir();
         }
         String grammarFile = "/clustergrammar.bnf";
-        String dataClassificationFile = "/prima-indians-diabetes.data";
+        String databaseFile = "/prima-indians-diabetes.data";
         double crossoverProbability = 0.95;
         double mutationProbability = 0.1;
         double pruneMutationProbability = 0.05;
@@ -54,6 +57,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
         int clusteringExecutionSeed = 100;
 
         FitnessFunction clusteringFitnessFunction = new SilhouetteFitness();
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile));
 
         for (int i = 0; i < 10; i++) {
 
@@ -70,8 +74,8 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 
             System.out.println("Seed: " + i);
 
-            ClusteringProblem problem = new ClusteringProblem(grammarFile, dataClassificationFile, 1, 20,
-                clusteringExecutionSeed, clusteringFitnessFunction, populationSize);
+            ClusteringProblem problem = new ClusteringProblem(grammarFile, points, 1, 20, clusteringExecutionSeed,
+                clusteringFitnessFunction, populationSize);
 
             CrossoverOperator<VariableIntegerSolution> crossoverOperator =
                 new SinglePointCrossoverVariableLength(crossoverProbability);
