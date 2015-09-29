@@ -93,7 +93,8 @@ public class GrammaticalEvolutionAlgorithm
         jointPopulation.addAll(offspringPopulation);
         Collections.sort(jointPopulation, comparator);
 
-        System.out.println("Best in the population: " + jointPopulation.get(0));
+        // System.out.println("Best fitness found so far: " +
+        // jointPopulation.get(0).getObjective(0) * -1);
         return jointPopulation.subList(0, populationSize);
     }
 

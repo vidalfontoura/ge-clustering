@@ -702,6 +702,35 @@ public class ExecutionTestClusteringAlgorithms {
     }
 
     @Test
+    public void testAlgorithmGenerated10Diabetes() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(221, 231, 171, 201, 113, 43, 39, 65, 71, 245, 243, 189, 211,
+            21, 45, 140, 117, 53, 149, 221, 231, 233, 45, 65);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+        for (Function f : algorithm.getFunctions()) {
+            System.out.println(f.toString());
+        }
+        System.out.println();
+
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data"));
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+    }
+
+    //
+
+    @Test
     public void testKmeansNormalizeDenormalizeData() throws FileNotFoundException, IOException {
 
         List<Point> points = DataInstanceReader.readPoints("/points.data");

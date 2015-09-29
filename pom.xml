@@ -105,7 +105,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.ufpr.jmetal.algorithm.main.ClusteringExperiment</mainClass>
+                            <mainClass>edu.ufpr.jmetal.algorithm.main.ClusteringGrammaticalEvolutionExperiment</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

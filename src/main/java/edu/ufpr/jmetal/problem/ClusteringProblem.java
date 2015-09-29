@@ -1,7 +1,5 @@
 package edu.ufpr.jmetal.problem;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +8,7 @@ import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
-import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
-import edu.ufpr.math.utils.MathUtils;
 
 public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 
@@ -28,22 +24,27 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 
     private int evaluationCount = 0;
 
-    private double bestIndividualFitnessPerGen = -1.1;
+    private int generationsCount = 0;
+
+    private double bestFitnessPerGen = -1.1;
+
+    private double bestFitness = -1.1;
 
     private String bestIndividual = "";
 
-    private int bestIndividualK = -1;
+    private int bestPerGenK = -1;
+
+    private int bestK = -1;
 
     private int populationSize;
 
-    public ClusteringProblem(String grammarFile, String dataSetFile, int minCondons, int maxCondons,
-        int clusteringExecutionSeed, FitnessFunction fitnessFunction, int populationSize)
-            throws FileNotFoundException, IOException {
+    public ClusteringProblem(String grammarFile, List<Point> points, int minCondons, int maxCondons,
+        int clusteringExecutionSeed, FitnessFunction fitnessFunction, int populationSize) {
 
         super(new ClusteringExpressionGrammarMapper(), grammarFile);
         this.maxCondons = maxCondons;
         this.minCondons = minCondons;
-        this.points = MathUtils.normalizeData(DataInstanceReader.readPoints(dataSetFile));
+        this.points = points;
         this.fitnessFunction = fitnessFunction;
         this.clusteringExecutionSeed = clusteringExecutionSeed;
         this.populationSize = populationSize;
@@ -104,21 +105,29 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 
         Double fitness = this.fitnessFunction.apply(clusteringContext);
 
-        if (fitness > bestIndividualFitnessPerGen) {
+        if (fitness > bestFitnessPerGen) {
             // System.out.println("Swap from " + bestIndividualFitnessPerGen + "
             // to " + fitness);
-            bestIndividualFitnessPerGen = fitness;
+            bestFitnessPerGen = fitness;
             bestIndividual = solutionStr.toString();
-            bestIndividualK = clusteringContext.getClusters().size();
+            bestPerGenK = clusteringContext.getClusters().size();
+        }
+
+        if (fitness > bestFitness) {
+            bestFitness = fitness;
+            bestK = clusteringContext.getClusters().size();
         }
 
         if (evaluationCount % populationSize == 0) {
-            System.out.print("Generation: " + evaluationCount + "; ");
-            System.out.print("Fitness: " + bestIndividualFitnessPerGen + "; k: " + bestIndividualK + "; ");
-            System.out.println("Individual: " + bestIndividual);
+            System.out.print("Generation: " + generationsCount + "; ");
+            System.out.println(bestFitnessPerGen + "; k: " + bestPerGenK + "; ");
+            // System.out.println("Individual: " + bestIndividual);
+            System.out.println("Best fitness found so far: " + bestFitness + "; k: " + bestK);
+
             bestIndividual = "";
-            bestIndividualFitnessPerGen = -1.1;
-            bestIndividualK = -1;
+            bestFitnessPerGen = -1.1;
+            bestPerGenK = -1;
+            generationsCount++;
         }
         solution.setObjective(0, fitness * -1);
         evaluationCount++;
