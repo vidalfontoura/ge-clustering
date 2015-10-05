@@ -75,7 +75,7 @@ public class FitnessFunctionTest {
 
 		Assert.assertEquals("SplitClustersFunction", function0.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -124,7 +124,7 @@ public class FitnessFunctionTest {
 		Assert.assertEquals("MoveNearPointFunction", function0.toString());
 		Assert.assertEquals("SplitClustersFunction", function1.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -227,7 +227,7 @@ public class FitnessFunctionTest {
 		Assert.assertEquals("JoinClustersFunction", function2.toString());
 		Assert.assertEquals("SplitClustersFunction", function3.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+		List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -275,7 +275,7 @@ public class FitnessFunctionTest {
 
 		Assert.assertEquals("MoveAveragePointFunction", functionLast.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -331,7 +331,7 @@ public class FitnessFunctionTest {
 		// Assert.assertEquals("MoveAveragePointFunction",
 		// functionLast.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -386,7 +386,7 @@ public class FitnessFunctionTest {
 		// Assert.assertEquals("MoveAveragePointFunction",
 		// functionLast.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -444,7 +444,7 @@ public class FitnessFunctionTest {
 		// Assert.assertEquals("MoveAveragePointFunction",
 		// functionLast.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -493,7 +493,7 @@ public class FitnessFunctionTest {
 		// Assert.assertEquals("MoveAveragePointFunction",
 		// functionLast.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data","Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();
@@ -522,7 +522,7 @@ public class FitnessFunctionTest {
 
 		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data","Double");
 		algorithm.setPoints(points);
 
 		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
@@ -600,7 +600,7 @@ public class FitnessFunctionTest {
 
 		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
-		List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
+		List<Point> points = DataInstanceReader.readPoints("/morePoints.data", "Double");;
 		algorithm.setPoints(points);
 
 		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
@@ -660,7 +660,7 @@ public class FitnessFunctionTest {
 
 		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
-		List<Point> points = DataInstanceReader.readPoints("/50-random-points.data");
+		List<Point> points = DataInstanceReader.readPoints("/50-random-points.data","Double");
 		algorithm.setPoints(points);
 
 		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
@@ -743,7 +743,7 @@ public class FitnessFunctionTest {
 
 		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
-		List<Point> points = DataInstanceReader.readPoints("/500-random-points.data");
+		List<Point> points = DataInstanceReader.readPoints("/500-random-points.data","Double");
 		algorithm.setPoints(points);
 
 		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
@@ -827,7 +827,7 @@ public class FitnessFunctionTest {
 
 		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
-		List<Point> points = DataInstanceReader.readPoints("/1000-random-points.data");
+		List<Point> points = DataInstanceReader.readPoints("/1000-random-points.data", "Double");
 		algorithm.setPoints(points);
 
 		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
@@ -910,7 +910,7 @@ public class FitnessFunctionTest {
 
 		ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
-		List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data"));
+		List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
 		algorithm.setPoints(points);
 
 		Assert.assertEquals("UniformCentroidInitilization", algorithm.getInitilization().toString());
@@ -1009,7 +1009,7 @@ public class FitnessFunctionTest {
 		// Assert.assertEquals("MoveAveragePointFunction",
 		// functionLast.toString());
 
-		List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
+		List<Point> points = DataInstanceReader.readPoints("/morePoints.data", "Double");
 		algorithm.setPoints(points);
 
 		ClusteringContext clusteringContext = algorithm.execute();

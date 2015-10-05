@@ -23,7 +23,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
 
         if (args.length < 30) {
             System.err.println("Usage: java -jar ge-clustering-jar-with-dependencies.jar "
-                + "-g [grammar file] -d [database] -m [max evaluations] -r [result folder]"
+                + "-g [grammar file] -d [database] -dt [data type] -m [max evaluations] -r [result folder]"
                 + " -s [seed] -p [populationSize]  -minC [minCondons] -maxC [maxCondons] -t [threads pool size]"
                 + "-cx [crossover probabilty] -mx [mutation probability] -pi [prune index] -px [prune probability] "
                 + "-dx [duplication probability] -cs [clustering seed] \n");
@@ -46,6 +46,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
         int minCondons = 1;
         int maxCondons = 20;
         int threadPoolSize = 0;
+        String dataType = "";
 
         for (int i = 0; i < args.length; i = i + 2) {
             String param = args[i];
@@ -95,6 +96,9 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
                 case "-t":
                     threadPoolSize = Integer.valueOf(args[i + 1]);
                     break;
+                case "-dt":
+                    dataType = args[i + 1];
+                    break;
                 default:
                     throw new IllegalArgumentException(String.format(ILLEGAL_ARGUMENT_MSG, param));
             }
@@ -105,7 +109,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
             resultDir.mkdir();
         }
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile,dataType));
 
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
         FitnessFunction fitnessFunction = new SilhouetteFitness();

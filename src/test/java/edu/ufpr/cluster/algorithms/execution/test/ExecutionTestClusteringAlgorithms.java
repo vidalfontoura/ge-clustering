@@ -79,7 +79,7 @@ public class ExecutionTestClusteringAlgorithms {
 
         Assert.assertEquals("MoveBetweenClustersFunction", function0.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -114,7 +114,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("MoveBetweenClustersFunction", function0.toString());
         Assert.assertEquals("MoveNearPointFunction", function1.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -150,7 +150,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("MoveAveragePointFunction", function0.toString());
         Assert.assertEquals("MoveNearPointFunction", function1.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -187,7 +187,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("MoveBetweenClustersFunction", function1.toString());
         Assert.assertEquals("SplitClustersFunction", function2.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -227,7 +227,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("SplitClustersFunction", function2.toString());
         Assert.assertEquals("MoveAveragePointFunction", function3.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -262,7 +262,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -300,7 +300,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -341,7 +341,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/20Points.data");
+        List<Point> points = DataInstanceReader.readPoints("/20Points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -382,7 +382,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data");
+        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -423,7 +423,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -464,7 +464,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -504,7 +504,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/20points.data");
+        List<Point> points = DataInstanceReader.readPoints("/20points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -544,7 +544,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -586,7 +586,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data");
+        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -626,7 +626,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double");
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -654,7 +654,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data", "Double"));
         // List<Point> points =
         // MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
         algorithm.setPoints(points);
@@ -685,7 +685,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
         // List<Point> points =
         // MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
         algorithm.setPoints(points);
@@ -714,7 +714,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -733,7 +733,7 @@ public class ExecutionTestClusteringAlgorithms {
     @Test
     public void testKmeansNormalizeDenormalizeData() throws FileNotFoundException, IOException {
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
 
         KMeansClusteringAlgorithm algorithm =
             new KMeansClusteringAlgorithm(points, new EucledianDistanceFunction(), 2, 2);

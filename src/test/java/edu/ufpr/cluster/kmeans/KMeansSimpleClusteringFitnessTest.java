@@ -52,7 +52,7 @@ public class KMeansSimpleClusteringFitnessTest {
 		ClusteringRandom.getNewInstance().setSeed(100);
 
 		int k = 3;
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
 		int coordinates = points.get(0).getCoordinates().size();
 
 		for (int i = 0; i < 30; i++) {
@@ -75,7 +75,7 @@ public class KMeansSimpleClusteringFitnessTest {
 	public void test11MultipleSeeds2() throws FileNotFoundException, IOException {
 
         int k = 2;
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
 		int coordinates = points.get(0).getCoordinates().size();
 		List<Double> fitnesses = new ArrayList<Double>();
 		Map<Integer, Integer> mapQtdClusters = new HashMap<>();
@@ -140,7 +140,7 @@ public class KMeansSimpleClusteringFitnessTest {
 		ClusteringRandom.getNewInstance().setSeed(100);
 
 		int k = 3;
-		List<Point> points = DataInstanceReader.readPoints("/morePoints.data");
+		List<Point> points = DataInstanceReader.readPoints("/morePoints.data", "Double");
 		int coordinates = points.get(0).getCoordinates().size();
 
 		List<Double> fitnesses = new ArrayList<Double>();
@@ -184,7 +184,7 @@ public class KMeansSimpleClusteringFitnessTest {
 		ClusteringRandom.getNewInstance().setSeed(100);
 
 		int k = 8;
-		List<Point> points = DataInstanceReader.readPoints("/50-random-points.data");
+		List<Point> points = DataInstanceReader.readPoints("/50-random-points.data", "Double");
 		int coordinates = points.get(0).getCoordinates().size();
 
 		List<Double> fitnesses = new ArrayList<Double>();
@@ -237,7 +237,7 @@ public class KMeansSimpleClusteringFitnessTest {
 		ClusteringRandom.getNewInstance().setSeed(100);
 
 		int k = 8;
-		List<Point> points = DataInstanceReader.readPoints("/500-random-points.data");
+		List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
 		int coordinates = points.get(0).getCoordinates().size();
 
 		List<Double> fitnesses = new ArrayList<Double>();
@@ -292,7 +292,7 @@ public class KMeansSimpleClusteringFitnessTest {
 		ClusteringRandom.getNewInstance().setSeed(100);
 
 		int k = 3;
-		List<Point> points = DataInstanceReader.readPoints("/1000-random-points.data");
+		List<Point> points = DataInstanceReader.readPoints("/1000-random-points.data", "Double");
 		int coordinates = points.get(0).getCoordinates().size();
 
 		List<Double> fitnesses = new ArrayList<Double>();
@@ -347,7 +347,7 @@ public class KMeansSimpleClusteringFitnessTest {
 		ClusteringRandom.getNewInstance().setSeed(100);
 
 		int k = 7;
-		List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data"));
+		List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
 		int coordinates = points.get(0).getCoordinates().size();
 
 		List<Double> fitnesses = new ArrayList<Double>();

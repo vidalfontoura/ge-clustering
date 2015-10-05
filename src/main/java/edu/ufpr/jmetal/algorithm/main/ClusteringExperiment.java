@@ -55,9 +55,10 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
         int maxEvaluations = 60000;
         int populationSize = 100;
         int clusteringExecutionSeed = 100;
+        String dataType = "Double";
 
         FitnessFunction clusteringFitnessFunction = new SilhouetteFitness();
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile,dataType));
 
         for (int i = 0; i < 10; i++) {
 
