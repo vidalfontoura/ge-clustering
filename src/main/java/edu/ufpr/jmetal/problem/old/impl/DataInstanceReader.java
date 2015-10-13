@@ -10,9 +10,9 @@ import java.util.List;
 import edu.ufpr.cluster.algorithm.Point;
 
 public class DataInstanceReader {
-
+	
 	// TODO: PLEASE REFACTOR THIS METHOD ASAP
-	public static List<Point> readPoints(String fileName) throws FileNotFoundException, IOException {
+	public static List<Point> readPoints(String fileName, String dataType) throws FileNotFoundException, IOException {
 		List<Point> points = new ArrayList<Point>();
 		try (BufferedReader br = new BufferedReader(
 				new InputStreamReader(DataInstanceReader.class.getResourceAsStream(fileName)))) {
@@ -24,7 +24,12 @@ public class DataInstanceReader {
 				// not in the same format
 				for (int i = 0; i < values.length; i++) {
 					if (i != values.length - 1) {
-						point.getCoordinates().add(Double.valueOf(values[i]));
+						if (dataType.equals("Double")) {
+							point.getCoordinates().add(Double.valueOf(values[i]));
+						} else if (dataType.equals("Integer")) {
+							point.getCoordinates().add((double) Integer.valueOf(values[i]));
+						}
+				
 					} else {
 						// TODO: Do nothing this is the class for the
 						// pima-indians database
@@ -37,7 +42,7 @@ public class DataInstanceReader {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		List<Point> readPoints = DataInstanceReader.readPoints("/prima-indians-diabetes.data");
+		List<Point> readPoints = DataInstanceReader.readPoints("/prima-indians-diabetes.data","Double");
 		for (Point point : readPoints) {
 
 			List<Double> coordinates = point.getCoordinates();

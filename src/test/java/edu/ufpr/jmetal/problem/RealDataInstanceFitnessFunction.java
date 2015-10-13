@@ -31,7 +31,7 @@ public class RealDataInstanceFitnessFunction {
 	@Test
 	public void test() throws FileNotFoundException, IOException {
 
-		List<Point> pointsALL = DataInstanceReader.readPoints("/points.data");
+		List<Point> pointsALL = DataInstanceReader.readPoints("/points.data", "Double");
 		
 		List<Point> cluster1 = pointsALL.stream().filter(p -> {
 			

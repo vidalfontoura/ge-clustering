@@ -20,7 +20,7 @@ public class MathUtilsTest {
 
 	@Test
 	public void testNormalization() throws FileNotFoundException, IOException {
-		List<Point> points = DataInstanceReader.readPoints("/points.data");
+		List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
 
 		List<Point> normalizeData = MathUtils.normalizeData(points);
 
