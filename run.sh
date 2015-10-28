@@ -1,5 +1,5 @@
 grammarFile=/clustergrammar.bnf
-database=/prima-indians-diabetes.data
+database=/iris.data
 evaluations=60000
 resultFolder=result
 seed=1
