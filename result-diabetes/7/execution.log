@@ -1,0 +1,403 @@
+Generation: 0; -1.0; k: 6; 
+Best fitness found so far: -1.0; k: 6
+Generation: 1; 0.16613198625519537; k: 4; 
+Best fitness found so far: 0.16613198625519537; k: 4
+Generation: 2; 0.3290478465391066; k: 4; 
+Best fitness found so far: 0.3290478465391066; k: 4
+Generation: 3; 0.005138184867582381; k: 2; 
+Best fitness found so far: 0.3290478465391066; k: 4
+Generation: 4; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 5; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 6; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 7; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 8; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 9; 0.1385697338897058; k: 3; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 10; 0.3290478465391066; k: 4; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 11; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 12; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 13; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 14; 0.5122111011228806; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 15; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 16; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 17; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6585252700967347; k: 2
+Generation: 18; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 19; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 20; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 21; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 22; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 23; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 24; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 25; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 26; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 27; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 28; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 29; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 30; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 31; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 32; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 33; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 34; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 35; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 36; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 37; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 38; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 39; 0.6585252700967347; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 40; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 41; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 42; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 43; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 44; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6947897696822566; k: 2
+Generation: 45; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 46; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 47; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 48; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 49; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 50; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 51; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 52; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 53; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 54; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 55; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 56; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 57; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 58; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 59; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 60; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.6960572699639069; k: 2
+Generation: 61; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 62; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 63; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 64; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 65; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 66; 0.6947897696822566; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 67; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 68; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 69; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 70; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 71; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 72; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 73; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 74; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 75; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 76; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 77; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 78; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 79; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 80; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 81; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 82; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 83; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 84; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 85; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 86; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 87; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 88; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 89; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 90; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 91; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 92; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 93; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 94; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 95; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 96; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 97; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 98; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 99; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 100; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 101; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 102; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 103; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 104; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 105; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 106; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 107; 0.7031734203492327; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 108; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7114954933788132; k: 2
+Generation: 109; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 110; 0.7031734203492327; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 111; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 112; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 113; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 114; 0.6960572699639069; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 115; 0.7031734203492327; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 116; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 117; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 118; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 119; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 120; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 121; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 122; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 123; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 124; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 125; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 126; 0.7031734203492327; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 127; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 128; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 129; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 130; 0.6507491110722965; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 131; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 132; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 133; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 134; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 135; 0.7031734203492327; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 136; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 137; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 138; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 139; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 140; 0.7124274917854976; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 141; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 142; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 143; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 144; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 145; 0.7124274917854976; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 146; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 147; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 148; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 149; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 150; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 151; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 152; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 153; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 154; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 155; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 156; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 157; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 158; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 159; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 160; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 161; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 162; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 163; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 164; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 165; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 166; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 167; 0.7130712043456718; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 168; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 169; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 170; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 171; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 172; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 173; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 174; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 175; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.7149572311300374; k: 2
+Generation: 176; 0.739303279795037; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 177; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 178; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 179; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 180; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 181; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 182; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 183; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 184; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 185; 0.5610158055707001; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 186; 0.7114954933788132; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 187; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 188; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 189; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 190; 0.7196597374901771; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 191; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 192; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 193; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 194; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 195; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 196; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 197; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 198; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Generation: 199; 0.7149572311300374; k: 2; 
+Best fitness found so far: 0.739303279795037; k: 2
+Total time of execution of seed 7 : 854259076
+Solution Fitness: -0.739303279795037
+Variables: uniform 10 manhathan moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween moveBetween moveBetween join moveBetween split join moveBetween moveNear moveBetween split moveBetween
