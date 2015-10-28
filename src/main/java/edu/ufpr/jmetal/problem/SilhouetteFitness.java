@@ -1,6 +1,5 @@
 package edu.ufpr.jmetal.problem;
 
-
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class SilhouetteFitness implements FitnessFunction {
         distanceFunction = new EucledianDistanceFunction();
 
         // If exists more than 10 cluster it will be penalized hard
-        if (clusters.size() > 10) {
+        if (clusters.size() > 15) {
             // Mudar intervalo no initial k
             System.out.println("Nao deveria acontecer");
             return -1.0;
@@ -77,7 +76,7 @@ public class SilhouetteFitness implements FitnessFunction {
 
         for (Cluster c : clusters) {
             if (!point.getCluster().equals(c)) {
-            	double sum = 0.0;
+                double sum = 0.0;
                 for (Point p : c.getPoints()) {
                     sum += distanceFunction.apply(Lists.newArrayList(point, p));
                 }
@@ -93,19 +92,17 @@ public class SilhouetteFitness implements FitnessFunction {
 
         double f = 0.0;
 
-
-        for(Cluster c : clusters) {
-        	if(c.getPoints().size() == 1) {
-        		f += 0.0;
-        	}
-        	else {
-        		for (Point p : c.getPoints()) {
+        for (Cluster c : clusters) {
+            if (c.getPoints().size() == 1) {
+                f += 0.0;
+            } else {
+                for (Point p : c.getPoints()) {
                     double a = avgD(p, c.getPoints());
                     double b = minD(p, clusters);
                     f += (a > b) ? (b - a) / a : (b - a) / b;
-//                    System.out.println(p+" "+p.getCluster()+"\n"+a+"\n"+b);
+                    // System.out.println(p+" "+p.getCluster()+"\n"+a+"\n"+b);
                 }
-        	}
+            }
         }
 
         f = f / allPoints.size();

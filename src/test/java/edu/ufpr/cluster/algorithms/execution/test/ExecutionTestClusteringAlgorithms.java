@@ -635,9 +635,9 @@ public class ExecutionTestClusteringAlgorithms {
 
         ClusteringContext clusteringContext = algorithm.execute();
 
-        for (Point p : clusteringContext.getPoints()) {
-            System.out.println(p + " " + p.getCluster());
-        }
+        // for (Point p : clusteringContext.getPoints()) {
+        // System.out.println(p + " " + p.getCluster());
+        // }
 
         Double fitness = fitnessFunction.apply(clusteringContext);
 
