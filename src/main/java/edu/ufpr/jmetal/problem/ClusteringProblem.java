@@ -120,7 +120,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 
         if (evaluationCount % populationSize == 0) {
             System.out.print("Generation: " + generationsCount + "; ");
-            System.out.println(bestFitnessPerGen + "; k: " + bestPerGenK + "; ");
+            System.out.println(bestFitnessPerGen + "; k: " + bestPerGenK + "; " + bestIndividual);
             // System.out.println("Individual: " + bestIndividual);
             System.out.println("Best fitness found so far: " + bestFitness + "; k: " + bestK);
 

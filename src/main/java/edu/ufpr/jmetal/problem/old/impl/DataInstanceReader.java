@@ -1,11 +1,14 @@
 package edu.ufpr.jmetal.problem.old.impl;
 
+import com.google.common.collect.Lists;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import edu.ufpr.cluster.algorithm.Point;
 
@@ -14,7 +17,7 @@ public class DataInstanceReader {
     // TODO: PLEASE REFACTOR THIS METHOD ASAP
     public static List<Point> readPoints(String fileName, String dataType) throws FileNotFoundException, IOException {
 
-        List<Point> points = new ArrayList<Point>();
+        Set<Point> points = new HashSet<Point>();
         try (BufferedReader br =
             new BufferedReader(new InputStreamReader(DataInstanceReader.class.getResourceAsStream(fileName)))) {
             String line = null;
@@ -39,7 +42,7 @@ public class DataInstanceReader {
                 points.add(point);
             }
         }
-        return points;
+        return Lists.newArrayList(points);
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
