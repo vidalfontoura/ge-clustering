@@ -1,8 +1,8 @@
 grammarFile=/clustergrammar.bnf
-database=/glass.data
-evaluations=20000
-resultFolder=result-glass
-seed=4
+database=/iris.data
+evaluations=60000
+resultFolder=result
+seed=1
 population=100
 minCondons=1
 maxCondons=20

@@ -236,7 +236,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 8;
-        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data","Double");
+        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -345,8 +345,9 @@ public class KMeansSihouetteFitnessTest {
 
         ClusteringRandom.getNewInstance().setSeed(100);
 
-        int k = 2;
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
+        int k = 4;
+        List<Point> points =
+            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -356,76 +357,22 @@ public class KMeansSihouetteFitnessTest {
         // System.setOut(out);
 
         long startTime = System.currentTimeMillis();
-        // for (int i = 0; i < 2; i++) {
-        System.out.println("Seed: " + 1);
+        for (int i = 0; i < 11; i++) {
+            System.out.println("Seed: " + i);
 
-        ClusteringRandom.getInstance().setSeed(1);
-        KMeansClusteringAlgorithm algorithm = new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
 
-        ClusteringContext clusteringContext = algorithm.execute();
+            ClusteringContext clusteringContext = algorithm.execute();
 
-        Double fitness = fitnessFunction.apply(clusteringContext);
+            Double fitness = fitnessFunction.apply(clusteringContext);
 
-        System.out.println(fitness);
+            System.out.println(fitness);
 
-        algorithm.clearClusteringContext();
+            algorithm.clearClusteringContext();
 
-        fitnesses.add(fitness);
-
-        // }
-
-        long stopTime = System.currentTimeMillis();
-        long elapsedTime = stopTime - startTime;
-        System.out.println("Time (seconds): " + elapsedTime / 1000);
-
-        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
-            if (f != Double.MAX_VALUE)
-                return true;
-            return false;
-        }).collect(Collectors.toList());
-
-        DoubleSummaryStatistics summaryStatistics =
-            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
-
-        System.out.println("Average: " + summaryStatistics.getAverage());
-        System.out.println("Min: " + summaryStatistics.getMin());
-        System.out.println("Max: " + summaryStatistics.getMax());
-        System.out.println("Count: " + summaryStatistics.getCount());
-        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
-
-    }
-    
-    @Test
-    public void testIris30Seeds() throws FileNotFoundException, IOException {
-
-        ClusteringRandom.getNewInstance().setSeed(100);
-
-        int k = 2;
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double"));
-        int coordinates = points.get(0).getCoordinates().size();
-
-        List<Double> fitnesses = new ArrayList<Double>();
-
-        // PrintStream out = new PrintStream(new
-        // FileOutputStream("output.txt"));
-        // System.setOut(out);
-
-        long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 30; i++) {
-	        System.out.println("Seed: " + i);
-	
-	        ClusteringRandom.getInstance().setSeed(i);
-	        KMeansClusteringAlgorithm algorithm = new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
-	
-	        ClusteringContext clusteringContext = algorithm.execute();
-	
-	        Double fitness = fitnessFunction.apply(clusteringContext);
-	
-	        System.out.println(fitness);
-	
-	        algorithm.clearClusteringContext();
-	
-	        fitnesses.add(fitness);
+            fitnesses.add(fitness);
 
         }
 
@@ -449,7 +396,115 @@ public class KMeansSihouetteFitnessTest {
         System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
 
     }
-    
+
+    @Test
+    public void testGlass30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 4;
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/glass.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
+    @Test
+    public void testIris30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 4;
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        // PrintStream out = new PrintStream(new
+        // FileOutputStream("output.txt"));
+        // System.setOut(out);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 11; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
     @Test
     public void tesGlass30Seeds() throws FileNotFoundException, IOException {
 
@@ -466,21 +521,22 @@ public class KMeansSihouetteFitnessTest {
         // System.setOut(out);
 
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 30; i++) {
-	        System.out.println("Seed: " + i);
-	
-	        ClusteringRandom.getInstance().setSeed(i);
-	        KMeansClusteringAlgorithm algorithm = new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
-	
-	        ClusteringContext clusteringContext = algorithm.execute();
-	
-	        Double fitness = fitnessFunction.apply(clusteringContext);
-	
-	        System.out.println(fitness);
-	
-	        algorithm.clearClusteringContext();
-	
-	        fitnesses.add(fitness);
+        for (int i = 0; i < 11; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
 
         }
 
@@ -504,4 +560,345 @@ public class KMeansSihouetteFitnessTest {
         System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
 
     }
+
+    @Test
+    public void tesHeart30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 4;
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/heart.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        // PrintStream out = new PrintStream(new
+        // FileOutputStream("output.txt"));
+        // System.setOut(out);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i <= 10; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
+    @Test
+    public void testEngSoftware30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 2;
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/engsoftware.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        // PrintStream out = new PrintStream(new
+        // FileOutputStream("output.txt"));
+        // System.setOut(out);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 30; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
+    @Test
+    public void testEngSoftwareFourBalls30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 4;
+        List<Point> points = MathUtils.normalizeData(
+            DataInstanceReader.readPoints("/fourballs/tabela_resultado_arrumada_filtrada.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        // PrintStream out = new PrintStream(new
+        // FileOutputStream("output.txt"));
+        // System.setOut(out);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
+    @Test
+    public void testEngSoftwareGetCmd30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 9;
+        List<Point> points = MathUtils
+            .normalizeData(DataInstanceReader.readPoints("/getcmd/tabela_resultado_arrumada_filtrada.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        // PrintStream out = new PrintStream(new
+        // FileOutputStream("output.txt"));
+        // System.setOut(out);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
+    @Test
+    public void testEngSoftwareTriangulo30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 2;
+        List<Point> points = MathUtils.normalizeData(
+            DataInstanceReader.readPoints("/triangulo/tabela_resultado_arrumada_filtrada.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        // PrintStream out = new PrintStream(new
+        // FileOutputStream("output.txt"));
+        // System.setOut(out);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
+    @Test
+    public void testEngSoftwareBBSort30Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+
+        int k = 6;
+        List<Point> points = MathUtils
+            .normalizeData(DataInstanceReader.readPoints("/bbsort/tabela_resultado_arrumada_filtrada.data", "Double"));
+        int coordinates = points.get(0).getCoordinates().size();
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        // PrintStream out = new PrintStream(new
+        // FileOutputStream("output.txt"));
+        // System.setOut(out);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getInstance().setSeed(i);
+            KMeansClusteringAlgorithm algorithm =
+                new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
 }

@@ -6,7 +6,11 @@ package edu.ufpr.cluster.algorithms.execution.test;
 import com.google.common.collect.Lists;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -631,9 +635,9 @@ public class ExecutionTestClusteringAlgorithms {
 
         ClusteringContext clusteringContext = algorithm.execute();
 
-        for (Point p : clusteringContext.getPoints()) {
-            System.out.println(p + " " + p.getCluster());
-        }
+        // for (Point p : clusteringContext.getPoints()) {
+        // System.out.println(p + " " + p.getCluster());
+        // }
 
         Double fitness = fitnessFunction.apply(clusteringContext);
 
@@ -685,7 +689,8 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
+        List<Point> points =
+            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
         // List<Point> points =
         // MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
         algorithm.setPoints(points);
@@ -714,7 +719,8 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
+        List<Point> points =
+            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -747,4 +753,52 @@ public class ExecutionTestClusteringAlgorithms {
         System.out.println(fitness);
 
     }
+
+    // 203,56,82,97,107,54,47,80,157,6,73,95,79,91,145,80,157,6,73,95,105,50,207,241,162,85,49,183,162,85,204,96,204,54
+
+    @Test
+    public void testAlgorithmGenerated1Iris() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(203, 56, 82, 97, 107, 54, 47, 80, 157, 6, 73, 95, 79, 91,
+            145, 80, 157, 6, 73, 95, 105, 50, 207, 241, 162, 85, 49, 183, 162, 85, 204, 96, 204, 54);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double"));
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+        System.setOut(out);
+
+        points = MathUtils.denormalizeData(clusteringContext.getPoints(), 7.9, 0.1);
+        for (Point p : clusteringContext.getPoints()) {
+            System.out.println(p + " " + p.getCluster());
+        }
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+    }
+
+    @Test
+    public void test() {
+
+        BigDecimal ponto = new BigDecimal(4.1);
+        BigDecimal max = new BigDecimal(7.9);
+        BigDecimal min = new BigDecimal(0.1);
+
+        BigDecimal diffMaxMin = max.subtract(min);
+        BigDecimal aux = ponto.subtract(min);
+        aux = aux.divide(diffMaxMin, 20, RoundingMode.CEILING);
+
+        System.out.println(aux);
+
+        BigDecimal aux2 = aux.multiply(diffMaxMin).add(min);
+
+        System.out.println(aux2);
+
+    }
+
 }
