@@ -1,0 +1,330 @@
+Generation: 0; -1.0; k: 0; 
+Best fitness found so far: -1.0; k: 0
+Generation: 1; 0.31748511908727634; k: 3; 
+Best fitness found so far: 0.31748511908727634; k: 3
+Generation: 2; -1.0; k: 0; 
+Best fitness found so far: 0.31748511908727634; k: 3
+Generation: 3; 0.0733160987854413; k: 3; 
+Best fitness found so far: 0.31748511908727634; k: 3
+Generation: 4; 0.49560995978499767; k: 2; 
+Best fitness found so far: 0.49560995978499767; k: 2
+Generation: 5; 0.47351984405198894; k: 2; 
+Best fitness found so far: 0.49560995978499767; k: 2
+Generation: 6; 0.31748511908727634; k: 3; 
+Best fitness found so far: 0.49560995978499767; k: 2
+Generation: 7; 0.4258373970180753; k: 2; 
+Best fitness found so far: 0.49560995978499767; k: 2
+Generation: 8; 0.47393024923212856; k: 2; 
+Best fitness found so far: 0.49560995978499767; k: 2
+Generation: 9; 0.4940857176133889; k: 2; 
+Best fitness found so far: 0.49560995978499767; k: 2
+Generation: 10; 0.46135958618722067; k: 2; 
+Best fitness found so far: 0.49560995978499767; k: 2
+Generation: 11; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5171626455070243; k: 2
+Generation: 12; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5171626455070243; k: 2
+Generation: 13; 0.5035121656478873; k: 2; 
+Best fitness found so far: 0.5171626455070243; k: 2
+Generation: 14; 0.5030498173007681; k: 2; 
+Best fitness found so far: 0.5171626455070243; k: 2
+Generation: 15; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5171626455070243; k: 2
+Generation: 16; 0.5174409053169662; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 17; 0.5094402515017469; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 18; 0.501120010051461; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 19; 0.515856291504261; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 20; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 21; 0.4942780860089296; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 22; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 23; 0.49792217437665726; k: 2; 
+Best fitness found so far: 0.5174409053169662; k: 2
+Generation: 24; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 25; 0.5107847344306032; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 26; 0.5041463002034409; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 27; 0.4940857176133889; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 28; 0.5048684269807718; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 29; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 30; 0.5048684269807718; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 31; 0.5036592102285791; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 32; 0.503155664417283; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 33; 0.5172640660584639; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 34; 0.5180955705288021; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 35; 0.4945038582678751; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 36; 0.5174409053169662; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 37; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 38; 0.5164180310472425; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 39; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 40; 0.5128974047107258; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 41; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 42; 0.515897208433311; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 43; 0.5141483297824482; k: 2; 
+Best fitness found so far: 0.5199984269675775; k: 2
+Generation: 44; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 45; 0.5198310777946218; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 46; 0.5128974047107258; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 47; 0.5193587023739659; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 48; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 49; 0.515856291504261; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 50; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 51; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 52; 0.5198310777946218; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 53; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 54; 0.5144090056375109; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 55; 0.515856291504261; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 56; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 57; 0.5195672261561385; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 58; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 59; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 60; 0.5164180310472425; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 61; 0.5198310777946218; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 62; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 63; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 64; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 65; 0.5179491623281413; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 66; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 67; 0.5142504312400147; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 68; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 69; 0.5206122606486983; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 70; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 71; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 72; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 73; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 74; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 75; 0.5198310777946218; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 76; 0.5171626455070243; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 77; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 78; 0.5102890796375391; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 79; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 80; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 81; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 82; 0.5198901192866258; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 83; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 84; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 85; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 86; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 87; 0.517524144019613; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 88; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 89; 0.5019471216024713; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 90; 0.5193587023739659; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 91; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 92; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 93; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 94; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 95; 0.5198310777946218; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 96; 0.5198901192866258; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 97; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5213895362097315; k: 2
+Generation: 98; 0.5218875307750577; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 99; 0.5194845334602467; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 100; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 101; 0.5203484488251406; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 102; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 103; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 104; 0.5203484488251406; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 105; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 106; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 107; 0.5117104534412971; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 108; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 109; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 110; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 111; 0.5039972001049999; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 112; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 113; 0.5198310777946218; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 114; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 115; 0.503691502290825; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 116; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 117; 0.5195672261561385; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 118; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 119; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 120; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 121; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 122; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 123; 0.5198310777946218; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 124; 0.5149823337821985; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 125; 0.4988467048937831; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 126; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 127; 0.5138722396089346; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 128; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 129; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 130; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 131; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 132; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 133; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 134; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 135; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 136; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 137; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 138; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 139; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 140; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 141; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 142; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 143; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 144; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 145; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 146; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 147; 0.5218288870785258; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 148; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 149; 0.5199984269675775; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 150; 0.5218875307750577; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 151; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 152; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 153; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 154; 0.5218288870785258; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 155; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 156; 0.5218288870785254; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 157; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 158; 0.5218288870785258; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 159; 0.5218288870785258; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 160; 0.5218288870785258; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 161; 0.5218875307750577; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 162; 0.5129324167677756; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 163; 0.5213895362097315; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2
+Generation: 164; 0.5207914782512632; k: 2; 
+Best fitness found so far: 0.5218875307750577; k: 2

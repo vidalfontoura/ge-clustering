@@ -1,0 +1,198 @@
+Generation: 0; -1.0; k: 2; 
+Best fitness found so far: -1.0; k: 2
+Generation: 1; 0.15995558111918595; k: 2; 
+Best fitness found so far: 0.15995558111918595; k: 2
+Generation: 2; 0.15995558111918595; k: 2; 
+Best fitness found so far: 0.15995558111918595; k: 2
+Generation: 3; 0.3425203516864061; k: 9; 
+Best fitness found so far: 0.3425203516864061; k: 9
+Generation: 4; 0.46593509954526535; k: 9; 
+Best fitness found so far: 0.46593509954526535; k: 9
+Generation: 5; 0.15995558111918595; k: 2; 
+Best fitness found so far: 0.46593509954526535; k: 9
+Generation: 6; 0.15995558111918595; k: 2; 
+Best fitness found so far: 0.46593509954526535; k: 9
+Generation: 7; 0.6014567011468219; k: 3; 
+Best fitness found so far: 0.6014567011468219; k: 3
+Generation: 8; 0.3425203516864061; k: 9; 
+Best fitness found so far: 0.6014567011468219; k: 3
+Generation: 9; 0.3597683293763533; k: 9; 
+Best fitness found so far: 0.6014567011468219; k: 3
+Generation: 10; 0.5908069826443798; k: 9; 
+Best fitness found so far: 0.6014567011468219; k: 3
+Generation: 11; 0.5833417045518312; k: 2; 
+Best fitness found so far: 0.6014567011468219; k: 3
+Generation: 12; 0.6353504963000259; k: 9; 
+Best fitness found so far: 0.6353504963000259; k: 9
+Generation: 13; 0.6174026356846618; k: 3; 
+Best fitness found so far: 0.6353504963000259; k: 9
+Generation: 14; 0.6014567011468219; k: 3; 
+Best fitness found so far: 0.6353504963000259; k: 9
+Generation: 15; 0.6323878776993351; k: 2; 
+Best fitness found so far: 0.6353504963000259; k: 9
+Generation: 16; 0.7133105931599435; k: 2; 
+Best fitness found so far: 0.7133105931599435; k: 2
+Generation: 17; 0.646831574721149; k: 2; 
+Best fitness found so far: 0.7133105931599435; k: 2
+Generation: 18; 0.7085690683343843; k: 2; 
+Best fitness found so far: 0.7133105931599435; k: 2
+Generation: 19; 0.6195778859059612; k: 2; 
+Best fitness found so far: 0.7133105931599435; k: 2
+Generation: 20; 0.7085690683343843; k: 2; 
+Best fitness found so far: 0.7133105931599435; k: 2
+Generation: 21; 0.7255395696749019; k: 2; 
+Best fitness found so far: 0.7255395696749019; k: 2
+Generation: 22; 0.8292907150462852; k: 2; 
+Best fitness found so far: 0.8292907150462852; k: 2
+Generation: 23; 0.7238683021550862; k: 2; 
+Best fitness found so far: 0.8292907150462852; k: 2
+Generation: 24; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 25; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 26; 0.7955810071090881; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 27; 0.7255395696749019; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 28; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 29; 0.7218535926917854; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 30; 0.8411122562124111; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 31; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 32; 0.8411122562124111; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 33; 0.811091911800434; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 34; 0.8421351169202603; k: 2; 
+Best fitness found so far: 0.850997370285701; k: 2
+Generation: 35; 0.8576540770499204; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 36; 0.811091911800434; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 37; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 38; 0.8292907150462852; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 39; 0.8421351169202603; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 40; 0.7808650579679287; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 41; 0.811091911800434; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 42; 0.8292907150462852; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 43; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 44; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 45; 0.8292907150462852; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 46; 0.8292907150462852; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 47; 0.8421351169202603; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 48; 0.8411122562124111; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 49; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 50; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 51; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 52; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 53; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 54; 0.8576540770499204; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 55; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 56; 0.8421351169202603; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 57; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 58; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 59; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 60; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 61; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 62; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 63; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 64; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 65; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 66; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 67; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 68; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 69; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 70; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 71; 0.8576540770499204; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 72; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 73; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 74; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 75; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 76; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 77; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 78; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 79; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 80; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 81; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 82; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 83; 0.8576540770499204; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 84; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 85; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 86; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 87; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 88; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 89; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 90; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 91; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 92; 0.8576540770499204; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 93; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 94; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 95; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 96; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 97; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2
+Generation: 98; 0.850997370285701; k: 2; 
+Best fitness found so far: 0.8576540770499204; k: 2

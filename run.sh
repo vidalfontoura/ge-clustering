@@ -1,8 +1,8 @@
 grammarFile=/clustergrammar.bnf
-database=/prima-indians-diabetes.data
-evaluations=60000
-resultFolder=result
-seed=1
+database=/glass.data
+evaluations=20000
+resultFolder=result-glass
+seed=4
 population=100
 minCondons=1
 maxCondons=20
@@ -14,6 +14,7 @@ pruneIndex=10
 pruneProbability=0.05
 duplicationProbability=0.05
 clusteringSeed=100
+datatype=Double
 
 java -jar target/ge-clustering-jar-with-dependencies.jar \
 	-g $grammarFile 								  \
@@ -30,4 +31,5 @@ java -jar target/ge-clustering-jar-with-dependencies.jar \
 	-pi $pruneIndex									\
 	-px $pruneProbability 							\
 	-dx $duplicationProbability 					\
-	-cs $clusteringSeed							
+	-cs $clusteringSeed						\	
+	-dt $datatype
