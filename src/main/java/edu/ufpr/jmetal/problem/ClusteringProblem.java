@@ -1,5 +1,7 @@
 package edu.ufpr.jmetal.problem;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +34,9 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 
     private String bestIndividual = "";
 
-    private int bestPerGenK = -1;
+    private double bestPerGenK = -1;
 
-    private int bestK = -1;
+    private double bestK = -1;
 
     private int populationSize;
 
@@ -93,29 +95,46 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
         }
         solutionStr.deleteCharAt(solutionStr.length() - 1);
 
-        ClusteringRandom.getNewInstance().setSeed(clusteringExecutionSeed);
+        List<Double> fitnesses = Lists.newArrayList();
+        List<Integer> clustersAmount = Lists.newArrayList();
 
-        ClusteringAlgorithm clusteringAlgorithm = (ClusteringAlgorithm) mapper.interpret(clusteringSolution);
-        // Clean up points before the execution
-        points.stream().forEach(p -> {
-            p.clearCluster();
-        });
-        clusteringAlgorithm.setPoints(points);
-        ClusteringContext clusteringContext = clusteringAlgorithm.execute();
+        for (int i = 0; i < 10; i++) {
+            ClusteringRandom.getNewInstance().setSeed(i);
 
-        Double fitness = this.fitnessFunction.apply(clusteringContext);
+            ClusteringAlgorithm clusteringAlgorithm = (ClusteringAlgorithm) mapper.interpret(clusteringSolution);
 
-        if (fitness > bestFitnessPerGen) {
-            // System.out.println("Swap from " + bestIndividualFitnessPerGen + "
-            // to " + fitness);
-            bestFitnessPerGen = fitness;
-            bestIndividual = solutionStr.toString();
-            bestPerGenK = clusteringContext.getClusters().size();
+            // Clean up points before the execution
+            points.stream().forEach(p -> {
+                p.clearCluster();
+            });
+            clusteringAlgorithm.setPoints(points);
+            ClusteringContext clusteringContext = clusteringAlgorithm.execute();
+
+            Double fitness = this.fitnessFunction.apply(clusteringContext);
+
+            fitnesses.add(fitness);
+
+            clustersAmount.add(clusteringContext.getClusters().size());
+
         }
 
-        if (fitness > bestFitness) {
-            bestFitness = fitness;
-            bestK = clusteringContext.getClusters().size();
+        double sumFitnesses = fitnesses.stream().mapToDouble(Double::doubleValue).sum();
+
+        double avgfitness = sumFitnesses / fitnesses.size();
+
+        double sumKs = clustersAmount.stream().mapToInt(Integer::intValue).sum();
+
+        double avgK = sumKs / clustersAmount.size();
+
+        if (avgfitness > bestFitnessPerGen) {
+            bestFitnessPerGen = avgfitness;
+            bestIndividual = solutionStr.toString();
+            bestPerGenK = avgK;
+        }
+
+        if (avgfitness > bestFitness) {
+            bestFitness = avgfitness;
+            bestK = avgK;
         }
 
         if (evaluationCount % populationSize == 0) {
@@ -129,7 +148,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
             bestPerGenK = -1;
             generationsCount++;
         }
-        solution.setObjective(0, fitness * -1);
+        solution.setObjective(0, avgfitness * -1);
         evaluationCount++;
 
     }
