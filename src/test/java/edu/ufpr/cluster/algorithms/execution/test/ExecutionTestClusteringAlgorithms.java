@@ -4,14 +4,20 @@
 package edu.ufpr.cluster.algorithms.execution.test;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.Assert;
@@ -83,7 +89,7 @@ public class ExecutionTestClusteringAlgorithms {
 
         Assert.assertEquals("MoveBetweenClustersFunction", function0.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -118,7 +124,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("MoveBetweenClustersFunction", function0.toString());
         Assert.assertEquals("MoveNearPointFunction", function1.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -154,7 +160,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("MoveAveragePointFunction", function0.toString());
         Assert.assertEquals("MoveNearPointFunction", function1.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -191,7 +197,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("MoveBetweenClustersFunction", function1.toString());
         Assert.assertEquals("SplitClustersFunction", function2.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -231,7 +237,7 @@ public class ExecutionTestClusteringAlgorithms {
         Assert.assertEquals("SplitClustersFunction", function2.toString());
         Assert.assertEquals("MoveAveragePointFunction", function3.toString());
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -266,7 +272,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -304,7 +310,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -345,7 +351,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/20Points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/20Points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -386,7 +392,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -427,7 +433,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -468,7 +474,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -508,7 +514,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/20points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/20points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -548,7 +554,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -590,7 +596,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/50-random-points.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -630,7 +636,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double", true);
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -658,7 +664,7 @@ public class ExecutionTestClusteringAlgorithms {
         }
         System.out.println();
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data", "Double"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data", "Double", true));
         // List<Point> points =
         // MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
         algorithm.setPoints(points);
@@ -678,7 +684,7 @@ public class ExecutionTestClusteringAlgorithms {
     @Test
     public void testAlgorithmGenerated9Diabetes() throws FileNotFoundException, IOException {
 
-        List<Integer> grammarInstance = Lists.newArrayList(97, 222, 155, 9, 37, 155, 9, 167, 41, 21, 45, 125);
+        List<Integer> grammarInstance = Lists.newArrayList(91, 157, 191, 125, 85, 125, 134);
         // List<Integer> grammarInstance = Lists.newArrayList(67, 55, 66, 50,
         // 175, 111, 215, 137);
 
@@ -690,7 +696,7 @@ public class ExecutionTestClusteringAlgorithms {
         System.out.println();
 
         List<Point> points =
-            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
+            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double", true));
         // List<Point> points =
         // MathUtils.normalizeData(DataInstanceReader.readPoints("/points.data"));
         algorithm.setPoints(points);
@@ -709,8 +715,7 @@ public class ExecutionTestClusteringAlgorithms {
     @Test
     public void testAlgorithmGenerated10Diabetes() throws FileNotFoundException, IOException {
 
-        List<Integer> grammarInstance = Lists.newArrayList(221, 231, 171, 201, 113, 43, 39, 65, 71, 245, 243, 189, 211,
-            21, 45, 140, 117, 53, 149, 221, 231, 233, 45, 65);
+        List<Integer> grammarInstance = Lists.newArrayList(187, 83, 102, 50, 243, 196, 135, 219);
 
         ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
@@ -720,26 +725,41 @@ public class ExecutionTestClusteringAlgorithms {
         System.out.println();
 
         List<Point> points =
-            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
+            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double", true));
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
-
-        for (Point p : clusteringContext.getPoints()) {
-            System.out.println(p + " " + p.getCluster());
-        }
 
         Double fitness = fitnessFunction.apply(clusteringContext);
 
         System.out.println(fitness);
     }
 
+    @Test
+    public void testAlgorithmGeneratedHeart2() throws FileNotFoundException, IOException {
+
+        List<Integer> grammarInstance = Lists.newArrayList(35, 106, 86, 76, 63, 100, 121, 4, 57, 145, 165, 101, 183,
+            119, 149, 228, 216, 20, 10, 246, 198, 125, 216, 20, 91, 24, 52, 127, 93, 196, 5, 210, 121, 165, 57, 24, 192,
+            101, 183, 119, 149, 213, 216, 20, 232, 32, 38, 139, 4, 125, 142, 4, 216, 165, 101, 237);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/heart.data", "Double", true));
+        algorithm.setPoints(points);
+
+        ClusteringContext clusteringContext = algorithm.execute();
+
+        Double fitness = fitnessFunction.apply(clusteringContext);
+
+        System.out.println(fitness);
+
+    }
     //
 
     @Test
     public void testKmeansNormalizeDenormalizeData() throws FileNotFoundException, IOException {
 
-        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
 
         KMeansClusteringAlgorithm algorithm =
             new KMeansClusteringAlgorithm(points, new EucledianDistanceFunction(), 2, 2);
@@ -764,7 +784,7 @@ public class ExecutionTestClusteringAlgorithms {
 
         ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double", true));
         algorithm.setPoints(points);
 
         ClusteringContext clusteringContext = algorithm.execute();
@@ -780,6 +800,158 @@ public class ExecutionTestClusteringAlgorithms {
         Double fitness = fitnessFunction.apply(clusteringContext);
 
         System.out.println(fitness);
+    }
+
+    @Test
+    public void testDiabetesTrainGlassValidation10Seeds() throws FileNotFoundException, IOException {
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/glass.data", "Double", true));
+
+        List<Integer> grammarInstance = Lists.newArrayList(91, 157, 191, 125, 85, 125, 133);
+
+        ClusteringAlgorithm algorithm = mapper.interpret(grammarInstance);
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        ClusteringRandom.getNewInstance().setSeed(100);
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Seed: " + i);
+
+            algorithm.setPoints(points);
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+
+            System.out.println(fitness);
+
+            algorithm.clearClusteringContext();
+
+            fitnesses.add(fitness);
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+    }
+
+    @Test
+    // THIS IS THE WORKING TEST TO TEST THE ALGORITHMS GENERATED BY THE GE
+    public void testAlgorithmGeneratedIris() throws FileNotFoundException, IOException {
+
+        List<Integer> individual = Lists.newArrayList(200, 93, 203, 50, 59, 101, 13, 179, 221, 128, 23, 25, 25, 181, 49,
+            214, 71, 86, 101, 9, 149, 185, 6, 20, 42, 199, 5, 71, 186, 218, 191, 33, 165, 43, 71, 224, 86, 124, 105,
+            198, 179, 202, 55, 11, 9, 11, 33, 127, 20, 243, 55, 164, 120, 131, 207, 86, 177, 32, 200, 245, 53, 27, 197,
+            191, 131, 137, 26, 6, 103, 205, 11, 135, 101, 17, 183, 205, 61, 195, 184, 147, 191, 59, 80, 66, 96, 204,
+            172, 42, 45, 64, 185, 159, 188, 101, 59, 165, 166, 244, 217, 20, 199, 24, 25, 93, 208, 61, 241, 156, 101,
+            142, 183, 140, 37, 241, 186, 61, 17, 245, 23, 227, 124, 205, 111, 131, 180, 25, 68, 103, 34, 228, 110, 166,
+            158, 23, 34, 232, 94, 184, 210, 159, 13, 151, 147, 244, 148, 12, 42, 5, 1, 201, 59, 67, 200, 177, 36, 218,
+            45, 73, 205, 21, 250, 141, 25, 196, 75, 205, 34, 73, 205, 218, 203, 165, 60, 99, 221, 4, 31, 74, 71, 33,
+            100, 60, 46, 107, 237, 12, 27);
+            // for (List<Integer> individual : grammarInstance) {
+
+        // ClusteringRandom.getNewInstance().setSeed(100);
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double", true));
+
+        List<Double> fitnesses = new ArrayList<Double>();
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Seed: " + i);
+
+            ClusteringRandom.getNewInstance().setSeed(i);
+
+            ClusteringAlgorithm algorithm = mapper.interpret(individual);
+
+            points.stream().forEach(p -> {
+                p.clearCluster();
+            });
+            algorithm.setPoints(points);
+
+            ClusteringContext clusteringContext = algorithm.execute();
+
+            Double fitness = fitnessFunction.apply(clusteringContext);
+            // if (fitness != -1.0) {
+            System.out.println(fitness + ", k: " + clusteringContext.getClusters().size());
+
+            fitnesses.add(fitness);
+
+            // }
+
+            algorithm.clearClusteringContext();
+
+        }
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println("Time (seconds): " + elapsedTime / 1000);
+
+        List<Double> filteredFitnesses = fitnesses.stream().filter(f -> {
+            if (f != Double.MAX_VALUE)
+                return true;
+            return false;
+        }).collect(Collectors.toList());
+
+        DoubleSummaryStatistics summaryStatistics =
+            filteredFitnesses.stream().collect(Collectors.summarizingDouble(x -> x));
+
+        System.out.println("Average: " + summaryStatistics.getAverage());
+        System.out.println("Min: " + summaryStatistics.getMin());
+        System.out.println("Max: " + summaryStatistics.getMax());
+        System.out.println("Count: " + summaryStatistics.getCount());
+        System.out.println("Std: " + MathUtils.getStdDev(filteredFitnesses, summaryStatistics.getAverage()));
+
+        // }
+
+    }
+
+    public static Set<List<Integer>> loadFile(String file) throws IOException {
+
+        int count = 0;
+        Set<List<Integer>> setList = Sets.newHashSet();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+            String line;
+
+            // Read File Line By Line
+            List<Integer> values = null;
+            while ((line = br.readLine()) != null) {
+                if (count > 9) {
+                    break;
+                }
+
+                // Print the content on the console
+                values = Lists.newArrayList();
+                String[] vet = line.trim().split(" ");
+                for (String value : vet) {
+                    values.add(Integer.valueOf(value));
+                }
+
+                setList.add(values);
+                count++;
+            }
+
+        }
+        return setList;
+
     }
 
     @Test
