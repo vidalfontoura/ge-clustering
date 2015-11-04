@@ -51,7 +51,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 3;
-        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double", true);
         int coordinates = points.get(0).getCoordinates().size();
 
         for (int i = 0; i < 30; i++) {
@@ -74,7 +74,7 @@ public class KMeansSihouetteFitnessTest {
     public void test11MultipleSeeds2() throws FileNotFoundException, IOException {
 
         int k = 3;
-        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double", true);
         int coordinates = points.get(0).getCoordinates().size();
         List<Double> fitnesses = new ArrayList<Double>();
         Map<Integer, Integer> mapQtdClusters = new HashMap<>();
@@ -139,7 +139,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 2;
-        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double", true);
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -183,7 +183,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 8;
-        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double", true);
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -236,7 +236,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 8;
-        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double", true);
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -291,7 +291,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 3;
-        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double");
+        List<Point> points = DataInstanceReader.readPoints("/500-random-points.data", "Double", true);
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -347,7 +347,7 @@ public class KMeansSihouetteFitnessTest {
 
         int k = 4;
         List<Point> points =
-            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double"));
+            MathUtils.normalizeData(DataInstanceReader.readPoints("/prima-indians-diabetes.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -403,7 +403,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 4;
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/glass.data", "Double"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/glass.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -454,8 +454,8 @@ public class KMeansSihouetteFitnessTest {
 
         ClusteringRandom.getNewInstance().setSeed(100);
 
-        int k = 4;
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double"));
+        int k = 2;
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/iris.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -468,7 +468,7 @@ public class KMeansSihouetteFitnessTest {
         for (int i = 0; i < 11; i++) {
             System.out.println("Seed: " + i);
 
-            ClusteringRandom.getInstance().setSeed(i);
+            ClusteringRandom.getNewInstance().setSeed(i);
             KMeansClusteringAlgorithm algorithm =
                 new KMeansClusteringAlgorithm(points, distanceFunction, k, coordinates);
 
@@ -511,7 +511,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 2;
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/glass.data", "Double"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/glass.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -567,7 +567,7 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 4;
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/heart.data", "Double"));
+        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/heart.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -623,7 +623,8 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 2;
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints("/engsoftware.data", "Double"));
+        List<Point> points =
+            MathUtils.normalizeData(DataInstanceReader.readPoints("/engsoftware.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -680,7 +681,7 @@ public class KMeansSihouetteFitnessTest {
 
         int k = 4;
         List<Point> points = MathUtils.normalizeData(
-            DataInstanceReader.readPoints("/fourballs/tabela_resultado_arrumada_filtrada.data", "Double"));
+            DataInstanceReader.readPoints("/fourballs/tabela_resultado_arrumada_filtrada.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -736,8 +737,8 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 9;
-        List<Point> points = MathUtils
-            .normalizeData(DataInstanceReader.readPoints("/getcmd/tabela_resultado_arrumada_filtrada.data", "Double"));
+        List<Point> points = MathUtils.normalizeData(
+            DataInstanceReader.readPoints("/getcmd/tabela_resultado_arrumada_filtrada.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -794,7 +795,7 @@ public class KMeansSihouetteFitnessTest {
 
         int k = 2;
         List<Point> points = MathUtils.normalizeData(
-            DataInstanceReader.readPoints("/triangulo/tabela_resultado_arrumada_filtrada.data", "Double"));
+            DataInstanceReader.readPoints("/triangulo/tabela_resultado_arrumada_filtrada.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();
@@ -850,8 +851,8 @@ public class KMeansSihouetteFitnessTest {
         ClusteringRandom.getNewInstance().setSeed(100);
 
         int k = 6;
-        List<Point> points = MathUtils
-            .normalizeData(DataInstanceReader.readPoints("/bbsort/tabela_resultado_arrumada_filtrada.data", "Double"));
+        List<Point> points = MathUtils.normalizeData(
+            DataInstanceReader.readPoints("/bbsort/tabela_resultado_arrumada_filtrada.data", "Double", true));
         int coordinates = points.get(0).getCoordinates().size();
 
         List<Double> fitnesses = new ArrayList<Double>();

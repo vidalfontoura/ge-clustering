@@ -47,6 +47,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
         int maxCondons = 20;
         int threadPoolSize = 0;
         String dataType = "";
+        boolean classIncluded = true;
 
         for (int i = 0; i < args.length; i = i + 2) {
             String param = args[i];
@@ -99,6 +100,9 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
                 case "-dt":
                     dataType = args[i + 1];
                     break;
+                case "ci":
+                    classIncluded = Boolean.valueOf(args[i + 1]);
+                    break;
                 default:
                     throw new IllegalArgumentException(String.format(ILLEGAL_ARGUMENT_MSG, param));
             }
@@ -109,7 +113,8 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
             resultDir.mkdir();
         }
 
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile,dataType));
+        List<Point> points =
+            MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile, dataType, classIncluded));
 
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
         FitnessFunction fitnessFunction = new SilhouetteFitness();
