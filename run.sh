@@ -1,6 +1,6 @@
 grammarFile=/clustergrammar.bnf
 database=/iris.data
-evaluations=60000
+evaluations=20000
 resultFolder=result
 seed=1
 population=100
@@ -15,6 +15,7 @@ pruneProbability=0.05
 duplicationProbability=0.05
 clusteringSeed=100
 datatype=Double
+classIncluded=true
 
 java -jar target/ge-clustering-jar-with-dependencies.jar \
 	-g $grammarFile 								  \
@@ -31,5 +32,6 @@ java -jar target/ge-clustering-jar-with-dependencies.jar \
 	-pi $pruneIndex									\
 	-px $pruneProbability 							\
 	-dx $duplicationProbability 					\
-	-cs $clusteringSeed						\	
-	-dt $datatype
+	-cs $clusteringSeed						       \	
+	-dt $datatype                                  \
+	-ci $classIncluded
