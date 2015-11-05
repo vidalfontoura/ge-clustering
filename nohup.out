@@ -1,0 +1,12 @@
+Exception in thread "main" java.lang.IllegalArgumentException: The 	 argument isn't supported
+	at edu.ufpr.jmetal.algorithm.main.ClusteringGrammaticalEvolutionExperiment.main(ClusteringGrammaticalEvolutionExperiment.java:103)
+run.sh: 35: run.sh: -dt: not found
+Exception in thread "main" java.lang.IllegalArgumentException: The 	 argument isn't supported
+	at edu.ufpr.jmetal.algorithm.main.ClusteringGrammaticalEvolutionExperiment.main(ClusteringGrammaticalEvolutionExperiment.java:103)
+run.sh: 35: run.sh: -dt: not found
+Exception in thread "main" java.lang.IllegalArgumentException: The 	 argument isn't supported
+	at edu.ufpr.jmetal.algorithm.main.ClusteringGrammaticalEvolutionExperiment.main(ClusteringGrammaticalEvolutionExperiment.java:103)
+run.sh: 35: run.sh: -dt: not found
+Exception in thread "main" java.lang.IllegalArgumentException: The 	 argument isn't supported
+	at edu.ufpr.jmetal.algorithm.main.ClusteringGrammaticalEvolutionExperiment.main(ClusteringGrammaticalEvolutionExperiment.java:103)
+run.sh: 35: run.sh: -dt: not found

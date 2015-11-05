@@ -40,25 +40,27 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        String outputDirName = "result";
+        String outputDirName = "result-test-multiples-clustering-execution";
         File outDir = new File(outputDirName);
         if (!outDir.exists()) {
             outDir.mkdir();
         }
         String grammarFile = "/clustergrammar.bnf";
-        String databaseFile = "/prima-indians-diabetes.data";
+        String databaseFile = "/iris.data";
         double crossoverProbability = 0.95;
         double mutationProbability = 0.1;
         double pruneMutationProbability = 0.05;
         double duplicationProbability = 0.05;
         int pruneIndex = 10;
-        int maxEvaluations = 60000;
+        int maxEvaluations = 20000;
         int populationSize = 100;
         int clusteringExecutionSeed = 100;
         String dataType = "Double";
+        boolean classIncluded = true;
 
         FitnessFunction clusteringFitnessFunction = new SilhouetteFitness();
-        List<Point> points = MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile,dataType));
+        List<Point> points =
+            MathUtils.normalizeData(DataInstanceReader.readPoints(databaseFile, dataType, classIncluded));
 
         for (int i = 0; i < 10; i++) {
 
