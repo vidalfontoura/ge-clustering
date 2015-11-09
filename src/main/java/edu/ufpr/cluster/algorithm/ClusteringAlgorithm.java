@@ -83,15 +83,6 @@ public class ClusteringAlgorithm {
             }
 
             if (distance == 0 || evaluations > maxEvaluations) {
-                if (distance == 0) {
-                    System.out.println("Ended because no changes");
-
-                }
-
-                if (evaluations > maxEvaluations) {
-                    System.out.println("Ended because evaluation budget");
-                }
-
                 finish = true;
             }
             if (logExecution) {
