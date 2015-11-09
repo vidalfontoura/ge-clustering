@@ -26,7 +26,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
                 + "-g [grammar file] -d [database] -dt [data type] -m [max evaluations] -r [result folder]"
                 + " -s [seed] -p [populationSize]  -minC [minCondons] -maxC [maxCondons] -t [threads pool size]"
                 + "-cx [crossover probabilty] -mx [mutation probability] -pi [prune index] -px [prune probability] "
-                + "-dx [duplication probability] -cs [clustering seed] \n");
+                + "-dx [duplication probability] -cs [number of clustering seeds] -dt [dataType] -mc [max clustering executions] \n");
             System.exit(1);
         }
 
@@ -48,6 +48,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
         int threadPoolSize = 0;
         String dataType = "";
         boolean classIncluded = true;
+        int maxClusteringExecutions = 1000;
 
         for (int i = 0; i < args.length; i = i + 2) {
             String param = args[i];
@@ -103,6 +104,9 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
                 case "ci":
                     classIncluded = Boolean.valueOf(args[i + 1]);
                     break;
+                case "mc":
+                    maxClusteringExecutions = Integer.valueOf(args[i + 1]);
+                    break;
                 default:
                     throw new IllegalArgumentException(String.format(ILLEGAL_ARGUMENT_MSG, param));
             }
@@ -119,14 +123,14 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
         FitnessFunction fitnessFunction = new SilhouetteFitness();
 
-        GrammaticalEvolutionClusteringTask task =
-            GrammaticalEvolutionClusteringTask.builder().withClusteringExecutionSeed(clusteringExecutionSeed)
-                .withCrossoverProbability(crossoverProbability).withDuplicationProbability(duplicationProbability)
-                .withFitnessFunction(fitnessFunction).withGrammarFile(grammarFile).withMaxCondons(maxCondons)
-                .withMaxEvaluations(maxEvaluations).withMinCondons(minCondons)
-                .withMutationProbability(mutationProbability).withPoints(points).withPopulationSize(populationSize)
-                .withPruneIndex(pruneIndex).withPruneMutationProbability(pruneMutationProbability)
-                .withResultDirName(resultDirName).withSeed(seed).build();
+        GrammaticalEvolutionClusteringTask task = GrammaticalEvolutionClusteringTask.builder()
+            .withClusteringExecutionSeed(clusteringExecutionSeed).withCrossoverProbability(crossoverProbability)
+            .withDuplicationProbability(duplicationProbability).withFitnessFunction(fitnessFunction)
+            .withGrammarFile(grammarFile).withMaxCondons(maxCondons).withMaxEvaluations(maxEvaluations)
+            .withMinCondons(minCondons).withMutationProbability(mutationProbability).withPoints(points)
+            .withPopulationSize(populationSize).withPruneIndex(pruneIndex)
+            .withPruneMutationProbability(pruneMutationProbability).withResultDirName(resultDirName).withSeed(seed)
+            .withMaxClusteringExecutions(maxClusteringExecutions).build();
         executorService.execute(task);
         executorService.shutdown();
 

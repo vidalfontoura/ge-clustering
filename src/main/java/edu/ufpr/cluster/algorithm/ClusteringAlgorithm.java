@@ -23,14 +23,25 @@ public class ClusteringAlgorithm {
 
     private List<Point> points;
 
-    private int MAX_EVALUATIONS = 1000;
+    private int maxEvaluations;
 
     public ClusteringAlgorithm(InitializiationFunction initialization, List<Function<ClusteringContext>> functions,
         java.util.function.Function<List<Point>, Double> distanceFunction) {
         this.initilization = initialization;
         this.functions = functions;
         this.distanceFunction = distanceFunction;
+        this.maxEvaluations = 1000;
 
+    }
+
+    public int getMaxEvaluations() {
+
+        return maxEvaluations;
+    }
+
+    public void setMaxEvaluations(int maxEvaluations) {
+
+        this.maxEvaluations = maxEvaluations;
     }
 
     public ClusteringContext execute() {
@@ -71,7 +82,16 @@ public class ClusteringAlgorithm {
                 distance = Double.MAX_VALUE;
             }
 
-            if (distance == 0 || evaluations > MAX_EVALUATIONS) {
+            if (distance == 0 || evaluations > maxEvaluations) {
+                if (distance == 0) {
+                    System.out.println("Ended because no changes");
+
+                }
+
+                if (evaluations > maxEvaluations) {
+                    System.out.println("Ended because evaluation budget");
+                }
+
                 finish = true;
             }
             if (logExecution) {

@@ -53,11 +53,12 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
     private int maxCondons;
     private FitnessFunction fitnessFunction;
     private List<Point> points;
+    private int maxClusteringEvaluations;
 
     public GrammaticalEvolutionClusteringTask(String resultDirName, String grammarFile, double crossoverProbability,
         double mutationProbability, double pruneMutationProbability, double duplicationProbability, int pruneIndex,
-        int maxEvaluations, int populationSize, int numberOfClusteringExecutionSeed, int seed, int minCondons, int maxCondons,
-        FitnessFunction fitnessFunction, List<Point> points) {
+        int maxEvaluations, int populationSize, int numberOfClusteringExecutionSeed, int seed, int minCondons,
+        int maxCondons, FitnessFunction fitnessFunction, List<Point> points, int maxClusteringEvaluations) {
         this.resultDirName = resultDirName;
         this.grammarFile = grammarFile;
         this.crossoverProbability = crossoverProbability;
@@ -73,6 +74,7 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
         this.maxCondons = maxCondons;
         this.fitnessFunction = fitnessFunction;
         this.points = points;
+        this.maxClusteringEvaluations = maxClusteringEvaluations;
     }
 
     public void run() {
@@ -93,7 +95,7 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
 
             System.setOut(ps);
             ClusteringProblem problem = new ClusteringProblem(grammarFile, points, minCondons, maxCondons,
-                numberOfClusteringExecutionsSeed, fitnessFunction, populationSize);
+                numberOfClusteringExecutionsSeed, fitnessFunction, populationSize, maxClusteringEvaluations);
 
             CrossoverOperator<VariableIntegerSolution> crossoverOperator =
                 new SinglePointCrossoverVariableLength(crossoverProbability);
@@ -148,6 +150,8 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
         private int maxCondons;
         private FitnessFunction fitnessFunction;
         private List<Point> points;
+
+        private int maxClusteringEvaluations;
 
         public Builder withResultDirName(String resultDirName) {
 
@@ -239,11 +243,18 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
             return this;
         }
 
+        public Builder withMaxClusteringExecutions(int maxClusteringExecutions) {
+
+            this.maxClusteringEvaluations = maxClusteringExecutions;
+            return this;
+        }
+
         public GrammaticalEvolutionClusteringTask build() {
 
             return new GrammaticalEvolutionClusteringTask(resultDirName, grammarFile, crossoverProbability,
                 mutationProbability, pruneMutationProbability, duplicationProbability, pruneIndex, maxEvaluations,
-                populationSize, clusteringExecutionSeed, seed, minCondons, maxCondons, fitnessFunction, points);
+                populationSize, clusteringExecutionSeed, seed, minCondons, maxCondons, fitnessFunction, points,
+                maxClusteringEvaluations);
         }
 
     }

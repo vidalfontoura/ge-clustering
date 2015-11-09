@@ -40,8 +40,10 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
 
     private int populationSize;
 
+    private int maxClusteringExecutions;
+
     public ClusteringProblem(String grammarFile, List<Point> points, int minCondons, int maxCondons,
-        int numberOfClusteringSeeds, FitnessFunction fitnessFunction, int populationSize) {
+        int numberOfClusteringSeeds, FitnessFunction fitnessFunction, int populationSize, int maxClusteringExecutions) {
 
         super(new ClusteringExpressionGrammarMapper(), grammarFile);
         this.maxCondons = maxCondons;
@@ -50,6 +52,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
         this.fitnessFunction = fitnessFunction;
         this.numberOfClusteringSeeds = numberOfClusteringSeeds;
         this.populationSize = populationSize;
+        this.maxClusteringExecutions = maxClusteringExecutions;
 
     }
 
@@ -107,7 +110,10 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
             points.stream().forEach(p -> {
                 p.clearCluster();
             });
+
             clusteringAlgorithm.setPoints(points);
+            clusteringAlgorithm.setMaxEvaluations(maxClusteringExecutions);
+
             ClusteringContext clusteringContext = clusteringAlgorithm.execute();
 
             Double fitness = this.fitnessFunction.apply(clusteringContext);
