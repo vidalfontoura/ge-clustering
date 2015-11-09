@@ -98,7 +98,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
         List<Double> fitnesses = Lists.newArrayList();
         List<Integer> clustersAmount = Lists.newArrayList();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             ClusteringRandom.getNewInstance().setSeed(i);
 
             ClusteringAlgorithm clusteringAlgorithm = (ClusteringAlgorithm) mapper.interpret(clusteringSolution);

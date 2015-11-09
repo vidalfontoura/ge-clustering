@@ -160,4 +160,60 @@ public class ClusteringAlgorithm {
         clusteringContext.getPoints().stream().forEach(p -> p.setCluster(null));
     }
 
+    @Override
+    public int hashCode() {
+
+        final int prime = 31;
+
+        return 31;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ClusteringAlgorithm other = (ClusteringAlgorithm) obj;
+
+        List<Function<ClusteringContext>> otherFunctions = other.getFunctions();
+
+        if (distanceFunction == null) {
+            if (other.distanceFunction != null)
+                return false;
+        } else if (!distanceFunction.toString().equals(other.distanceFunction.toString()))
+            return false;
+
+        if (initilization == null) {
+            if (other.initilization != null)
+                return false;
+        } else if (!initilization.toString().equals(other.initilization.toString()))
+            return false;
+
+        if (initilization.getInitialK() != other.initilization.getInitialK()) {
+            return false;
+        }
+
+        if (functions == null) {
+            if (other.functions != null)
+                return false;
+        } else if (functions.size() != otherFunctions.size()) {
+            return false;
+        }
+
+        boolean equalsFunctions = false;
+        for (int i = 0; i < functions.size(); i++) {
+            equalsFunctions = functions.get(i).toString().equals(otherFunctions.get(i).toString());
+
+            if (!equalsFunctions) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

@@ -18,15 +18,16 @@ import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
  */
 public class MathUtilsTest {
 
-	@Test
-	public void testNormalization() throws FileNotFoundException, IOException {
-		List<Point> points = DataInstanceReader.readPoints("/points.data", "Double");
+    @Test
+    public void testNormalization() throws FileNotFoundException, IOException {
 
-		List<Point> normalizeData = MathUtils.normalizeData(points);
+        List<Point> points = DataInstanceReader.readPoints("/points.data", "Double", true);
 
-		for (Point p : normalizeData) {
-			System.out.println(p);
-		}
-	}
+        List<Point> normalizeData = MathUtils.normalizeData(points);
+
+        for (Point p : normalizeData) {
+            System.out.println(p);
+        }
+    }
 
 }
