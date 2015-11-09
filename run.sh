@@ -1,8 +1,8 @@
 grammarFile=/clustergrammar.bnf
-database=/iris.data
+database=/bbsort/tabela_resultado_arrumada_filtrada.data
 evaluations=20000
-resultFolder=result
-seed=1
+resultFolder=result-5-bbsort
+
 population=100
 minCondons=1
 maxCondons=20
@@ -13,11 +13,18 @@ mutationProbability=0.1
 pruneIndex=10
 pruneProbability=0.05
 duplicationProbability=0.05
-clusteringSeed=100
+
 datatype=Double
 classIncluded=true
+maximumClusteringEvaluations=500 
+clusteringSeed=5
+seed=5
 
-java -jar target/ge-clustering-jar-with-dependencies.jar \
+
+for (( i=1; i <= seed; i++ ))
+do
+  echo "Starting seed $i"
+  java -jar target/ge-clustering-jar-with-dependencies.jar \
 	-g $grammarFile 								  \
 	-d $database									  \
 	-m $evaluations 								  \
@@ -34,4 +41,9 @@ java -jar target/ge-clustering-jar-with-dependencies.jar \
 	-dx $duplicationProbability 					\
 	-cs $clusteringSeed						       \	
 	-dt $datatype                                  \
-	-ci $classIncluded
+	-ci $classIncluded							  \ 
+	-mc $maximumClusteringEvaluations
+done
+
+   
+
