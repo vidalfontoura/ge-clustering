@@ -47,7 +47,7 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
     private int pruneIndex;
     private int maxEvaluations;
     private int populationSize;
-    private int clusteringExecutionSeed;
+    private int numberOfClusteringExecutionsSeed;
     private int seed;
     private int minCondons;
     private int maxCondons;
@@ -56,7 +56,7 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
 
     public GrammaticalEvolutionClusteringTask(String resultDirName, String grammarFile, double crossoverProbability,
         double mutationProbability, double pruneMutationProbability, double duplicationProbability, int pruneIndex,
-        int maxEvaluations, int populationSize, int clusteringExecutionSeed, int seed, int minCondons, int maxCondons,
+        int maxEvaluations, int populationSize, int numberOfClusteringExecutionSeed, int seed, int minCondons, int maxCondons,
         FitnessFunction fitnessFunction, List<Point> points) {
         this.resultDirName = resultDirName;
         this.grammarFile = grammarFile;
@@ -67,7 +67,7 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
         this.pruneIndex = pruneIndex;
         this.maxEvaluations = maxEvaluations;
         this.populationSize = populationSize;
-        this.clusteringExecutionSeed = clusteringExecutionSeed;
+        this.numberOfClusteringExecutionsSeed = numberOfClusteringExecutionSeed;
         this.seed = seed;
         this.minCondons = minCondons;
         this.maxCondons = maxCondons;
@@ -93,7 +93,7 @@ public class GrammaticalEvolutionClusteringTask implements Runnable {
 
             System.setOut(ps);
             ClusteringProblem problem = new ClusteringProblem(grammarFile, points, minCondons, maxCondons,
-                clusteringExecutionSeed, fitnessFunction, populationSize);
+                numberOfClusteringExecutionsSeed, fitnessFunction, populationSize);
 
             CrossoverOperator<VariableIntegerSolution> crossoverOperator =
                 new SinglePointCrossoverVariableLength(crossoverProbability);

@@ -22,7 +22,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
     private FitnessFunction fitnessFunction;
 
     private List<Point> points;
-    private int clusteringExecutionSeed;
+    private int numberOfClusteringSeeds;
 
     private int evaluationCount = 0;
 
@@ -41,14 +41,14 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
     private int populationSize;
 
     public ClusteringProblem(String grammarFile, List<Point> points, int minCondons, int maxCondons,
-        int clusteringExecutionSeed, FitnessFunction fitnessFunction, int populationSize) {
+        int numberOfClusteringSeeds, FitnessFunction fitnessFunction, int populationSize) {
 
         super(new ClusteringExpressionGrammarMapper(), grammarFile);
         this.maxCondons = maxCondons;
         this.minCondons = minCondons;
         this.points = points;
         this.fitnessFunction = fitnessFunction;
-        this.clusteringExecutionSeed = clusteringExecutionSeed;
+        this.numberOfClusteringSeeds = numberOfClusteringSeeds;
         this.populationSize = populationSize;
 
     }
@@ -98,7 +98,7 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
         List<Double> fitnesses = Lists.newArrayList();
         List<Integer> clustersAmount = Lists.newArrayList();
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < numberOfClusteringSeeds; i++) {
             ClusteringRandom.getNewInstance().setSeed(i);
 
             ClusteringAlgorithm clusteringAlgorithm = (ClusteringAlgorithm) mapper.interpret(clusteringSolution);
