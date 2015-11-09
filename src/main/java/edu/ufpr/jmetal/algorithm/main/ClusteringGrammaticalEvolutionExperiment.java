@@ -101,10 +101,10 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
                 case "-dt":
                     dataType = args[i + 1];
                     break;
-                case "ci":
+                case "-ci":
                     classIncluded = Boolean.valueOf(args[i + 1]);
                     break;
-                case "mc":
+                case "-mc":
                     maxClusteringExecutions = Integer.valueOf(args[i + 1]);
                     break;
                 default:
