@@ -40,7 +40,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        String outputDirName = "result-test-multiples-clustering-execution";
+        String outputDirName = "result-30-iris";
         File outDir = new File(outputDirName);
         if (!outDir.exists()) {
             outDir.mkdir();

@@ -32,26 +32,25 @@ public class SilhouetteFitness implements FitnessFunction {
         }
 
         // If exists any cluster if no points it will penalize hard the solution
-        for (Cluster c : clusters) {
-        List<Point> points = c.getPoints();
-            if (points == null || points.size() == 0) {
-                return -1.0;
-            }
-        }
+        // for (Cluster c : clusters) {
+        // List<Point> points = c.getPoints();
+        // if (points == null || points.size() == 0) {
+        // return -1.0;
+        // }
+        // }
 
         // If exists one point that is not clustered it will penalize hard the
         // solution
-        for (Point p : allPoints) {
-            if (p.getCluster() == null) {
-                return -1.0;
-            }
-        }
+        // for (Point p : allPoints) {
+        // if (p.getCluster() == null) {
+        // return -1.0;
+        // }
+        // }
 
         // If all points were assigned for just one cluster
         // if (clusters.size() == 1) {
         // return -1.0;
         // }
-
 
         // Calculate fitness
         double fitness = calculateFitness(clusters, allPoints);
