@@ -52,7 +52,7 @@ public class ExecutionTestClusteringAlgorithms {
     @Before
     public void setup() {
 
-        mapper = new ClusteringExpressionGrammarMapper();
+        mapper = new ClusteringExpressionGrammarMapper(20);
         mapper.loadGrammar("/clustergrammar.bnf");
         ClusteringRandom.getNewInstance().setSeed(100);
         fitnessFunction = new SilhouetteFitness();

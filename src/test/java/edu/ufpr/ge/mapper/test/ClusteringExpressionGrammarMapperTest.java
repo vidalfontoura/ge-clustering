@@ -34,7 +34,7 @@ public class ClusteringExpressionGrammarMapperTest {
     @Before
     public void setup() {
 
-        mapper = new ClusteringExpressionGrammarMapper();
+        mapper = new ClusteringExpressionGrammarMapper(20);
         mapper.loadGrammar("/clustergrammar.bnf");
         JMetalRandom.getInstance().setSeed(100);
     }
