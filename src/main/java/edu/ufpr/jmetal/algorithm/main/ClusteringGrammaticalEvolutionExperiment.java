@@ -49,6 +49,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
         String dataType = "";
         boolean classIncluded = true;
         int maxClusteringExecutions = 1000;
+        int maxAlgorithmDepth = 20;
 
         for (int i = 0; i < args.length; i = i + 2) {
             String param = args[i];
@@ -107,6 +108,9 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
                 case "-mc":
                     maxClusteringExecutions = Integer.valueOf(args[i + 1]);
                     break;
+                case "-md":
+                    maxAlgorithmDepth = Integer.valueOf(args[i + 1]);
+                    break;
                 default:
                     throw new IllegalArgumentException(String.format(ILLEGAL_ARGUMENT_MSG, param));
             }
@@ -130,7 +134,7 @@ public class ClusteringGrammaticalEvolutionExperiment extends AbstractAlgorithmR
             .withMinCondons(minCondons).withMutationProbability(mutationProbability).withPoints(points)
             .withPopulationSize(populationSize).withPruneIndex(pruneIndex)
             .withPruneMutationProbability(pruneMutationProbability).withResultDirName(resultDirName).withSeed(seed)
-            .withMaxClusteringExecutions(maxClusteringExecutions).build();
+            .withMaxClusteringExecutions(maxClusteringExecutions).withMaxAlgorithmDepth(maxAlgorithmDepth).build();
         executorService.execute(task);
         executorService.shutdown();
 

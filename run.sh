@@ -19,6 +19,7 @@ classIncluded=true
 maximumClusteringEvaluations=500 
 clusteringSeed=5
 seed=5
+maxAlgorithmDepth=20
 
 
 for (( i=1; i <= seed; i++ ))
@@ -42,7 +43,8 @@ do
 	-cs $clusteringSeed						       \	
 	-dt $datatype                                  \
 	-ci $classIncluded							  \ 
-	-mc $maximumClusteringEvaluations
+	-mc $maximumClusteringEvaluations			\
+	-md $maxAlgorithmDepth
 done
 
    

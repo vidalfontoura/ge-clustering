@@ -43,9 +43,10 @@ public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {
     private int maxClusteringExecutions;
 
     public ClusteringProblem(String grammarFile, List<Point> points, int minCondons, int maxCondons,
-        int numberOfClusteringSeeds, FitnessFunction fitnessFunction, int populationSize, int maxClusteringExecutions) {
+        int numberOfClusteringSeeds, FitnessFunction fitnessFunction, int populationSize, int maxClusteringExecutions,
+        int maxAlgorithmDepth) {
 
-        super(new ClusteringExpressionGrammarMapper(), grammarFile);
+        super(new ClusteringExpressionGrammarMapper(maxAlgorithmDepth), grammarFile);
         this.maxCondons = maxCondons;
         this.minCondons = minCondons;
         this.points = points;

@@ -58,6 +58,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
         String dataType = "Double";
         boolean classIncluded = true;
         int maxClusteringEvaluations = 1000;
+        int maxAlgorithmDepth = 20;
 
         FitnessFunction clusteringFitnessFunction = new SilhouetteFitness();
         List<Point> points =
@@ -79,7 +80,7 @@ public class ClusteringExperiment extends AbstractAlgorithmRunner {
             System.out.println("Seed: " + i);
 
             ClusteringProblem problem = new ClusteringProblem(grammarFile, points, 1, 20, clusteringExecutionSeed,
-                clusteringFitnessFunction, populationSize, maxClusteringEvaluations);
+                clusteringFitnessFunction, populationSize, maxClusteringEvaluations, maxAlgorithmDepth);
 
             CrossoverOperator<VariableIntegerSolution> crossoverOperator =
                 new SinglePointCrossoverVariableLength(crossoverProbability);
