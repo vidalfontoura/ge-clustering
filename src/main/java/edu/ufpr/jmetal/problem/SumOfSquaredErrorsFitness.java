@@ -11,7 +11,7 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 
-public class SimpleClusteringFitness implements FitnessFunction {
+public class SumOfSquaredErrorsFitness implements FitnessFunction {
 
     public Double apply(ClusteringContext clusteringContext) {
 
