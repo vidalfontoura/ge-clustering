@@ -45,7 +45,7 @@ public class FitnessFunctionTest {
         mapper = new ClusteringExpressionGrammarMapper(20);
         mapper.loadGrammar("/clustergrammar.bnf");
         ClusteringRandom.getNewInstance().setSeed(100);
-        fitnessFunction = new SimpleClusteringFitness();
+        fitnessFunction = new SumOfSquaredErrorsFitness();
     }
 
     /**

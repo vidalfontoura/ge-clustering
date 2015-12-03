@@ -26,7 +26,7 @@ public class RealDataInstanceFitnessFunction {
     public void setup() {
 
         JMetalRandom.getInstance().setSeed(100);
-        fitnessFunction = new SimpleClusteringFitness();
+        fitnessFunction = new SumOfSquaredErrorsFitness();
     }
 
     @Test
