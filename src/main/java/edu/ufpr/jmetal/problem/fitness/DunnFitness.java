@@ -1,4 +1,4 @@
-package edu.ufpr.jmetal.problem;
+package edu.ufpr.jmetal.problem.fitness;
 
 import java.util.List;
 

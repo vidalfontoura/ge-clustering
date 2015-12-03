@@ -14,8 +14,8 @@ import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.DistanceFunction;
 import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
-import edu.ufpr.jmetal.problem.DunnFitness;
-import edu.ufpr.jmetal.problem.FitnessFunction;
+import edu.ufpr.jmetal.problem.fitness.DunnFitness;
+import edu.ufpr.jmetal.problem.fitness.FitnessFunction;
 
 public class DunnFitnessTest {
 

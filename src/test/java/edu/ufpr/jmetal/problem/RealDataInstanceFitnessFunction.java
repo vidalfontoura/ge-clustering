@@ -16,6 +16,8 @@ import edu.ufpr.cluster.algorithm.Cluster;
 import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
+import edu.ufpr.jmetal.problem.fitness.FitnessFunction;
+import edu.ufpr.jmetal.problem.fitness.SumOfSquaredErrorsFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 
 public class RealDataInstanceFitnessFunction {

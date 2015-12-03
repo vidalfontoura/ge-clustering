@@ -25,6 +25,8 @@ import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.algorithms.functions.Function;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
+import edu.ufpr.jmetal.problem.fitness.FitnessFunction;
+import edu.ufpr.jmetal.problem.fitness.SumOfSquaredErrorsFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.math.utils.MathUtils;
 

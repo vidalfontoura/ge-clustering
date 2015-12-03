@@ -28,7 +28,7 @@ import edu.ufpr.ge.operators.mutation.IntegerMutation;
 import edu.ufpr.ge.operators.mutation.PruneMutation;
 import edu.ufpr.jmetal.algorithm.impl.GrammaticalEvolutionAlgorithm;
 import edu.ufpr.jmetal.problem.ClusteringProblem;
-import edu.ufpr.jmetal.problem.FitnessFunction;
+import edu.ufpr.jmetal.problem.fitness.FitnessFunction;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
 
 /**

@@ -10,6 +10,7 @@ import edu.ufpr.cluster.algorithm.ClusteringContext;
 import edu.ufpr.cluster.algorithm.Point;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
+import edu.ufpr.jmetal.problem.fitness.FitnessFunction;
 import edu.ufpr.jmetal.solution.impl.VariableIntegerSolution;
 
 public class ClusteringProblem extends AbstractGrammaticalEvolutionProblem {

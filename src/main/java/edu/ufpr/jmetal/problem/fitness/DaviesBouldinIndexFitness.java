@@ -1,7 +1,7 @@
 /*
  * Copyright 2015, Charter Communications, All rights reserved.
  */
-package edu.ufpr.jmetal.problem;
+package edu.ufpr.jmetal.problem.fitness;
 
 import com.google.common.collect.Lists;
 

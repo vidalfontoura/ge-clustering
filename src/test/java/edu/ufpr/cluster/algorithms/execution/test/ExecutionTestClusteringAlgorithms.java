@@ -33,8 +33,8 @@ import edu.ufpr.cluster.algorithms.functions.impl.EucledianDistanceFunction;
 import edu.ufpr.cluster.kmeans.KMeansClusteringAlgorithm;
 import edu.ufpr.cluster.random.ClusteringRandom;
 import edu.ufpr.ge.mapper.impl.ClusteringExpressionGrammarMapper;
-import edu.ufpr.jmetal.problem.FitnessFunction;
-import edu.ufpr.jmetal.problem.SilhouetteFitness;
+import edu.ufpr.jmetal.problem.fitness.FitnessFunction;
+import edu.ufpr.jmetal.problem.fitness.SilhouetteFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.math.utils.MathUtils;
 

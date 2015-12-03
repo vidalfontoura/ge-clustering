@@ -10,8 +10,8 @@ import java.util.concurrent.Executors;
 import org.uma.jmetal.runner.AbstractAlgorithmRunner;
 
 import edu.ufpr.cluster.algorithm.Point;
-import edu.ufpr.jmetal.problem.FitnessFunction;
-import edu.ufpr.jmetal.problem.SilhouetteFitness;
+import edu.ufpr.jmetal.problem.fitness.FitnessFunction;
+import edu.ufpr.jmetal.problem.fitness.SilhouetteFitness;
 import edu.ufpr.jmetal.problem.old.impl.DataInstanceReader;
 import edu.ufpr.math.utils.MathUtils;
 
